@@ -8,6 +8,7 @@ import { h } from './dom.js';
 import { t } from '../i18n.js';
 import { byBody } from '../data.js';
 import { orrery } from './space.js';
+import { moonCanvas } from './moonTexture.js';
 
 const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const RAD = Math.PI / 180;
@@ -186,7 +187,7 @@ export function createSystem() {
 
   // the Moon, around the Earth (its distance from Earth is enlarged ~1000× to be visible)
   const moonMat = new THREE.MeshStandardMaterial({ roughness: 1, metalness: 0 });
-  loader.load('assets/maps/moon.jpg', (tex) => { tex.colorSpace = THREE.SRGBColorSpace; moonMat.map = tex; moonMat.needsUpdate = true; });
+  moonCanvas().then((c) => { const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace; moonMat.map = tex; moonMat.needsUpdate = true; });
   const moon = new THREE.Mesh(new THREE.SphereGeometry(0.22, 40, 24), moonMat);
   scene.add(moon);
   const moonOrbitPts = [];

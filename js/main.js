@@ -21,6 +21,7 @@ import { rollCallPanel } from './ui/rollcall.js';
 import { starfield } from './ui/space.js';
 import { createSystem } from './ui/system.js';
 import { homePanel } from './ui/home.js';
+import { createLanding, landingPanel } from './ui/landing.js';
 
 const shell = document.getElementById('shell');
 const stageEl = document.getElementById('stage');
@@ -29,16 +30,18 @@ let stage = null, world = null, pane = null, bar = null, firstRender = true;
 
 function parse() {
   const [, name = '', a, b] = location.hash.split('/');
-  if (name === '' || name === 'home') return { world: 'system', pane: () => homePanel(go), mode: 'home', nav: 'home' };
-  if (name === 'moon' || name === 'mars' || name === 'deep') return { world: name, pane: () => introPanel(name), mode: 'brief' };
+  const bg = world && world !== 'landing' ? world : 'system';     // what to show behind reading pages
+  if (name === '' || name === 'home') return { world: 'landing', pane: landingPanel, mode: 'landing', nav: 'home' };
+  if (name === 'map') return { world: 'system', pane: () => homePanel(go), mode: 'home', nav: 'map' };
+  if (name === 'moon' || name === 'mars') return { world: name, pane: () => introPanel(name), mode: 'brief' };
   const machine = artifact(a);
   if (name === 'm' && machine) return { world: machine.body, select: machine.id, pane: () => briefPanel(machine), mode: 'brief' };
   if (name === 'story' && machine) return { world: machine.body, select: machine.id, pane: () => storyPanel(a, b), mode: 'read' };
   if (name === 'play' && a === 'opportunity' && gamePanel(b)) return { world: 'mars', select: 'opportunity', pane: () => gamePanel(b), mode: 'read' };
-  if (name === 'rollcall') return { world: world || 'moon', pane: () => rollCallPanel(focusOn), mode: 'brief', nav: 'rollcall' };
-  if (name === 'myths') return { world: world || 'moon', pane: mythsPanel, mode: 'read', nav: 'myths' };
-  if (name === 'sources') return { world: world || 'moon', pane: aboutPanel, mode: 'read', nav: 'sources' };
-  return { world: 'system', pane: () => homePanel(go), mode: 'home', nav: 'home' };
+  if (name === 'rollcall') return { world: bg, pane: () => rollCallPanel(focusOn), mode: 'brief', nav: 'rollcall' };
+  if (name === 'myths') return { world: bg, pane: mythsPanel, mode: 'read', nav: 'myths' };
+  if (name === 'sources') return { world: bg, pane: aboutPanel, mode: 'read', nav: 'sources' };
+  return { world: 'landing', pane: landingPanel, mode: 'landing', nav: 'home' };   // unknown or retired routes (e.g. #/deep)
 }
 
 /** From the home page: the camera flies to the world, then the page opens it. */
@@ -51,7 +54,7 @@ function setWorld(next, now) {
   if (next === world) return false;
   stage?.destroy();
   world = next;
-  stage = next === 'system' ? createSystem() : next === 'deep' ? createRuler(byBody('deep')) : createGlobe(next, byBody(next));
+  stage = next === 'landing' ? createLanding() : next === 'system' ? createSystem() : next === 'deep' ? createRuler(byBody('deep')) : createGlobe(next, byBody(next));
   if (stage.drivesClock) stage.onTime = (date, rate) => bar?.tick(date, rate);
   else bar?.tick(now, null);
   stageEl.replaceChildren(stage.el, ...stageEl.querySelectorAll(':scope > .stage-keep'));   // overlays like subtitles survive a world change
@@ -74,13 +77,15 @@ function focusOn(id) {
   });
 }
 
-const WORLD_ORDER = ['system', 'moon', 'mars', 'deep'];
+const WORLD_ORDER = ['landing', 'system', 'moon', 'mars', 'deep'];
 const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 let lastHash = '';
 
 /** Which transition a route change deserves: a telescope slew between worlds, a page turn, or a fade. */
 function transitionKind(nextWorld) {
   if (!world) return null;
+  if (world === 'landing' && nextWorld !== world) return 'zoom-in';
+  if (nextWorld === 'landing' && world !== 'landing') return 'zoom-out';
   if (world === 'system' && nextWorld !== world) return 'zoom-in';
   if (nextWorld === 'system' && world !== 'system') return 'zoom-out';
   if (nextWorld !== world) return WORLD_ORDER.indexOf(nextWorld) > WORLD_ORDER.indexOf(world) ? 'world-fwd' : 'world-back';
@@ -141,7 +146,7 @@ function renderNow(route) {
 function boot() {
   let seen = false;
   try { seen = sessionStorage.getItem('still-out-there:booted') === '1'; sessionStorage.setItem('still-out-there:booted', '1'); } catch { /* storage blocked */ }
-  if (seen || reducedMotion() || world === 'deep' || world === 'system') return;
+  if (seen || reducedMotion() || world === 'deep' || world === 'system' || world === 'landing') return;
   const overlay = h('button', { type: 'button', class: 'boot stage-keep', 'aria-label': t('boot.skip') },
     h('span', { class: 'boot-line' }, h('span', { class: 'boot-dot' }), t('boot.line')),
     h('span', { class: 'boot-time' }, new Date().toISOString().replace('T', ' ').slice(0, 19) + ' UTC'));

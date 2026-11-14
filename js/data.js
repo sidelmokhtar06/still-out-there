@@ -1,4 +1,5 @@
 // Loads data/*.json once. Ephemeris tables are optional: if one is missing, its widget hides.
+export const SHOWN_WORLDS = ['moon', 'mars'];
 export const db = { artifacts: [], sources: new Map(), ephemeris: {}, game: null, narration: null };
 
 async function json(path, optional = false) {
@@ -25,7 +26,9 @@ export async function loadData() {
   db.narration = narration;
   // Accuracy rule: a fact that is not verified against its source is never shown.
   for (const a of artifacts) a.facts = a.facts.filter((f) => f.verified === true && db.sources.has(f.source_id));
-  db.artifacts = artifacts;
+  // The site is about the Moon and Mars. The deep-space machines (Pioneer 10, Kepler) stay in
+  // data/artifacts.json, fully sourced, but are not shown: add 'deep' here to bring them back.
+  db.artifacts = artifacts.filter((a) => SHOWN_WORLDS.includes(a.body));
 }
 
 export const artifact = (id) => db.artifacts.find((a) => a.id === id);

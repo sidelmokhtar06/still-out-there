@@ -2,7 +2,7 @@
 
 *They stopped talking. They never left.*
 
-A live map of the machines humanity left on the Moon, on Mars and in deep space. Each globe shows where the Sun is shining **right now**. Pick a machine to see its local time, how high the Sun is, or how far away it is this second. Then hear it tell its own story in five short chapters.
+A live map of the machines humanity left on the Moon and on Mars. Each globe shows where the Sun is shining **right now**. Pick a machine to see its local time, how high the Sun is, or how far away it is this second. Then hear it tell its own story in five short chapters.
 
 NASA Space Apps Challenge 2026, challenge: *Abandoned but not Forgotten*.
 
@@ -24,7 +24,7 @@ Opening `index.html` directly from disk won't work because browsers block `fetch
 | Mars | Local solar time, Sun elevation, season | NASA GISS **Mars24** algorithm, tested against NASA's published worked examples (`tools/test-time.js`) |
 | Solar system (home) | Where every planet and the Moon are on the date in the time bar, in 3D; time can run at 1 hour, 1 day or 1 week per second | Astronomy Engine heliocentric positions, drawn with three.js. Directions are real; sizes and distances are squashed to fit, and the page says so |
 | Moon | Day/night at each site, next sunrise/sunset | Astronomy Engine: Sun direction rotated into the Moon-fixed frame. Checked against lunar phases and the Apollo 11 landing Sun angle (about 10°) |
-| Deep space | Distance from Earth and light time for Pioneer 10 and Kepler | Daily tables from **JPL Horizons** (`tools/fetch-ephemeris.sh`), interpolated. If a table is missing, the reading is hidden; the site never shows an invented number |
+| Deep space (hidden for now) | Distance from Earth and light time for Pioneer 10 and Kepler. The site focuses on the Moon and Mars; the data and code stay, and adding `'deep'` to `SHOWN_WORLDS` in `js/data.js` brings them back | Daily tables from **JPL Horizons** (`tools/fetch-ephemeris.sh`), interpolated. If a table is missing, the reading is hidden; the site never shows an invented number |
 
 ## How we keep it accurate
 
@@ -44,7 +44,8 @@ Atkinson Hyperlegible type, text sized in rem, WCAG AA contrast, visible focus, 
 index.html  css/style.css
 js/main.js            router: the stage stays put, the pane beside it changes
 js/time/              marsTime.js (Mars24), moonTime.js, deepSpace.js
-js/ui/                system.js (3D solar system, home), home.js, space.js (starfield, orrery),
+js/ui/                landing.js (welcome page), system.js (3D solar system map), home.js,
+                      moonTexture.js (clearer Moon map), space.js (starfield, orrery),
                       globe.js, ruler.js, panel.js, story.js, mythFact.js, art.js, about.js
 data/                 artifacts.json, sources.json, *_ephemeris.json, i18n/en.json
 tools/                test-time.js, check-facts.js, fetch-ephemeris.sh

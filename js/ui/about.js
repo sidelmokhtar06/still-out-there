@@ -15,7 +15,7 @@ export function aboutPanel() {
       h('p', { class: 'lead' }, t('about.lead')),
       h('p', {}, t('about.sorted')),
       h('h2', { class: 'eyebrow' }, t('about.live')),
-      h('ul', { class: 'plain' }, h('li', {}, t('about.live.mars')), h('li', {}, t('about.live.moon')), h('li', {}, t('about.live.deep'))),
+      h('ul', { class: 'plain' }, h('li', {}, t('about.live.mars')), h('li', {}, t('about.live.moon'))),
       h('h2', { class: 'eyebrow' }, t('about.all')),
       h('ul', { class: 'plain' }, ...all.map((s) => h('li', {}, sourceLink(s)))),
       h('p', { class: 'fine' }, t('app.notNasa'))),

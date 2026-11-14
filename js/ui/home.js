@@ -2,7 +2,7 @@
 // plus the roll call and the game. Each card shows a live number computed for this second.
 import { h } from './dom.js';
 import { t } from '../i18n.js';
-import { db, byBody, artifact } from '../data.js';
+import { db, byBody, artifact, SHOWN_WORLDS } from '../data.js';
 import { liveData, formatKm, tickerLine } from '../live.js';
 
 const KM_PER_AU = 149597870.7;
@@ -11,7 +11,8 @@ function distanceKm(world, now) {
   const A = globalThis.Astronomy;
   if (world === 'moon') { const v = A.GeoMoon(A.MakeTime(now)); return Math.hypot(v.x, v.y, v.z) * KM_PER_AU; }
   if (world === 'mars') { const v = A.GeoVector(A.Body.Mars, now, true); return Math.hypot(v.x, v.y, v.z) * KM_PER_AU; }
-  return liveData(artifact('pioneer10'), now)?.km ?? null;
+  const probe = artifact('pioneer10');                     // only if deep space is switched back on
+  return probe ? liveData(probe, now)?.km ?? null : null;
 }
 
 /** A small turning world: the real map scrolls behind a round, shaded window. */
@@ -46,10 +47,10 @@ export function homePanel(go) {
   const el = h('div', { class: 'pane pane-home' },
     h('div', { class: 'home-head' }, h('h2', { class: 'home-label' }, t('home.featured')), toggle),
     h('div', { class: 'home-body' },
-      h('h1', { tabindex: '-1', class: 'home-title' }, t('app.title')),
-      h('p', { class: 'home-tagline' }, t('app.tagline')),
+      h('h1', { tabindex: '-1', class: 'home-title' }, t('home.title')),
+      h('p', { class: 'home-tagline' }, t('home.mapLead')),
       h('div', { class: 'cards' },
-        card('moon'), card('mars'), card('deep'),
+        card('moon'), card('mars'),
         h('a', { class: 'card card-rollcall', href: '#/rollcall' },
           h('span', { class: 'card-text' }, h('span', { class: 'card-title' }, t('rollcall.start')), h('span', { class: 'card-meta' }, t('home.rollcallMeta', { n: db.artifacts.length }))),
           h('span', { class: 'card-art pulse-art', 'aria-hidden': 'true' })),
@@ -64,7 +65,7 @@ export function homePanel(go) {
   return {
     el, title: t('home.title'),
     tick(now) {
-      for (const world of ['moon', 'mars', 'deep']) {
+      for (const world of SHOWN_WORLDS) {
         const km = distanceKm(world, now);
         live[world].textContent = km == null ? '' : t('home.fromEarth', { km: formatKm(Math.round(km)) });
       }
