@@ -14,6 +14,8 @@
 - Astronomy Engine 2.1.19 by Don Cross, MIT License: `vendor/astronomy.browser.min.js`
 - Atkinson Hyperlegible, © Braille Institute of America, SIL Open Font License 1.1: `vendor/fonts/`
 - IBM Plex Mono, © IBM Corp., SIL Open Font License 1.1: `vendor/fonts/`
+- three.js 0.170.0 (with its OrbitControls add-on), © three.js authors, MIT License: `vendor/three.module.min.js`, `vendor/three-addons/`, `vendor/LICENSE-three.txt`
+- Montserrat, © The Montserrat Project Authors, SIL Open Font License 1.1: `vendor/fonts/`
 
 No NASA logos or mission patches are used. This project is not endorsed by NASA.
 

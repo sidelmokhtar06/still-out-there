@@ -10,6 +10,7 @@ const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').match
 const unit = (lat, lon) => [Math.cos(lat * RAD) * Math.cos(lon * RAD), Math.cos(lat * RAD) * Math.sin(lon * RAD), Math.sin(lat * RAD)];
 const wrap = (lon) => ((((lon + 180) % 360) + 360) % 360) - 180;
 const SPIN = 0.005;   // degrees per millisecond (5°/s) while nobody is touching the globe
+const HAZE = { mars: [255, 150, 105], moon: [0, 0, 0] };
 
 /** Types a label in, letter by letter, like a readout acquiring a target. */
 function typeIn(el, text) {
@@ -67,7 +68,7 @@ export function createGlobe(body, sites) {
     if (!frame) { frame = octx.createImageData(N, N); frames.set(N, frame); }
     const d = frame.data, R = N / 2 - 1, c = N / 2;
     const cl = Math.cos(lat0 * RAD), sl = Math.sin(lat0 * RAD), co = Math.cos(lon0 * RAD), so = Math.sin(lon0 * RAD);
-    const [sx, sy, sz] = sun, { d: td, w: tw, h: th } = tex;
+    const [sx, sy, sz] = sun, { d: td, w: tw, h: th } = tex, haze = HAZE[body];
     for (let py = 0; py < N; py++) {
       const y = (c - py - 0.5) / R;
       for (let px = 0; px < N; px++) {
@@ -85,8 +86,11 @@ export function createGlobe(body, sites) {
         const ti = (v * tw + u) * 4;
         const s = X * sx + Y * sy + Z * sz;            // cosine of the Sun's distance from overhead
         const day = s > edge + 0.2 ? 1 : s < edge ? 0 : (s - edge) / 0.2;
-        const light = 0.07 + 0.93 * day * (0.62 + 0.38 * Math.sqrt(s > 0 ? s : 0));
-        d[i] = td[ti] * light; d[i + 1] = td[ti + 1] * light; d[i + 2] = td[ti + 2] * light;
+        // limb darkening makes the disc read as a ball; Mars gets a thin dusty haze at the edge
+        const limb = 0.58 + 0.42 * Math.sqrt(z);
+        const light = (0.05 + 0.95 * day * (0.55 + 0.45 * Math.sqrt(s > 0 ? s : 0))) * limb;
+        const glow = haze[0] ? Math.pow(1 - z, 3) * (0.2 + 0.8 * day) * 0.85 : 0;
+        d[i] = td[ti] * light + haze[0] * glow; d[i + 1] = td[ti + 1] * light + haze[1] * glow; d[i + 2] = td[ti + 2] * light + haze[2] * glow;
         const rim = (1 - Math.sqrt(r2)) * R;      // anti-aliased outline
         d[i + 3] = rim >= 1 ? 255 : rim * 255;
       }
@@ -184,8 +188,8 @@ export function createGlobe(body, sites) {
   });
 
   const observer = new ResizeObserver(() => {
-    const box = el.getBoundingClientRect();
-    const next = Math.floor(Math.min(box.width, box.height));
+    // clientWidth/Height ignore CSS transforms (the arrival animation scales the globe)
+    const next = Math.floor(Math.min(el.clientWidth, el.clientHeight));
     if (next < 40 || next === css) return;
     css = next;
     size = Math.min(640, Math.round(css * Math.min(devicePixelRatio || 1, 2)));

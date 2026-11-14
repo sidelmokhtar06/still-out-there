@@ -1,5 +1,6 @@
-// The map is the app. One stage (globe or distance line) stays on screen; the pane beside it
-// changes with the route:
+// The map is the app. One stage (solar system, globe or distance line) stays on screen; the pane
+// beside it changes with the route:
+//   #/                            home: the solar system in 3D, with featured cards
 //   #/moon  #/mars  #/deep        a world, nothing selected
 //   #/m/<id>                      one machine: the stage turns to it, the pane shows live telemetry
 //   #/story/<id>/<1-5|end>        its story, as a reading sheet over the stage
@@ -18,14 +19,17 @@ import { aboutPanel } from './ui/about.js';
 import { gamePanel } from './game/opportunity.js';
 import { rollCallPanel } from './ui/rollcall.js';
 import { starfield } from './ui/space.js';
+import { createSystem } from './ui/system.js';
+import { homePanel } from './ui/home.js';
 
 const shell = document.getElementById('shell');
 const stageEl = document.getElementById('stage');
 const paneEl = document.getElementById('app');
-let stage = null, world = null, pane = null, firstRender = true;
+let stage = null, world = null, pane = null, bar = null, firstRender = true;
 
 function parse() {
   const [, name = '', a, b] = location.hash.split('/');
+  if (name === '' || name === 'home') return { world: 'system', pane: () => homePanel(go), mode: 'home', nav: 'home' };
   if (name === 'moon' || name === 'mars' || name === 'deep') return { world: name, pane: () => introPanel(name), mode: 'brief' };
   const machine = artifact(a);
   if (name === 'm' && machine) return { world: machine.body, select: machine.id, pane: () => briefPanel(machine), mode: 'brief' };
@@ -34,14 +38,22 @@ function parse() {
   if (name === 'rollcall') return { world: world || 'moon', pane: () => rollCallPanel(focusOn), mode: 'brief', nav: 'rollcall' };
   if (name === 'myths') return { world: world || 'moon', pane: mythsPanel, mode: 'read', nav: 'myths' };
   if (name === 'sources') return { world: world || 'moon', pane: aboutPanel, mode: 'read', nav: 'sources' };
-  return { world: 'moon', pane: () => introPanel('moon'), mode: 'brief' };
+  return { world: 'system', pane: () => homePanel(go), mode: 'home', nav: 'home' };
+}
+
+/** From the home page: the camera flies to the world, then the page opens it. */
+function go(world) {
+  if (stage?.flyToWorld) stage.flyToWorld(world).then(() => { location.hash = `#/${world}`; });
+  else location.hash = `#/${world}`;
 }
 
 function setWorld(next, now) {
   if (next === world) return false;
   stage?.destroy();
   world = next;
-  stage = next === 'deep' ? createRuler(byBody('deep')) : createGlobe(next, byBody(next));
+  stage = next === 'system' ? createSystem() : next === 'deep' ? createRuler(byBody('deep')) : createGlobe(next, byBody(next));
+  if (stage.drivesClock) stage.onTime = (date, rate) => bar?.tick(date, rate);
+  else bar?.tick(now, null);
   stageEl.replaceChildren(stage.el, ...stageEl.querySelectorAll(':scope > .stage-keep'));   // overlays like subtitles survive a world change
   shell.dataset.world = next;
   // Moon: the face we see from Earth. Mars: start on the sunlit side.
@@ -62,13 +74,15 @@ function focusOn(id) {
   });
 }
 
-const WORLD_ORDER = ['moon', 'mars', 'deep'];
+const WORLD_ORDER = ['system', 'moon', 'mars', 'deep'];
 const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 let lastHash = '';
 
 /** Which transition a route change deserves: a telescope slew between worlds, a page turn, or a fade. */
 function transitionKind(nextWorld) {
   if (!world) return null;
+  if (world === 'system' && nextWorld !== world) return 'zoom-in';
+  if (nextWorld === 'system' && world !== 'system') return 'zoom-out';
   if (nextWorld !== world) return WORLD_ORDER.indexOf(nextWorld) > WORLD_ORDER.indexOf(world) ? 'world-fwd' : 'world-back';
   const [, n1, id1, s1] = lastHash.split('/'), [, n2, id2, s2] = location.hash.split('/');
   if (n1 === n2 && id1 === id2 && (n1 === 'story' || n1 === 'play')) {
@@ -127,7 +141,7 @@ function renderNow(route) {
 function boot() {
   let seen = false;
   try { seen = sessionStorage.getItem('still-out-there:booted') === '1'; sessionStorage.setItem('still-out-there:booted', '1'); } catch { /* storage blocked */ }
-  if (seen || reducedMotion() || world === 'deep') return;
+  if (seen || reducedMotion() || world === 'deep' || world === 'system') return;
   const overlay = h('button', { type: 'button', class: 'boot stage-keep', 'aria-label': t('boot.skip') },
     h('span', { class: 'boot-line' }, h('span', { class: 'boot-dot' }), t('boot.line')),
     h('span', { class: 'boot-time' }, new Date().toISOString().replace('T', ' ').slice(0, 19) + ' UTC'));
@@ -138,16 +152,27 @@ function boot() {
 }
 
 /** Bottom of the stage: a live clock on a glowing arc, in the spirit of a mission-control timeline. */
+// On the home page the rate can be changed (real time, 1 hour/s, 1 day/s, 1 week/s) and LIVE
+// jumps back to now; on the other pages the clock is always real time.
 function timeBar() {
-  const date = h('span', { class: 'tb-date' }), clock = h('span', { class: 'tb-clock' });
-  const el = h('div', { class: 'timebar stage-keep', 'aria-hidden': 'true' },
-    h('span', { class: 'tb-live' }, h('span', { class: 'tb-dot' }), t('timebar.live')),
-    h('div', { class: 'tb-arc' },
-      date, h('span', { class: 'tb-rate' }, t('timebar.rate')), clock,
-      h('span', { class: 'tb-knob' })));
+  const date = h('span', { class: 'tb-date', 'aria-hidden': 'true' }), clock = h('span', { class: 'tb-clock', 'aria-hidden': 'true' });
+  const rate = h('button', { type: 'button', class: 'tb-rate', title: t('timebar.change') }, t('timebar.rate'));
+  const live = h('button', { type: 'button', class: 'tb-live', title: t('timebar.backToNow') }, h('span', { class: 'tb-dot' }), t('timebar.live'));
+  const el = h('div', { class: 'timebar stage-keep', role: 'group', 'aria-label': t('timebar.label') },
+    live,
+    h('div', { class: 'tb-arc' }, date, rate, clock, h('span', { class: 'tb-knob', 'aria-hidden': 'true' })));
+  rate.addEventListener('click', () => { const r = stage?.cycleRate?.(); if (r) show(r); });
+  live.addEventListener('click', () => { const r = stage?.resetRate?.(); if (r) show(r); });
+  const show = (r) => {
+    rate.textContent = t(r.key);
+    el.classList.toggle('fast', r.ms > 1);
+  };
   const fmtDate = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' });
   const fmtTime = new Intl.DateTimeFormat('en', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-  const tick = (now) => { date.textContent = fmtDate.format(now).toUpperCase(); clock.textContent = fmtTime.format(now); };
+  const tick = (now, r) => {
+    date.textContent = fmtDate.format(now).toUpperCase(); clock.textContent = fmtTime.format(now);
+    show(r ?? { key: 'timebar.rate', ms: 1 });
+  };
   tick(new Date());
   return { el, tick };
 }
@@ -162,7 +187,7 @@ async function start() {
     return;
   }
   document.body.prepend(starfield());
-  const bar = timeBar();
+  bar = timeBar();
   stageEl.append(bar.el);
   window.addEventListener('hashchange', render);
   render();
@@ -172,7 +197,7 @@ async function start() {
     const now = new Date();
     stage?.update(now);
     pane?.tick?.(now);
-    bar.tick(now);
+    if (!stage?.drivesClock) bar.tick(now);
   }, 1000);
 }
 
