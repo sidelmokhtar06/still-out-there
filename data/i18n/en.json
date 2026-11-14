@@ -243,5 +243,7 @@
   "rollcall.note": "Voices are AI-generated (elevenlabs.io). Every place and year comes from the sourced facts in each story.",
   "nav.rollcall": "Roll call",
   "boot.line": "Calculating where the Sun is right now",
-  "boot.skip": "Skip intro"
+  "boot.skip": "Skip intro",
+  "timebar.live": "Live",
+  "timebar.rate": "Real time"
 }

@@ -9,6 +9,7 @@ const RAD = Math.PI / 180;
 const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const unit = (lat, lon) => [Math.cos(lat * RAD) * Math.cos(lon * RAD), Math.cos(lat * RAD) * Math.sin(lon * RAD), Math.sin(lat * RAD)];
 const wrap = (lon) => ((((lon + 180) % 360) + 360) % 360) - 180;
+const SPIN = 0.005;   // degrees per millisecond (5°/s) while nobody is touching the globe
 
 /** Types a label in, letter by letter, like a readout acquiring a target. */
 function typeIn(el, text) {
@@ -29,7 +30,9 @@ export function createGlobe(body, sites) {
       statusMark(a.status), h('span', { class: 'marker-num', 'aria-hidden': 'true' }, String(i + 1)),
       h('span', { class: 'marker-label', 'aria-hidden': 'true' }, a.name)),
   }));
-  const disc = h('div', { class: 'globe-disc' }, canvas, ...markers.map((m) => m.el));
+  // Decoration around the disc: a glowing atmosphere behind it and a tilted orbit with a satellite.
+  const orbit = h('div', { class: 'orbit', 'aria-hidden': 'true' }, h('span', { class: 'orbit-sat' }));
+  const disc = h('div', { class: 'globe-disc' }, h('div', { class: 'atmo', 'aria-hidden': 'true' }), orbit, canvas, ...markers.map((m) => m.el));
   const el = h('div', { class: `globe globe-${body}`, tabindex: '0', role: 'group', 'aria-label': t(`globe.label.${body}`) }, disc);
 
   let size = 0, css = 0;                 // canvas pixels, CSS pixels
@@ -38,6 +41,7 @@ export function createGlobe(body, sites) {
   let tex = null, selected = null, anim = 0, lastSun = 0, settle = 0;
   let edge = -0.1;                       // where daylight starts; the first-visit reveal sweeps it from 1 down to -0.1
   let texReady = null, revealRun = 0;
+  let spinRaf = 0, sway = 1, lastSpin = 0, pausedUntil = 0, animating = false, revealing = false, hovering = false;
   const texLoaded = new Promise((r) => { texReady = r; });
   const frames = new Map();              // reused pixel buffers per render size
 
@@ -122,16 +126,36 @@ export function createGlobe(body, sites) {
   function lookAt(lon, lat, animate = true) {
     cancelAnimationFrame(anim);
     lat = Math.max(-60, Math.min(60, lat));
+    animating = false;
     if (!animate || reducedMotion() || !size) { lon0 = wrap(lon); lat0 = lat; render(); return; }
     const fromLon = lon0, fromLat = lat0, dLon = wrap(lon - lon0), dLat = lat - lat0, start = performance.now();
     if (Math.abs(dLon) < 0.5 && Math.abs(dLat) < 0.5) { render(); return; }
     const step = (now) => {
       const k = Math.min(1, (now - start) / 700), e = 1 - Math.pow(1 - k, 3);
       lon0 = wrap(fromLon + dLon * e); lat0 = fromLat + dLat * e;
-      if (k < 1) { render(true); anim = requestAnimationFrame(step); } else render(false);
+      if (k < 1) { render(true); anim = requestAnimationFrame(step); } else { animating = false; render(false); }
     };
+    animating = true;
     anim = requestAnimationFrame(step);
   }
+
+  /** Idle rotation: the globe turns slowly eastward, like the real thing, until someone interacts. */
+  function spin(now) {
+    spinRaf = requestAnimationFrame(spin);
+    const idle = !document.hidden && !selected && !drag && !animating && !revealing && !hovering && now > pausedUntil && tex && size;
+    if (!idle) { lastSpin = 0; return; }
+    if (!lastSpin) { lastSpin = now; return; }
+    if (now - lastSpin < 33) return;           // ~30 fps is smooth at this speed and spares the battery
+    const dt = Math.min(80, now - lastSpin);
+    lastSpin = now;
+    if (body === 'moon') {
+      // The Moon keeps one face to Earth: rock gently around it (±25°) instead of spinning round.
+      if (lon0 > 25) sway = -1; else if (lon0 < -25) sway = 1;
+      lon0 = wrap(lon0 + sway * dt * SPIN * 0.6);
+    } else lon0 = wrap(lon0 - dt * SPIN);
+    render(false);
+  }
+  const pause = (ms) => { pausedUntil = performance.now() + ms; };
 
   // Drag with mouse or finger. Finger drags turn the globe sideways only, so the page still scrolls.
   let drag = null;
@@ -147,13 +171,14 @@ export function createGlobe(body, sites) {
     if (!drag.touch) lat0 = Math.max(-75, Math.min(75, drag.lat + (e.clientY - drag.y) * k));
     moving();
   });
-  const endDrag = () => { drag = null; };
+  const endDrag = () => { drag = null; pause(3000); };
   canvas.addEventListener('pointerup', endDrag);
   canvas.addEventListener('pointercancel', endDrag);
   el.addEventListener('keydown', (e) => {
     const move = { ArrowLeft: [-12, 0], ArrowRight: [12, 0], ArrowUp: [0, 10], ArrowDown: [0, -10] }[e.key];
     if (!move || e.target !== el) return;
     e.preventDefault();
+    pause(4000);
     lon0 = wrap(lon0 + move[0]); lat0 = Math.max(-75, Math.min(75, lat0 + move[1]));
     moving();
   });
@@ -169,6 +194,12 @@ export function createGlobe(body, sites) {
     render();
   });
   observer.observe(el);
+  // Hovering (to aim at a marker) holds the globe still.
+  el.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') hovering = true; });
+  el.addEventListener('pointerleave', () => { hovering = false; pause(1200); });
+  el.addEventListener('focusin', () => { hovering = true; });
+  el.addEventListener('focusout', () => { hovering = false; });
+  if (!reducedMotion()) spinRaf = requestAnimationFrame(spin);
 
   return {
     el,
@@ -190,21 +221,22 @@ export function createGlobe(body, sites) {
     async reveal(ms = 1400, delay = 0) {
       if (reducedMotion()) return;
       const id = ++revealRun;
+      revealing = true;
       edge = 1; render();
       await texLoaded;
       await new Promise((r) => setTimeout(r, delay));
       const start = performance.now();
       await new Promise((done) => {
         const step = (now) => {
-          if (id !== revealRun) { done(); return; }
+          if (id !== revealRun) { revealing = false; done(); return; }
           const k = Math.min(1, (now - start) / ms), e = 1 - Math.pow(1 - k, 2.2);
           edge = 1 - 1.1 * e;
-          if (k < 1) { render(true); requestAnimationFrame(step); } else { edge = -0.1; render(false); done(); }
+          if (k < 1) { render(true); requestAnimationFrame(step); } else { edge = -0.1; revealing = false; render(false); done(); }
         };
         requestAnimationFrame(step);
       });
     },
-    skipReveal() { revealRun++; edge = -0.1; render(); },
+    skipReveal() { revealRun++; revealing = false; edge = -0.1; render(); },
     update(now) {
       if (now - lastSun < 30e3) return;
       lastSun = +now;
@@ -214,6 +246,6 @@ export function createGlobe(body, sites) {
     },
     /** Longitude where the Sun is overhead: a good default view for Mars. */
     subsolarLon: (now) => (body === 'mars' ? marsState(now).subsolar : moonSubsolar(now)).lonEast,
-    destroy() { observer.disconnect(); cancelAnimationFrame(anim); clearTimeout(settle); },
+    destroy() { observer.disconnect(); cancelAnimationFrame(anim); cancelAnimationFrame(spinRaf); clearTimeout(settle); },
   };
 }

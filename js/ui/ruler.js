@@ -4,6 +4,7 @@
 import { h, statusMark } from './dom.js';
 import { t } from '../i18n.js';
 import { liveData } from '../live.js';
+import { orrery } from './space.js';
 
 const MIN = 0.001, MAX = 300; // AU
 const place = (au) => (Math.log10(au) - Math.log10(MIN)) / (Math.log10(MAX) - Math.log10(MIN));
@@ -28,8 +29,9 @@ export function createRuler(crafts) {
   const line = h('div', { class: 'ruler-line' },
     h('span', { class: 'body earth', style: '--p:0' }, h('span', { class: 'body-dot' }), h('span', { class: 'body-label' }, t('body.earth'))),
     ...ticks, ...bodies.map((b) => b.el), ...craftEls.map((c) => c.el));
+  const backdrop = orrery();
   const el = h('div', { class: 'ruler', role: 'group', 'aria-label': t('deep.label') },
-    line, h('p', { class: 'ruler-caption' }, t('deep.scale'), ' ', t('deep.au')));
+    backdrop.el, line, h('p', { class: 'ruler-caption' }, t('deep.scale'), ' ', t('deep.au')));
 
   let last = 0, selected = null;
   return {
@@ -56,6 +58,6 @@ export function createRuler(crafts) {
     },
     reveal: async () => {},
     skipReveal() {},
-    destroy() {},
+    destroy() { backdrop.destroy(); },
   };
 }

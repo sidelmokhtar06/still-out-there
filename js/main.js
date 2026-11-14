@@ -17,6 +17,7 @@ import { mythsPanel } from './ui/mythFact.js';
 import { aboutPanel } from './ui/about.js';
 import { gamePanel } from './game/opportunity.js';
 import { rollCallPanel } from './ui/rollcall.js';
+import { starfield } from './ui/space.js';
 
 const shell = document.getElementById('shell');
 const stageEl = document.getElementById('stage');
@@ -136,6 +137,21 @@ function boot() {
   stage.reveal(1500, 600).then(finish);
 }
 
+/** Bottom of the stage: a live clock on a glowing arc, in the spirit of a mission-control timeline. */
+function timeBar() {
+  const date = h('span', { class: 'tb-date' }), clock = h('span', { class: 'tb-clock' });
+  const el = h('div', { class: 'timebar stage-keep', 'aria-hidden': 'true' },
+    h('span', { class: 'tb-live' }, h('span', { class: 'tb-dot' }), t('timebar.live')),
+    h('div', { class: 'tb-arc' },
+      date, h('span', { class: 'tb-rate' }, t('timebar.rate')), clock,
+      h('span', { class: 'tb-knob' })));
+  const fmtDate = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' });
+  const fmtTime = new Intl.DateTimeFormat('en', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  const tick = (now) => { date.textContent = fmtDate.format(now).toUpperCase(); clock.textContent = fmtTime.format(now); };
+  tick(new Date());
+  return { el, tick };
+}
+
 async function start() {
   try {
     await Promise.all([loadLanguage('en'), loadData()]);
@@ -145,6 +161,9 @@ async function start() {
       'The data could not be loaded. If you opened this file directly, run a small web server instead (see README).'));
     return;
   }
+  document.body.prepend(starfield());
+  const bar = timeBar();
+  stageEl.append(bar.el);
   window.addEventListener('hashchange', render);
   render();
   boot();
@@ -153,6 +172,7 @@ async function start() {
     const now = new Date();
     stage?.update(now);
     pane?.tick?.(now);
+    bar.tick(now);
   }, 1000);
 }
 
