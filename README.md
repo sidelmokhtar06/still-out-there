@@ -44,7 +44,7 @@ Atkinson Hyperlegible type, text sized in rem, WCAG AA contrast, visible focus, 
 index.html  css/style.css
 js/main.js            router: the stage stays put, the pane beside it changes
 js/time/              marsTime.js (Mars24), moonTime.js, deepSpace.js
-js/ui/                landing.js (welcome page), system.js (3D solar system map), home.js,
+js/ui/                system.js (3D solar system map, home), home.js,
                       moonTexture.js (clearer Moon map), space.js (starfield, orrery),
                       globe.js, ruler.js, panel.js, story.js, mythFact.js, art.js, about.js
 data/                 artifacts.json, sources.json, *_ephemeris.json, i18n/en.json
