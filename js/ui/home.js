@@ -3,7 +3,6 @@
 import { h } from './dom.js';
 import { t } from '../i18n.js';
 import { db } from '../data.js';
-import { machineArt } from './art.js';
 import { tickerLine } from '../live.js';
 
 /** A small turning world: the real map scrolls behind a round, shaded window. */
@@ -13,8 +12,8 @@ export function homePanel(go) {
   const shell = document.getElementById('shell');
   const card = (world) => {
     const a = h('a', { class: `card card-${world}`, href: `#/${world}` },
-      world === 'deep' ? h('span', { class: 'card-art orbit-art', 'aria-hidden': 'true' }, h('span'), h('span')) : sphere(world),
-      h('span', { class: 'card-title' }, t('world.' + world)));
+      h('span', { class: 'card-text' }, h('span', { class: 'card-title' }, t('world.' + world))),
+      world === 'deep' ? h('span', { class: 'card-art orbit-art', 'aria-hidden': 'true' }, h('span'), h('span')) : sphere(world));
     // From the home page the camera flies to the world first, then the page changes.
     if (world !== 'deep') a.addEventListener('click', (e) => { if (go) { e.preventDefault(); go(world); } });
     return a;
@@ -38,11 +37,11 @@ export function homePanel(go) {
       h('div', { class: 'cards' },
         card('moon'), card('mars'),
         h('a', { class: 'card card-rollcall', href: '#/rollcall' },
-          h('span', { class: 'card-art pulse-art', 'aria-hidden': 'true' }),
-          h('span', { class: 'card-title' }, t('rollcall.start'))),
+          h('span', { class: 'card-text' }, h('span', { class: 'card-title' }, t('rollcall.start'))),
+          h('span', { class: 'card-art pulse-art', 'aria-hidden': 'true' })),
         db.game ? h('a', { class: 'card card-game', href: '#/play/opportunity' },
-          h('span', { class: 'card-art rover-art', 'aria-hidden': 'true' }, machineArt('opportunity')),
-          h('span', { class: 'card-title' }, db.game.ui.title)) : null),
+          h('span', { class: 'card-text' }, h('span', { class: 'card-title' }, db.game.ui.title)),
+          h('span', { class: 'card-art photo-art', 'aria-hidden': 'true' })) : null),
       h('div', { class: 'now', role: 'status', 'aria-live': 'polite' }, h('p', { class: 'eyebrow live-dot' }, t('intro.rightNow')), ticker),
       h('p', { class: 'fine' }, t('home.hint')),
       h('p', { class: 'fine' }, h('a', { href: '#/sources' }, t('about.title')), ' · ', t('app.notNasa'))));
