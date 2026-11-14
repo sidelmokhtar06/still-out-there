@@ -25,7 +25,7 @@ import { homePanel } from './ui/home.js';
 const shell = document.getElementById('shell');
 const stageEl = document.getElementById('stage');
 const paneEl = document.getElementById('app');
-let stage = null, world = null, pane = null, bar = null, firstRender = true;
+let stage = null, world = null, pane = null, firstRender = true;
 
 function parse() {
   const [, name = '', a, b] = location.hash.split('/');
@@ -53,8 +53,6 @@ function setWorld(next, now) {
   stage?.destroy();
   world = next;
   stage = next === 'system' ? createSystem() : next === 'deep' ? createRuler(byBody('deep')) : createGlobe(next, byBody(next));
-  if (stage.drivesClock) stage.onTime = (date, rate) => bar?.tick(date, rate);
-  else bar?.tick(now, null);
   stageEl.replaceChildren(stage.el, ...stageEl.querySelectorAll(':scope > .stage-keep'));   // overlays like subtitles survive a world change
   shell.dataset.world = next;
   // Moon: the face we see from Earth. Mars: start on the sunlit side.
@@ -152,32 +150,6 @@ function boot() {
   stage.reveal(1500, 600).then(finish);
 }
 
-/** Bottom of the stage: a live clock on a glowing arc, in the spirit of a mission-control timeline. */
-// On the home page the rate can be changed (real time, 1 hour/s, 1 day/s, 1 week/s) and LIVE
-// jumps back to now; on the other pages the clock is always real time.
-function timeBar() {
-  const date = h('span', { class: 'tb-date', 'aria-hidden': 'true' }), clock = h('span', { class: 'tb-clock', 'aria-hidden': 'true' });
-  const rate = h('button', { type: 'button', class: 'tb-rate', title: t('timebar.change') }, t('timebar.rate'));
-  const live = h('button', { type: 'button', class: 'tb-live', title: t('timebar.backToNow') }, h('span', { class: 'tb-dot' }), t('timebar.live'));
-  const el = h('div', { class: 'timebar stage-keep', role: 'group', 'aria-label': t('timebar.label') },
-    live,
-    h('div', { class: 'tb-arc' }, date, rate, clock, h('span', { class: 'tb-knob', 'aria-hidden': 'true' })));
-  rate.addEventListener('click', () => { const r = stage?.cycleRate?.(); if (r) show(r); });
-  live.addEventListener('click', () => { const r = stage?.resetRate?.(); if (r) show(r); });
-  const show = (r) => {
-    rate.textContent = t(r.key);
-    el.classList.toggle('fast', r.ms > 1);
-  };
-  const fmtDate = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' });
-  const fmtTime = new Intl.DateTimeFormat('en', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-  const tick = (now, r) => {
-    date.textContent = fmtDate.format(now).toUpperCase(); clock.textContent = fmtTime.format(now);
-    show(r ?? { key: 'timebar.rate', ms: 1 });
-  };
-  tick(new Date());
-  return { el, tick };
-}
-
 async function start() {
   try {
     await Promise.all([loadLanguage('en'), loadData()]);
@@ -188,8 +160,6 @@ async function start() {
     return;
   }
   document.body.prepend(starfield());
-  bar = timeBar();
-  stageEl.append(bar.el);
   window.addEventListener('hashchange', render);
   render();
   boot();
@@ -198,7 +168,6 @@ async function start() {
     const now = new Date();
     stage?.update(now);
     pane?.tick?.(now);
-    if (!stage?.drivesClock) bar.tick(now);
   }, 1000);
 }
 

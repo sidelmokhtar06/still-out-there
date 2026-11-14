@@ -1,34 +1,20 @@
 // Home pane: featured cards over the 3D solar system, one per place where machines rest,
-// plus the roll call and the game. Each card shows a live number computed for this second.
+// plus the roll call and the game. Each card is a picture and a name, centred.
 import { h } from './dom.js';
 import { t } from '../i18n.js';
-import { db, byBody, artifact, SHOWN_WORLDS } from '../data.js';
-import { liveData, formatKm, tickerLine } from '../live.js';
-
-const KM_PER_AU = 149597870.7;
-
-function distanceKm(world, now) {
-  const A = globalThis.Astronomy;
-  if (world === 'moon') { const v = A.GeoMoon(A.MakeTime(now)); return Math.hypot(v.x, v.y, v.z) * KM_PER_AU; }
-  if (world === 'mars') { const v = A.GeoVector(A.Body.Mars, now, true); return Math.hypot(v.x, v.y, v.z) * KM_PER_AU; }
-  const probe = artifact('pioneer10');                     // only if deep space is switched back on
-  return probe ? liveData(probe, now)?.km ?? null : null;
-}
+import { db } from '../data.js';
+import { machineArt } from './art.js';
+import { tickerLine } from '../live.js';
 
 /** A small turning world: the real map scrolls behind a round, shaded window. */
 const sphere = (world) => h('span', { class: `card-art sphere sphere-${world}`, 'aria-hidden': 'true' });
 
 export function homePanel(go) {
   const shell = document.getElementById('shell');
-  const live = {};
   const card = (world) => {
-    live[world] = h('span', { class: 'card-live' });
     const a = h('a', { class: `card card-${world}`, href: `#/${world}` },
-      h('span', { class: 'card-text' },
-        h('span', { class: 'card-title' }, t('world.' + world)),
-        h('span', { class: 'card-meta' }, t('home.machines', { n: byBody(world).length })),
-        live[world]),
-      world === 'deep' ? h('span', { class: 'card-art orbit-art', 'aria-hidden': 'true' }, h('span'), h('span')) : sphere(world));
+      world === 'deep' ? h('span', { class: 'card-art orbit-art', 'aria-hidden': 'true' }, h('span'), h('span')) : sphere(world),
+      h('span', { class: 'card-title' }, t('world.' + world)));
     // From the home page the camera flies to the world first, then the page changes.
     if (world !== 'deep') a.addEventListener('click', (e) => { if (go) { e.preventDefault(); go(world); } });
     return a;
@@ -52,11 +38,11 @@ export function homePanel(go) {
       h('div', { class: 'cards' },
         card('moon'), card('mars'),
         h('a', { class: 'card card-rollcall', href: '#/rollcall' },
-          h('span', { class: 'card-text' }, h('span', { class: 'card-title' }, t('rollcall.start')), h('span', { class: 'card-meta' }, t('home.rollcallMeta', { n: db.artifacts.length }))),
-          h('span', { class: 'card-art pulse-art', 'aria-hidden': 'true' })),
+          h('span', { class: 'card-art pulse-art', 'aria-hidden': 'true' }),
+          h('span', { class: 'card-title' }, t('rollcall.start'))),
         db.game ? h('a', { class: 'card card-game', href: '#/play/opportunity' },
-          h('span', { class: 'card-text' }, h('span', { class: 'card-title' }, db.game.ui.title), h('span', { class: 'card-meta' }, t('home.gameMeta'))),
-          h('span', { class: 'card-art photo-art', 'aria-hidden': 'true' })) : null),
+          h('span', { class: 'card-art rover-art', 'aria-hidden': 'true' }, machineArt('opportunity')),
+          h('span', { class: 'card-title' }, db.game.ui.title)) : null),
       h('div', { class: 'now', role: 'status', 'aria-live': 'polite' }, h('p', { class: 'eyebrow live-dot' }, t('intro.rightNow')), ticker),
       h('p', { class: 'fine' }, t('home.hint')),
       h('p', { class: 'fine' }, h('a', { href: '#/sources' }, t('about.title')), ' · ', t('app.notNasa'))));
@@ -65,10 +51,6 @@ export function homePanel(go) {
   return {
     el, title: t('home.title'),
     tick(now) {
-      for (const world of SHOWN_WORLDS) {
-        const km = distanceKm(world, now);
-        live[world].textContent = km == null ? '' : t('home.fromEarth', { km: formatKm(Math.round(km)) });
-      }
       if (now - shownAt < 8000) return;
       shownAt = +now;
       for (let tries = 0; tries < db.artifacts.length; tries++) {

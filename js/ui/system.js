@@ -17,14 +17,14 @@ const DAY = 86400e3;
 const orbitR = (au) => 14 * Math.pow(au, 0.5);
 
 const PLANETS = [
-  { id: 'mercury', body: 'Mercury', au: 0.387, r: 0.32, tex: ['#8c8580', '#b9b2a6', '#6f6a64'], spin: 0.05 },
-  { id: 'venus', body: 'Venus', au: 0.723, r: 0.55, tex: ['#e8cf9a', '#d9b77a', '#f2deb0'], spin: -0.03 },
-  { id: 'earth', body: 'Earth', au: 1, r: 0.62, tex: 'earth', spin: 0.25 },
+  { id: 'mercury', body: 'Mercury', au: 0.387, r: 0.32, tex: 'mercury', spin: 0.05 },
+  { id: 'venus', body: 'Venus', au: 0.723, r: 0.55, tex: 'venus', spin: -0.03 },
+  { id: 'earth', body: 'Earth', au: 1, r: 0.72, map: 'assets/maps/earth.jpg', spin: 0.25 },
   { id: 'mars', body: 'Mars', au: 1.524, r: 0.5, map: 'assets/maps/mars.jpg', spin: 0.24, world: 'mars', glow: 0xff8a5c },
-  { id: 'jupiter', body: 'Jupiter', au: 5.2, r: 1.7, tex: ['#d9b58c', '#b98c62', '#efe0c4', '#a8764e'], spin: 0.6 },
-  { id: 'saturn', body: 'Saturn', au: 9.58, r: 1.45, tex: ['#e6d3a1', '#cdb07a', '#f1e6c8'], spin: 0.55, ring: true },
-  { id: 'uranus', body: 'Uranus', au: 19.2, r: 0.95, tex: ['#9fe0e6', '#8cd0d8', '#b5ecef'], spin: 0.35 },
-  { id: 'neptune', body: 'Neptune', au: 30.1, r: 0.92, tex: ['#5b7cf0', '#6f8dff', '#4a66d6'], spin: 0.36 },
+  { id: 'jupiter', body: 'Jupiter', au: 5.2, r: 1.7, tex: 'jupiter', spin: 0.6 },
+  { id: 'saturn', body: 'Saturn', au: 9.58, r: 1.45, tex: 'saturn', spin: 0.55, ring: true },
+  { id: 'uranus', body: 'Uranus', au: 19.2, r: 0.95, tex: 'uranus', spin: 0.35 },
+  { id: 'neptune', body: 'Neptune', au: 30.1, r: 0.92, tex: 'neptune', spin: 0.36 },
 ];
 export const RATES = [
   { ms: 1, key: 'timebar.rate' },             // real time
@@ -33,37 +33,87 @@ export const RATES = [
   { ms: 604800, key: 'timebar.rate.week' },   // 1 week per second
 ];
 
-/** Banded or speckled surface drawn on a canvas, for planets without a map in the repo. */
-function paintTexture(kind) {
+// ---- planet surfaces drawn in code (the repo has real maps only for the Earth, Moon and Mars) ----
+// Smooth value noise, summed over octaves, gives turbulent cloud belts and cratered plains.
+function noise2(seed) {
+  const perm = new Uint8Array(512);
+  let s = seed;
+  for (let i = 0; i < 256; i++) perm[i] = i;
+  for (let i = 255; i > 0; i--) { s = (s * 16807) % 2147483647; const j = s % (i + 1); [perm[i], perm[j]] = [perm[j], perm[i]]; }
+  for (let i = 0; i < 256; i++) perm[i + 256] = perm[i];
+  const val = (x, y) => perm[(perm[x & 255] + y) & 511] / 255;
+  const smooth = (t) => t * t * (3 - 2 * t);
+  const noise = (x, y, wrap) => {
+    const xi = Math.floor(x), yi = Math.floor(y), xf = smooth(x - xi), yf = smooth(y - yi);
+    const x0 = ((xi % wrap) + wrap) % wrap, x1 = (x0 + 1) % wrap;          // wraps east–west, no seam
+    const a = val(x0, yi), b = val(x1, yi), c = val(x0, yi + 1), d = val(x1, yi + 1);
+    return a + (b - a) * xf + (c - a) * yf + (a - b - c + d) * xf * yf;
+  };
+  return (x, y, octaves = 5, base = 8) => {
+    let sum = 0, amp = 0.5, f = 1;
+    for (let o = 0; o < octaves; o++) { sum += amp * noise(x * base * f, y * base * f, base * f); amp *= 0.5; f *= 2; }
+    return sum;
+  };
+}
+const mix = (a, b, t) => a + (b - a) * t;
+const hex = (c) => [parseInt(c.slice(1, 3), 16), parseInt(c.slice(3, 5), 16), parseInt(c.slice(5, 7), 16)];
+function ramp(colors, t) {
+  const cs = colors.map(hex), x = Math.min(0.999, Math.max(0, t)) * (cs.length - 1), i = Math.floor(x), k = x - i;
+  return [mix(cs[i][0], cs[i + 1][0], k), mix(cs[i][1], cs[i + 1][1], k), mix(cs[i][2], cs[i + 1][2], k)];
+}
+const STYLES = {
+  // gas giants: belts that wobble with turbulence
+  jupiter: { kind: 'gas', colors: ['#7a5236', '#b98a62', '#e9d6b4', '#c99c6e', '#f3e7cf', '#a8744c'], bands: 14, turb: 0.06, spot: true },
+  saturn: { kind: 'gas', colors: ['#b8975e', '#d8c08a', '#efe2bf', '#cdb27c', '#e8d7a8'], bands: 11, turb: 0.035 },
+  uranus: { kind: 'gas', colors: ['#7fc9d3', '#9fdde4', '#b7ecef', '#93d6de'], bands: 5, turb: 0.012 },
+  neptune: { kind: 'gas', colors: ['#2f4fb8', '#3f63d6', '#5b80ef', '#3a5ccc', '#7a9bff'], bands: 7, turb: 0.03 },
+  venus: { kind: 'haze', colors: ['#b98d4f', '#d9b77a', '#ecd29c', '#f6e5bd'] },
+  mercury: { kind: 'rock', colors: ['#4d4844', '#77706a', '#9d958c', '#c2bab0'] },
+  sun: { kind: 'sun', colors: ['#ff9a2e', '#ffc24f', '#ffe08a', '#fff2c8'] },
+};
+
+function paintTexture(name) {
+  const st = STYLES[name], W = 1024, H = 512;
   const c = document.createElement('canvas');
-  c.width = 512; c.height = 256;
+  c.width = W; c.height = H;
   const g = c.getContext('2d');
-  let seed = 7;
-  const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
-  if (kind === 'sun') {                       // granulation: warm base, many small bright cells
-    g.fillStyle = '#ffc95a'; g.fillRect(0, 0, 512, 256);
-    for (let i = 0; i < 2600; i++) {
-      g.fillStyle = rnd() < 0.5 ? 'rgba(255,240,190,.55)' : 'rgba(255,170,60,.35)';
-      g.beginPath(); g.arc(rnd() * 512, rnd() * 256, 1 + rnd() * 3.5, 0, Math.PI * 2); g.fill();
+  const img = g.createImageData(W, H), d = img.data;
+  const n = noise2(name.length * 977 + name.charCodeAt(0) * 31);
+  for (let y = 0; y < H; y++) {
+    const v = y / H, lat = (v - 0.5) * Math.PI;
+    for (let x = 0; x < W; x++) {
+      const u = x / W;
+      let t;
+      if (st.kind === 'gas') {
+        const warp = (n(u, v * 2, 4, 6) - 0.5) * st.turb * 6;
+        const band = Math.sin((v + warp) * Math.PI * st.bands) * 0.5 + 0.5;
+        t = band * 0.75 + n(u * 2, v * 8, 4, 8) * 0.25;
+        t = mix(t, 0.55, Math.pow(Math.abs(Math.sin(lat)), 6) * 0.6);          // calmer, greyer poles
+      } else if (st.kind === 'haze') {
+        t = n(u + n(u, v, 3, 4) * 0.3, v * 1.5, 5, 4);
+      } else if (st.kind === 'sun') {
+        t = 0.35 + n(u, v, 6, 24) * 0.9;
+      } else {
+        t = n(u, v, 6, 10) * 1.1 - 0.05;
+      }
+      const [r, gg, b] = ramp(st.colors, t);
+      const i = (y * W + x) * 4;
+      d[i] = r; d[i + 1] = gg; d[i + 2] = b; d[i + 3] = 255;
     }
-  } else if (kind === 'earth') {
-    g.fillStyle = '#1d4f91'; g.fillRect(0, 0, 512, 256);
-    for (let i = 0; i < 70; i++) {          // land blobs
-      const x = rnd() * 512, y = 40 + rnd() * 176, r = 6 + rnd() * 26;
-      g.fillStyle = rnd() < 0.6 ? '#3f7d3a' : '#9b8556';
-      g.beginPath(); g.ellipse(x, y, r * 1.6, r, rnd() * 3, 0, Math.PI * 2); g.fill();
+  }
+  g.putImageData(img, 0, 0);
+  if (st.spot) {                                                                // Jupiter's Great Red Spot
+    g.fillStyle = 'rgba(176,82,52,.75)'; g.beginPath(); g.ellipse(W * 0.62, H * 0.64, 42, 20, 0, 0, Math.PI * 2); g.fill();
+    g.strokeStyle = 'rgba(240,220,190,.6)'; g.lineWidth = 3; g.stroke();
+  }
+  if (st.kind === 'rock') {                                                      // craters: dark floor, bright rim
+    let s = 12345;
+    const rnd = () => ((s = (s * 16807) % 2147483647) / 2147483647);
+    for (let i = 0; i < 260; i++) {
+      const x = rnd() * W, y = H * 0.08 + rnd() * H * 0.84, r = 2 + Math.pow(rnd(), 3) * 26;
+      g.fillStyle = 'rgba(30,26,24,.35)'; g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill();
+      g.strokeStyle = 'rgba(235,228,215,.35)'; g.lineWidth = Math.max(1, r * 0.18); g.beginPath(); g.arc(x - r * 0.12, y - r * 0.12, r, Math.PI * 0.9, Math.PI * 1.9); g.stroke();
     }
-    g.fillStyle = '#eef4ff'; g.fillRect(0, 0, 512, 18); g.fillRect(0, 238, 512, 18);
-    g.globalAlpha = 0.35;
-    for (let i = 0; i < 90; i++) { g.fillStyle = '#fff'; g.beginPath(); g.ellipse(rnd() * 512, rnd() * 256, 10 + rnd() * 30, 3 + rnd() * 5, 0, 0, Math.PI * 2); g.fill(); }
-  } else {
-    for (let y = 0; y < 256; y++) {
-      const band = Math.sin(y * 0.09 + Math.sin(y * 0.021) * 3) * 0.5 + 0.5;
-      const col = kind[Math.floor((band * 0.999 + rnd() * 0.15) * kind.length) % kind.length];
-      g.fillStyle = col; g.fillRect(0, y, 512, 1);
-    }
-    g.globalAlpha = 0.18;
-    for (let i = 0; i < 400; i++) { g.fillStyle = rnd() < 0.5 ? '#000' : '#fff'; g.fillRect(rnd() * 512, rnd() * 256, 2 + rnd() * 30, 1 + rnd() * 2); }
   }
   const tex = new THREE.CanvasTexture(c);
   tex.colorSpace = THREE.SRGBColorSpace;
@@ -232,24 +282,31 @@ export function createSystem() {
       label.classList.toggle('left', side || (v.x * 0.5 + 0.5) * w > w - 170);   // never run off the right edge
     };
     for (const p of items) show(p.label, p.group, false, p.r);
-    // a planet's name gives way when it would sit on top of a world we can open
-    // (and among the others, the first in this list wins: Earth before its neighbours)
-    const box = (l) => { const r = [...l.children].map((c) => c.getBoundingClientRect()); return { left: Math.min(...r.map((x) => x.left)), right: Math.max(...r.map((x) => x.right)), top: Math.min(...r.map((x) => x.top)), bottom: Math.max(...r.map((x) => x.bottom)) }; };
-    const boxes = [moonLabel, ...items.filter((p) => p.world).map((p) => p.label)].filter((l) => !l.hidden).map(box);
-    for (const p of [earth, ...items.filter((q) => !q.world && q !== earth)]) {
-      if (p.label.hidden) continue;
-      const r = box(p.label);
-      const hit = boxes.some((b) => r.left < b.right + 8 && r.right > b.left - 8 && r.top < b.bottom + 4 && r.bottom > b.top - 4);
-      p.label.classList.toggle('crowded', hit);
-      if (!hit) boxes.push(r);
-    }
-    // keep the Moon's label on the far side of the Earth's
+    // keep the Moon's label on the far side of the Earth's (decided before the overlap check below)
     earth.group.getWorldPosition(v); v.project(camera);
     const ex = v.x;
     moon.getWorldPosition(v); v.project(camera);
     const moonLeft = v.x < ex;
     show(moonLabel, moon, moonLeft, 0.22);
     earth.label.classList.toggle('left', !moonLeft);
+    // a planet's name gives way when it would sit on top of a world we can open
+    // (and among the others, the first in this list wins: Earth before its neighbours)
+    const box = (l) => { const r = [...l.children].map((c) => c.getBoundingClientRect()); return { left: Math.min(...r.map((x) => x.left)), right: Math.max(...r.map((x) => x.right)), top: Math.min(...r.map((x) => x.top)), bottom: Math.max(...r.map((x) => x.bottom)) }; };
+    const boxes = [moonLabel, ...items.filter((p) => p.world).map((p) => p.label)].filter((l) => !l.hidden).map(box);
+    // Earth's name comes next; on a narrow screen it may still have to give way to the Moon's
+    if (!earth.label.hidden) {
+      const r = box(earth.label);
+      const hit = boxes.some((b) => r.left < b.right + 8 && r.right > b.left - 8 && r.top < b.bottom + 4 && r.bottom > b.top - 4);
+      earth.label.classList.toggle('crowded', hit);
+      if (!hit) boxes.push(r);
+    }
+    for (const p of items.filter((q) => !q.world && q !== earth)) {
+      if (p.label.hidden) continue;
+      const r = box(p.label);
+      const hit = boxes.some((b) => r.left < b.right + 8 && r.right > b.left - 8 && r.top < b.bottom + 4 && r.bottom > b.top - 4);
+      p.label.classList.toggle('crowded', hit);
+      if (!hit) boxes.push(r);
+    }
   }
 
   // ---- camera flights ----

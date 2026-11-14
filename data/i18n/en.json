@@ -266,8 +266,5 @@
   "home.featured": "Where they rest",
   "home.collapse": "Hide or show the panel",
   "home.machines": "{n} machines",
-  "home.fromEarth": "{km} km from Earth",
-  "home.rollcallMeta": "{n} machines answer, one by one",
-  "home.gameMeta": "A rover, a dust storm, eight choices",
-  "home.hint": "Drag the solar system to turn it, scroll to zoom. Click the Moon or Mars to fly there. Tap the speed under the clock to fast-forward time."
+  "home.hint": "Drag the solar system to turn it, scroll to zoom. Click the Moon or Mars to fly there."
 }

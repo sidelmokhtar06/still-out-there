@@ -3,6 +3,8 @@
 ## Imagery
 - **Moon surface map:** NASA's Scientific Visualization Studio, CGI Moon Kit (LRO color mosaic). https://svs.gsfc.nasa.gov/4720
 - **Mars surface map:** NASA / JPL / USGS, Mars Viking Colorized Global Mosaic (MDIM 2.1), public domain. https://astrogeology.usgs.gov/search/map/mars_viking_colorized_global_mosaic_232m
+- **Earth map:** NASA Visible Earth, Blue Marble (land surface, shallow water and shaded topography), public domain; this copy taken from the three-globe example images (MIT) and resized to 2048 × 1024. https://visibleearth.nasa.gov/collection/1484/blue-marble
+- **Other planets on the map:** surfaces drawn in code (noise and bands), not photographs.
 - **Machine drawings:** original line art made for this project (simplified, not to scale).
 
 ## Data
