@@ -1,0 +1,1548 @@
+[
+  {
+    "id": "eagle",
+    "name": "Eagle",
+    "body": "moon",
+    "type": "lander",
+    "status": "silent",
+    "location": {
+      "lat": 0.67416,
+      "lon_east": 23.47314,
+      "label": "Sea of Tranquility",
+      "source_id": "nssdca-a11"
+    },
+    "dates": {
+      "launch": "1969-07-16",
+      "arrival": "1969-07-20",
+      "leftBehind": "1969-07-21"
+    },
+    "chapters": {
+      "why": {
+        "fact_ids": [
+          "eagle-f1"
+        ]
+      },
+      "how": {
+        "fact_ids": [
+          "eagle-f2",
+          "eagle-f3"
+        ]
+      },
+      "found": {
+        "fact_ids": [
+          "eagle-f4",
+          "eagle-f5"
+        ]
+      },
+      "lastDay": {
+        "fact_ids": [
+          "eagle-f6",
+          "eagle-f2"
+        ]
+      },
+      "carriesOn": {
+        "fact_ids": [
+          "eagle-f7"
+        ]
+      }
+    },
+    "mythFact": {
+      "key": "flags",
+      "fact_ids": [
+        "eagle-m1",
+        "eagle-m2"
+      ]
+    },
+    "facts": [
+      {
+        "id": "eagle-f1",
+        "text": "The Lunar Module landed at 20:17:40 UT on 20 July 1969 in Mare Tranquillitatis (the Sea of Tranquility) at 0.67416° N, 23.47314° E.",
+        "source_id": "nssdca-a11",
+        "verified": true
+      },
+      {
+        "id": "eagle-f2",
+        "text": "The descent stage served as a platform for launching the ascent stage and was left behind on the Moon.",
+        "source_id": "nssdca-a11",
+        "verified": true
+      },
+      {
+        "id": "eagle-f3",
+        "text": "The descent stage had a dry mass of 2,034 kg and initially carried 8,248 kg of propellant. It held the landing rocket and its fuel tanks.",
+        "source_id": "nssdca-a11",
+        "verified": true
+      },
+      {
+        "id": "eagle-f4",
+        "text": "Armstrong stepped onto the surface at 02:56:15 UT on 21 July; the moonwalk ended at 05:11:13 UT. The astronauts collected 21.55 kg of lunar rock and soil.",
+        "source_id": "nssdca-a11",
+        "verified": true
+      },
+      {
+        "id": "eagle-f5",
+        "text": "The astronauts deployed the EASEP experiments; its laser ranging retroreflector (LRRR) is one of the arrays still used for laser ranging.",
+        "source_id": "jpl-llr",
+        "verified": true
+      },
+      {
+        "id": "eagle-f6",
+        "text": "The ascent stage lifted off at 17:54:01 UT on 21 July 1969 after 21 hours, 36 minutes on the lunar surface.",
+        "source_id": "nssdca-a11",
+        "verified": true
+      },
+      {
+        "id": "eagle-f7",
+        "text": "NASA is working with industry to develop human landing systems (next-generation landers). As of November 2026, NASA's Artemis page says the first crewed Moon landing of the program will take place in 2028.",
+        "source_id": "nasa-artemis",
+        "verified": true
+      },
+      {
+        "id": "eagle-m1",
+        "text": "LROC (2012): 'the American flags are still standing and casting shadows at all of the sites, except Apollo 11.'",
+        "source_id": "lroc-flags",
+        "verified": true
+      },
+      {
+        "id": "eagle-m2",
+        "text": "LROC (2012): 'Astronaut Buzz Aldrin reported that the flag was blown over by the exhaust from the ascent engine.'",
+        "source_id": "lroc-flags",
+        "verified": true
+      }
+    ],
+    "since": {
+      "kind": "left",
+      "date": "1969-07-21"
+    },
+    "media": [
+      {
+        "kind": "image",
+        "chapter": "found",
+        "src": "assets/img/eagle.jpg",
+        "width": 720,
+        "height": 720,
+        "nasa_id": "as11-40-5927",
+        "credit": "NASA / Neil Armstrong",
+        "source_id": "img-eagle",
+        "caption_key": "media.eagle.caption",
+        "alt_key": "media.eagle.alt"
+      }
+    ]
+  },
+  {
+    "id": "lrv",
+    "name": "Lunar Roving Vehicle",
+    "body": "moon",
+    "type": "rover",
+    "status": "silent",
+    "location": {
+      "lat": 26.13239,
+      "lon_east": 3.6333,
+      "label": "Hadley Rille (Apollo 15 landing site)",
+      "source_id": "nssdca-a15"
+    },
+    "dates": {
+      "launch": "1971-07-26",
+      "arrival": "1971-07-30",
+      "lastDrive": "1971-08-02"
+    },
+    "chapters": {
+      "why": {
+        "fact_ids": [
+          "lrv-f1"
+        ]
+      },
+      "how": {
+        "fact_ids": [
+          "lrv-f2",
+          "lrv-f3",
+          "lrv-f4"
+        ]
+      },
+      "found": {
+        "fact_ids": [
+          "lrv-f5",
+          "lrv-f6",
+          "lrv-f7"
+        ]
+      },
+      "lastDay": {
+        "fact_ids": [
+          "lrv-f4",
+          "lrv-f8"
+        ]
+      },
+      "carriesOn": {
+        "fact_ids": [
+          "lrv-f9"
+        ]
+      }
+    },
+    "facts": [
+      {
+        "id": "lrv-f1",
+        "text": "Apollo 15 landed at 22:16:29 UT on 30 July 1971 at 26.13239° N, 3.63330° E, at the foot of the Apennine mountains near Hadley Rille. Its Lunar Module carried a Lunar Roving Vehicle.",
+        "source_id": "nssdca-a15",
+        "verified": true
+      },
+      {
+        "id": "lrv-f2",
+        "text": "The LRV had a 3-part chassis hinged in the center so it could be folded up and hung in the Lunar Module's quad 1 bay.",
+        "source_id": "nssdca-lrv",
+        "verified": true
+      },
+      {
+        "id": "lrv-f3",
+        "text": "Each tire was made of zinc-coated woven steel strands 0.083 cm in diameter; titanium chevrons covered 50% of the contact area for traction. Each wheel had its own 0.25 hp electric motor.",
+        "source_id": "nssdca-lrv",
+        "verified": true
+      },
+      {
+        "id": "lrv-f4",
+        "text": "Power came from two 36-volt silver-zinc non-rechargeable batteries.",
+        "source_id": "nssdca-lrv",
+        "verified": true
+      },
+      {
+        "id": "lrv-f5",
+        "text": "On Apollo 15 the LRV was driven a total of 27.8 km. On Apollo 16 the vehicle traversed 26.7 km.",
+        "source_id": "nssdca-lrv",
+        "verified": true
+      },
+      {
+        "id": "lrv-f6",
+        "text": "On Apollo 17 the rover went 35.9 km; its greatest range from the Lunar Module was 7.6 km.",
+        "source_id": "nssdca-lrv",
+        "verified": true
+      },
+      {
+        "id": "lrv-f7",
+        "text": "The Apollo 15 astronauts collected 77.31 kg of rock and soil samples.",
+        "source_id": "nssdca-a15",
+        "verified": true
+      },
+      {
+        "id": "lrv-f8",
+        "text": "The LRV's last Apollo 15 drive was on the third moonwalk, on 2 August 1971.",
+        "source_id": "nssdca-a15",
+        "verified": true
+      },
+      {
+        "id": "lrv-f9",
+        "text": "NASA's Artemis page: 'NASA will send astronauts on increasingly difficult missions to explore more of the Moon.'",
+        "source_id": "nasa-artemis",
+        "verified": true
+      }
+    ],
+    "since": {
+      "kind": "left",
+      "date": "1971-08-02"
+    },
+    "media": [
+      {
+        "kind": "image",
+        "chapter": "found",
+        "src": "assets/img/lrv.jpg",
+        "width": 720,
+        "height": 720,
+        "nasa_id": "as15-86-11603",
+        "credit": "NASA / David R. Scott",
+        "source_id": "img-lrv",
+        "caption_key": "media.lrv.caption",
+        "alt_key": "media.lrv.alt"
+      }
+    ]
+  },
+  {
+    "id": "retro",
+    "name": "Laser Retroreflector",
+    "body": "moon",
+    "type": "instrument",
+    "status": "still-working",
+    "location": {
+      "lat": -3.64417,
+      "lon_east": -17.47865,
+      "label": "Fra Mauro (Apollo 14 landing site)",
+      "source_id": "nssdca-apollo-coords"
+    },
+    "dates": {
+      "arrival": "1971-02-05"
+    },
+    "chapters": {
+      "why": {
+        "fact_ids": [
+          "retro-f1",
+          "retro-f2",
+          "retro-f3"
+        ]
+      },
+      "how": {
+        "fact_ids": [
+          "retro-f4",
+          "retro-f5"
+        ]
+      },
+      "found": {
+        "fact_ids": [
+          "retro-f6",
+          "retro-f7"
+        ]
+      },
+      "lastDay": {
+        "fact_ids": [
+          "retro-f8",
+          "retro-f5"
+        ]
+      },
+      "carriesOn": {
+        "fact_ids": [
+          "retro-f9"
+        ]
+      }
+    },
+    "facts": [
+      {
+        "id": "retro-f1",
+        "text": "The astronauts of Apollo 11, Apollo 14 and Apollo 15 left retroreflector arrays on the Moon: arrays of prisms that reflect light back toward its source.",
+        "source_id": "jpl-llr",
+        "verified": true
+      },
+      {
+        "id": "retro-f2",
+        "text": "Apollo 14 landed on 5 February 1971 near the crater Fra Mauro. Its laser retroreflector (LRRR) is at 3.64417° S, 17.47865° W.",
+        "source_id": "nssdca-apollo-coords",
+        "verified": true
+      },
+      {
+        "id": "retro-f3",
+        "text": "The Apollo 12 ALSEP science station included a passive seismometer and five other instruments, powered by a nuclear generator (RTG) that produced about 70 watts.",
+        "source_id": "nssdca-a12",
+        "verified": true
+      },
+      {
+        "id": "retro-f4",
+        "text": "The Apollo 11 and 14 arrays have 100 quartz glass prisms (corner cubes) each; the Apollo 15 array has 300. The arrays require no power.",
+        "source_id": "jpl-llr",
+        "verified": true
+      },
+      {
+        "id": "retro-f5",
+        "text": "As of July 2019: four telescopes at observatories in New Mexico, France, Italy and Germany fire lasers at the arrays and time how long a pulse takes to return.",
+        "source_id": "jpl-llr",
+        "verified": true
+      },
+      {
+        "id": "retro-f6",
+        "text": "Laser ranging measures the Earth-Moon distance to within a few millimeters, and shows the distance increases by 3.8 cm (1.5 inches) a year.",
+        "source_id": "jpl-llr",
+        "verified": true
+      },
+      {
+        "id": "retro-f7",
+        "text": "Analysis of lunar laser data shows that the Moon has a fluid core.",
+        "source_id": "jpl-llr",
+        "verified": true
+      },
+      {
+        "id": "retro-f8",
+        "text": "The ALSEP stations were shut down on 30 September 1977.",
+        "source_id": "nssdca-a12",
+        "verified": true
+      },
+      {
+        "id": "retro-f9",
+        "text": "The laser ranging experiment 'continues to return fresh data to this day' (NASA JPL, 2019). The Apollo 11 array was set up in July 1969.",
+        "source_id": "jpl-llr",
+        "verified": true
+      }
+    ],
+    "since": {
+      "kind": "working",
+      "date": "1971-02-05"
+    },
+    "media": [
+      {
+        "kind": "image",
+        "chapter": "how",
+        "src": "assets/img/retro.jpg",
+        "width": 720,
+        "height": 720,
+        "nasa_id": "as14-67-09386",
+        "credit": "NASA",
+        "source_id": "img-retro",
+        "caption_key": "media.retro.caption",
+        "alt_key": "media.retro.alt"
+      }
+    ]
+  },
+  {
+    "id": "surveyor3",
+    "name": "Surveyor 3",
+    "body": "moon",
+    "type": "lander",
+    "status": "silent",
+    "location": {
+      "lat": -3.0,
+      "lon_east": -23.41,
+      "label": "Ocean of Storms",
+      "source_id": "nasa-surveyor3"
+    },
+    "dates": {
+      "launch": "1967-04-17",
+      "arrival": "1967-04-20",
+      "lastContact": "1967-05-04"
+    },
+    "chapters": {
+      "why": {
+        "fact_ids": [
+          "sv3-f1"
+        ]
+      },
+      "how": {
+        "fact_ids": [
+          "sv3-f2",
+          "sv3-f3"
+        ]
+      },
+      "found": {
+        "fact_ids": [
+          "sv3-f4",
+          "sv3-f3"
+        ]
+      },
+      "lastDay": {
+        "fact_ids": [
+          "sv3-f5"
+        ]
+      },
+      "carriesOn": {
+        "fact_ids": [
+          "sv3-f6",
+          "sv3-f7",
+          "lrv-f9x"
+        ]
+      }
+    },
+    "mythFact": {
+      "key": "bacteria",
+      "fact_ids": [
+        "sv3-m1",
+        "sv3-m2"
+      ]
+    },
+    "facts": [
+      {
+        "id": "sv3-f1",
+        "text": "Surveyor 3 launched on April 17, 1967 and soft-landed at 00:04:17 UT on April 20, 1967 in southeastern Oceanus Procellarum (Ocean of Storms) at 3° S, 23.41° W.",
+        "source_id": "nasa-surveyor3",
+        "verified": true
+      },
+      {
+        "id": "sv3-f2",
+        "text": "Surveyor 3 bounced off the lunar surface twice, the first time to a height of 10 meters and the second to about 3 meters, before settling.",
+        "source_id": "nasa-surveyor3",
+        "verified": true
+      },
+      {
+        "id": "sv3-f3",
+        "text": "Via commands from Earth, the probe dug four trenches and performed four bearing tests and thirteen impact tests on the soil.",
+        "source_id": "nasa-surveyor3",
+        "verified": true
+      },
+      {
+        "id": "sv3-f4",
+        "text": "The spacecraft transmitted 6,326 TV pictures of the surrounding area.",
+        "source_id": "nasa-surveyor3",
+        "verified": true
+      },
+      {
+        "id": "sv3-f5",
+        "text": "The last contact with the spacecraft was May 4, 1967, two days after the lunar night began.",
+        "source_id": "nasa-surveyor3",
+        "verified": true
+      },
+      {
+        "id": "sv3-f6",
+        "text": "Apollo 12 landed about 180 meters from Surveyor 3. On November 19, 1969 the astronauts walked over and recovered parts, including the soil scoop and camera system.",
+        "source_id": "nasa-surveyor3",
+        "verified": true
+      },
+      {
+        "id": "sv3-f7",
+        "text": "The Apollo 12 moonwalkers were Conrad and Bean; they made two Moon walks.",
+        "source_id": "nssdca-a12",
+        "verified": true
+      },
+      {
+        "id": "lrv-f9x",
+        "text": "NASA's Artemis page: 'NASA will send astronauts on increasingly difficult missions to explore more of the Moon.'",
+        "source_id": "nasa-artemis",
+        "verified": true
+      },
+      {
+        "id": "sv3-m1",
+        "text": "After the camera came back, scientists reported a small colony of the common bacterium Streptococcus mitis on it.",
+        "source_id": "space-surveyor",
+        "verified": true
+      },
+      {
+        "id": "sv3-m2",
+        "text": "A 2011 review led by former NASA planetary protection officer John Rummel concluded the team 'only detected their own contamination'; people studying the camera wore short-sleeve scrubs, and the claim 'never passed peer review'.",
+        "source_id": "space-surveyor",
+        "verified": true
+      }
+    ],
+    "since": {
+      "kind": "heard",
+      "date": "1967-05-04"
+    },
+    "media": [
+      {
+        "kind": "image",
+        "chapter": "carriesOn",
+        "src": "assets/img/surveyor3.jpg",
+        "width": 720,
+        "height": 720,
+        "nasa_id": "AS12-48-7133",
+        "credit": "NASA",
+        "source_id": "img-surveyor3",
+        "caption_key": "media.surveyor3.caption",
+        "alt_key": "media.surveyor3.alt"
+      }
+    ]
+  },
+  {
+    "id": "sojourner",
+    "name": "Sojourner",
+    "body": "mars",
+    "type": "rover",
+    "status": "silent",
+    "location": {
+      "lat": 19.33,
+      "lon_east": 326.45,
+      "label": "Ares Vallis",
+      "source_id": "nssdca-pathfinder"
+    },
+    "dates": {
+      "launch": "1996-12-04",
+      "arrival": "1997-07-04",
+      "lastContact": "1997-09-27"
+    },
+    "chapters": {
+      "why": {
+        "fact_ids": [
+          "soj-f1",
+          "soj-f2"
+        ]
+      },
+      "how": {
+        "fact_ids": [
+          "soj-f3",
+          "soj-f4"
+        ]
+      },
+      "found": {
+        "fact_ids": [
+          "soj-f5",
+          "soj-f6"
+        ]
+      },
+      "lastDay": {
+        "fact_ids": [
+          "soj-f7"
+        ]
+      },
+      "carriesOn": {
+        "fact_ids": [
+          "soj-f8",
+          "soj-f9"
+        ]
+      }
+    },
+    "facts": [
+      {
+        "id": "soj-f1",
+        "text": "Mars Pathfinder launched on Dec. 4, 1996 and landed on July 4, 1997 in Ares Vallis, at 19.33° N, 33.55° W (= 326.45° E).",
+        "source_id": "nssdca-pathfinder",
+        "verified": true
+      },
+      {
+        "id": "soj-f2",
+        "text": "Pathfinder delivered 'the first-ever robotic rover, Sojourner, to the Martian surface'. The rover weighed 10.6 kg (23 pounds) and stood 30 cm (1 foot) tall.",
+        "source_id": "nasa-pathfinder",
+        "verified": true
+      },
+      {
+        "id": "soj-f3",
+        "text": "Protected by airbags, the lander 'bounced like a giant beach ball about 15 times, as high as 50 feet (15 meters)'.",
+        "source_id": "nasa-pathfinder",
+        "verified": true
+      },
+      {
+        "id": "soj-f4",
+        "text": "Late on the second Martian day (sol 2), Sojourner stood up and rolled down the lander's rear ramp. It had been stowed against one of the lander's petals.",
+        "source_id": "nasa-pathfinder",
+        "verified": true
+      },
+      {
+        "id": "soj-f5",
+        "text": "The mission returned more than 16,500 images from the lander and 550 images from the rover, and more than 15 chemical analyses of rocks and soil.",
+        "source_id": "nasa-pathfinder",
+        "verified": true
+      },
+      {
+        "id": "soj-f6",
+        "text": "Rounded pebbles and cobbles suggested conglomerates that formed in running water during a warmer past.",
+        "source_id": "nasa-pathfinder",
+        "verified": true
+      },
+      {
+        "id": "soj-f7",
+        "text": "The final data transmission was on Sept. 27, 1997; communications were lost for unknown reasons.",
+        "source_id": "nssdca-pathfinder",
+        "verified": true
+      },
+      {
+        "id": "soj-f8",
+        "text": "Spirit and Opportunity landed on Mars in January 2004.",
+        "source_id": "nasa-mer",
+        "verified": true
+      },
+      {
+        "id": "soj-f9",
+        "text": "Perseverance landed in Jezero Crater on Feb. 18, 2021, carrying the Ingenuity helicopter.",
+        "source_id": "nasa-ingenuity",
+        "verified": true
+      }
+    ],
+    "since": {
+      "kind": "heard",
+      "date": "1997-09-27"
+    },
+    "media": [
+      {
+        "kind": "image",
+        "chapter": "how",
+        "src": "assets/img/sojourner.jpg",
+        "width": 471,
+        "height": 285,
+        "nasa_id": "PIA00623",
+        "credit": "NASA/JPL",
+        "source_id": "img-sojourner",
+        "caption_key": "media.sojourner.caption",
+        "alt_key": "media.sojourner.alt"
+      }
+    ]
+  },
+  {
+    "id": "opportunity",
+    "name": "Opportunity",
+    "body": "mars",
+    "type": "rover",
+    "status": "silent",
+    "location": {
+      "lat": -1.946,
+      "lon_east": 354.473,
+      "label": "Meridiani Planum",
+      "source_id": "nssdca-opp"
+    },
+    "dates": {
+      "arrival": "2004-01-24",
+      "lastContact": "2018-06-10",
+      "missionEnd": "2019-02-13"
+    },
+    "chapters": {
+      "why": {
+        "fact_ids": [
+          "opp-f1",
+          "opp-f2"
+        ]
+      },
+      "how": {
+        "fact_ids": [
+          "opp-f3"
+        ]
+      },
+      "found": {
+        "fact_ids": [
+          "opp-f4",
+          "opp-f5",
+          "opp-f6"
+        ]
+      },
+      "lastDay": {
+        "fact_ids": [
+          "opp-f7",
+          "opp-f8",
+          "opp-f9"
+        ]
+      },
+      "carriesOn": {
+        "fact_ids": [
+          "opp-f2",
+          "opp-f6",
+          "soj-f9x"
+        ]
+      }
+    },
+    "sister": {
+      "key": "spirit",
+      "fact_ids": [
+        "opp-s1",
+        "opp-s2",
+        "opp-s3"
+      ]
+    },
+    "mythFact": {
+      "key": "lastwords",
+      "fact_ids": [
+        "opp-m1",
+        "opp-m2"
+      ]
+    },
+    "facts": [
+      {
+        "id": "opp-f1",
+        "text": "Opportunity landed in the Meridiani Planum region of Mars on Jan. 24, 2004 (U.S. time; Jan. 25 in Universal Time), at 1.946° S, 354.473° E.",
+        "source_id": "nssdca-opp",
+        "verified": true
+      },
+      {
+        "id": "opp-f2",
+        "text": "'Designed to last just 90 Martian days and travel 1,100 yards (1,000 meters)', the mission spanned 2004 to 2019.",
+        "source_id": "jpl-opp-end",
+        "verified": true
+      },
+      {
+        "id": "opp-f3",
+        "text": "The rover has six wheels. Solar arrays generate up to 140 W under full Sun; the energy is stored in two rechargeable batteries.",
+        "source_id": "nssdca-opp",
+        "verified": true
+      },
+      {
+        "id": "opp-f4",
+        "text": "Opportunity discovered spherules nicknamed 'blueberries': iron-rich concretions that formed inside deposits soaked with groundwater. Some are up to about 5 millimeters across.",
+        "source_id": "nasa-blueberries",
+        "verified": true
+      },
+      {
+        "id": "opp-f5",
+        "text": "Opportunity found hematite, a mineral that forms in water, at its landing site. Spirit and Opportunity confirmed that water was long standing on the surface of Mars in ancient times.",
+        "source_id": "jpl-opp-end",
+        "verified": true
+      },
+      {
+        "id": "opp-f6",
+        "text": "Opportunity holds the off-Earth roving distance record: 28.06 miles (45.16 kilometers), over a 14-year lifespan.",
+        "source_id": "nasa-mer",
+        "verified": true
+      },
+      {
+        "id": "opp-f7",
+        "text": "A severe Mars-wide dust storm blanketed the rover's location in June 2018. Opportunity last communicated with Earth on June 10, 2018.",
+        "source_id": "jpl-opp-end",
+        "verified": true
+      },
+      {
+        "id": "opp-f8",
+        "text": "After more than a thousand commands to restore contact, engineers made their last attempt on Feb. 12, 2019. NASA announced the end of the mission on Feb. 13, 2019.",
+        "source_id": "jpl-opp-end",
+        "verified": true
+      },
+      {
+        "id": "opp-f9",
+        "text": "The rover's final resting spot is Perseverance Valley.",
+        "source_id": "jpl-opp-end",
+        "verified": true
+      },
+      {
+        "id": "soj-f9x",
+        "text": "Perseverance landed in Jezero Crater on Feb. 18, 2021.",
+        "source_id": "nasa-ingenuity",
+        "verified": true
+      },
+      {
+        "id": "opp-s1",
+        "text": "Spirit landed at Gusev Crater in January 2004 (14.572° S, 175.478° E) and journeyed 7.7 kilometers (4.8 miles).",
+        "source_id": "nasa-mer",
+        "verified": true
+      },
+      {
+        "id": "opp-s2",
+        "text": "On 23 April 2009, Spirit broke through a thin crust into a pocket of sand that severely limited its mobility.",
+        "source_id": "nssdca-spirit",
+        "verified": true
+      },
+      {
+        "id": "opp-s3",
+        "text": "The last transmission from Spirit occurred on 22 March 2010.",
+        "source_id": "nssdca-spirit",
+        "verified": true
+      },
+      {
+        "id": "opp-m1",
+        "text": "Snopes rating 'Mostly False': the rover 'didn't actually send the words'; its final transmission was 'a bare-bones data dump indicating it was low on power as a storm approached'.",
+        "source_id": "snopes-opp",
+        "verified": true
+      },
+      {
+        "id": "opp-m2",
+        "text": "The quote originated in a Twitter thread by KPCC science reporter Jacob Margolis, who said the final transmission 'basically' translated as 'my battery is low and it's getting dark'.",
+        "source_id": "snopes-opp",
+        "verified": true
+      }
+    ],
+    "since": {
+      "kind": "heard",
+      "date": "2018-06-10"
+    },
+    "media": [
+      {
+        "kind": "image",
+        "chapter": "lastDay",
+        "src": "assets/img/opportunity.png",
+        "width": 896,
+        "height": 384,
+        "nasa_id": "PIA22930",
+        "credit": "NASA/JPL-Caltech/Cornell/ASU",
+        "source_id": "img-opportunity",
+        "caption_key": "media.opportunity.caption",
+        "alt_key": "media.opportunity.alt"
+      }
+    ]
+  },
+  {
+    "id": "ingenuity",
+    "name": "Ingenuity",
+    "body": "mars",
+    "type": "helicopter",
+    "status": "silent",
+    "location": {
+      "lat": 18.44,
+      "lon_east": 77.45,
+      "label": "Jezero Crater",
+      "note": "Pin shows the Perseverance landing site in Jezero Crater; Ingenuity's final airfield is nearby at this map scale.",
+      "source_id": "giss-landers"
+    },
+    "dates": {
+      "launch": "2020-07-30",
+      "arrival": "2021-02-18",
+      "firstFlight": "2021-04-19",
+      "lastFlight": "2024-01-18",
+      "missionEnd": "2024-01-25"
+    },
+    "chapters": {
+      "why": {
+        "fact_ids": [
+          "ing-f1",
+          "ing-f2"
+        ]
+      },
+      "how": {
+        "fact_ids": [
+          "ing-f3",
+          "ing-f4"
+        ]
+      },
+      "found": {
+        "fact_ids": [
+          "ing-f5",
+          "ing-f6",
+          "ing-f7"
+        ]
+      },
+      "lastDay": {
+        "fact_ids": [
+          "ing-f8",
+          "ing-f9"
+        ]
+      },
+      "carriesOn": {
+        "fact_ids": [
+          "ing-f2",
+          "ing-f10"
+        ]
+      }
+    },
+    "facts": [
+      {
+        "id": "ing-f1",
+        "text": "Ingenuity landed on Mars on Feb. 18, 2021 in Jezero Crater, attached to the belly of the Perseverance rover (landing site 18.44° N, 77.45° E).",
+        "source_id": "jpl-ing-end",
+        "verified": true
+      },
+      {
+        "id": "ing-f2",
+        "text": "Designed for no more than five test flights in 30 days, the helicopter eventually completed 72 flights across nearly three years.",
+        "source_id": "nasa-ingenuity",
+        "verified": true
+      },
+      {
+        "id": "ing-f3",
+        "text": "Mars' atmosphere is about 1% the density of Earth's at the surface. Ingenuity has two 1.2-meter counter-rotating rotors that spin at roughly 2,400 rpm.",
+        "source_id": "jpl-ing-presskit",
+        "verified": true
+      },
+      {
+        "id": "ing-f4",
+        "text": "Mass: about 1.8 kilograms (4.0 pounds on Earth).",
+        "source_id": "jpl-ing-presskit",
+        "verified": true
+      },
+      {
+        "id": "ing-f5",
+        "text": "The first flight, on 19 April 2021, lasted 39.1 seconds, hovering at 3 meters altitude: the first powered, controlled flight on another planet.",
+        "source_id": "nssdca-m2020",
+        "verified": true
+      },
+      {
+        "id": "ing-f6",
+        "text": "Ingenuity carries a small swatch of muslin from the lower-left wing of the Wright Brothers' Flyer 1, attached to a cable on the underside of its solar panel.",
+        "source_id": "jpl-wright",
+        "verified": true
+      },
+      {
+        "id": "ing-f7",
+        "text": "Ingenuity completed 128.8 flying minutes, covering 17.0 kilometers (10.5 miles) and reaching altitudes as high as 24.0 meters (78.7 feet).",
+        "source_id": "nasa-ingenuity",
+        "verified": true
+      },
+      {
+        "id": "ing-f8",
+        "text": "On Flight 72 (Jan. 18, 2024) Ingenuity reached 12 meters and hovered for 4.5 seconds; about 1 meter above the surface on the way down it lost contact with the rover. Smooth sand ripples were hard for its navigation system to track.",
+        "source_id": "jpl-ing-end",
+        "verified": true
+      },
+      {
+        "id": "ing-f9",
+        "text": "Images showed the shadow of a damaged rotor blade; the helicopter is no longer capable of flight. NASA announced the end of the mission on Jan. 25, 2024.",
+        "source_id": "jpl-ing-end",
+        "verified": true
+      },
+      {
+        "id": "ing-f10",
+        "text": "Dragonfly, a rotorcraft, will fly to various locations on Saturn's moon Titan. As of November 2026 NASA lists launch as no earlier than July 2028 and arrival in late 2034.",
+        "source_id": "nasa-dragonfly",
+        "verified": true
+      }
+    ],
+    "since": {
+      "kind": "ended",
+      "date": "2024-01-25"
+    },
+    "media": [
+      {
+        "kind": "image",
+        "chapter": "lastDay",
+        "src": "assets/img/ingenuity.jpg",
+        "width": 960,
+        "height": 712,
+        "nasa_id": "PIA26243",
+        "credit": "NASA/JPL-Caltech",
+        "source_id": "img-ingenuity",
+        "caption_key": "media.ingenuity.caption",
+        "alt_key": "media.ingenuity.alt"
+      },
+      {
+        "kind": "audio",
+        "chapter": "found",
+        "src": "assets/audio/ingenuity-flight4.mp3",
+        "duration": 73.0,
+        "peaks": [
+          0.0,
+          0.658,
+          0.957,
+          0.744,
+          0.796,
+          0.746,
+          0.78,
+          0.804,
+          0.731,
+          0.697,
+          0.773,
+          0.771,
+          0.741,
+          0.778,
+          0.806,
+          0.773,
+          0.75,
+          0.801,
+          0.814,
+          0.835,
+          0.82,
+          0.899,
+          0.857,
+          0.839,
+          0.948,
+          1.0,
+          0.978,
+          0.983,
+          0.962,
+          0.923,
+          0.96,
+          0.975,
+          0.987,
+          0.964,
+          0.915,
+          0.948,
+          0.928,
+          0.884,
+          0.902,
+          0.86,
+          0.836,
+          0.762,
+          0.738,
+          0.643,
+          0.731,
+          0.776,
+          0.88,
+          0.867,
+          0.892,
+          0.893,
+          0.911,
+          0.9,
+          0.865,
+          0.808,
+          0.839,
+          0.904,
+          0.937,
+          0.932,
+          0.9,
+          0.849,
+          0.91,
+          0.875,
+          0.877,
+          0.844,
+          0.848,
+          0.823,
+          0.819,
+          0.745,
+          0.668,
+          0.609,
+          0.666,
+          0.645,
+          0.695,
+          0.74,
+          0.772,
+          0.799,
+          0.733,
+          0.79,
+          0.753,
+          0.745,
+          0.762,
+          0.74,
+          0.736,
+          0.715,
+          0.739,
+          0.628,
+          0.616,
+          0.574,
+          0.605,
+          0.642,
+          0.569,
+          0.65,
+          0.637,
+          0.571,
+          0.366,
+          0.144
+        ],
+        "nasa_id": "JPL-20210506 (Ingenuity flight 4 audio)",
+        "credit": "NASA/JPL-Caltech/ASU/MSSS/LANL/CNES/CNRS/ISAE-SUPAERO",
+        "source_id": "aud-ingenuity",
+        "caption_key": "media.ingenuity.audio.caption",
+        "transcript_key": "media.ingenuity.audio.transcript",
+        "title_key": "media.ingenuity.audio.title"
+      }
+    ]
+  },
+  {
+    "id": "insight",
+    "name": "InSight",
+    "body": "mars",
+    "type": "lander",
+    "status": "silent",
+    "location": {
+      "lat": 4.5,
+      "lon_east": 135.9,
+      "label": "Elysium Planitia",
+      "source_id": "nasa-insight"
+    },
+    "dates": {
+      "launch": "2018-05-05",
+      "arrival": "2018-11-26",
+      "lastContact": "2022-12-15",
+      "missionEnd": "2022-12-21"
+    },
+    "chapters": {
+      "why": {
+        "fact_ids": [
+          "ins-f1"
+        ]
+      },
+      "how": {
+        "fact_ids": [
+          "ins-f2",
+          "ins-f3"
+        ]
+      },
+      "found": {
+        "fact_ids": [
+          "ins-f4",
+          "ins-f5",
+          "ins-f6"
+        ]
+      },
+      "lastDay": {
+        "fact_ids": [
+          "ins-f7",
+          "ins-f8"
+        ]
+      },
+      "carriesOn": {
+        "fact_ids": [
+          "ins-f9",
+          "ins-f6"
+        ]
+      }
+    },
+    "facts": [
+      {
+        "id": "ins-f1",
+        "text": "InSight launched May 5, 2018 and landed Nov. 26, 2018 on the western side of a flat, smooth plain called Elysium Planitia, at about 4.5° N, 135.9° E. It studied the deep interior of Mars.",
+        "source_id": "nasa-insight",
+        "verified": true
+      },
+      {
+        "id": "ins-f2",
+        "text": "InSight's robotic arm was 1.8 meters long. It lifted a seismometer and heat flow probe from the deck and placed them on the surface.",
+        "source_id": "nasa-insight",
+        "verified": true
+      },
+      {
+        "id": "ins-f3",
+        "text": "As seismic waves pass through or reflect off material in Mars' crust, mantle and core, they change in ways that reveal the depth and composition of those layers.",
+        "source_id": "jpl-insight-quake",
+        "verified": true
+      },
+      {
+        "id": "ins-f4",
+        "text": "The seismometer detected 1,319 marsquakes.",
+        "source_id": "jpl-insight-retire",
+        "verified": true
+      },
+      {
+        "id": "ins-f5",
+        "text": "An estimated magnitude 5 quake on May 4, 2022 (sol 1,222) is the largest quake ever detected on another planet. The previous record was magnitude 4.2.",
+        "source_id": "jpl-insight-quake",
+        "verified": true
+      },
+      {
+        "id": "ins-f6",
+        "text": "The heat probe ('the mole') was designed to dig 5 meters deep but reached only about 40 cm because the clumpy soil gave it no traction. Its data still helps future digging missions.",
+        "source_id": "jpl-insight-retire",
+        "verified": true
+      },
+      {
+        "id": "ins-f7",
+        "text": "Dust gradually accumulated on the solar panels and reduced power. Engineers used the arm's scoop to drop dirt on the panels on windy days, which helped sweep dust off.",
+        "source_id": "jpl-insight-retire",
+        "verified": true
+      },
+      {
+        "id": "ins-f8",
+        "text": "The last contact was on Dec. 15, 2022. After two consecutive failed attempts to reach the lander, NASA announced its retirement on Dec. 21, 2022.",
+        "source_id": "jpl-insight-retire",
+        "verified": true
+      },
+      {
+        "id": "ins-f9",
+        "text": "Studies of InSight's marsquake data continue; one found that rocky material that impacted Mars lies scattered in giant lumps throughout the planet's mantle.",
+        "source_id": "nasa-insight",
+        "verified": true
+      }
+    ],
+    "since": {
+      "kind": "heard",
+      "date": "2022-12-15"
+    },
+    "media": [
+      {
+        "kind": "image",
+        "chapter": "lastDay",
+        "src": "assets/img/insight.jpg",
+        "width": 960,
+        "height": 576,
+        "nasa_id": "PIA25287",
+        "credit": "NASA/JPL-Caltech",
+        "source_id": "img-insight",
+        "caption_key": "media.insight.caption",
+        "alt_key": "media.insight.alt"
+      },
+      {
+        "kind": "audio",
+        "chapter": "found",
+        "src": "assets/audio/insight-marsquake.mp3",
+        "duration": 28.07,
+        "peaks": [
+          0.002,
+          0.001,
+          0.003,
+          0.191,
+          0.477,
+          0.61,
+          0.723,
+          0.718,
+          0.812,
+          0.721,
+          0.623,
+          0.628,
+          0.635,
+          0.543,
+          0.657,
+          0.612,
+          0.587,
+          0.56,
+          0.571,
+          0.51,
+          0.71,
+          0.901,
+          0.993,
+          1.0,
+          0.984,
+          0.977,
+          0.801,
+          0.831,
+          0.769,
+          0.685,
+          0.655,
+          0.638,
+          0.625,
+          0.547,
+          0.493,
+          0.488,
+          0.507,
+          0.434,
+          0.354,
+          0.375,
+          0.337,
+          0.362,
+          0.349,
+          0.349,
+          0.327,
+          0.308,
+          0.337,
+          0.327,
+          0.335,
+          0.373,
+          0.359,
+          0.372,
+          0.322,
+          0.327,
+          0.326,
+          0.338,
+          0.308,
+          0.276,
+          0.272,
+          0.257,
+          0.239,
+          0.222,
+          0.215,
+          0.216,
+          0.2,
+          0.186,
+          0.173,
+          0.155,
+          0.146,
+          0.152,
+          0.157,
+          0.129,
+          0.134,
+          0.115,
+          0.124,
+          0.115,
+          0.105,
+          0.107,
+          0.104,
+          0.088,
+          0.096,
+          0.08,
+          0.082,
+          0.071,
+          0.082,
+          0.074,
+          0.065,
+          0.066,
+          0.062,
+          0.059,
+          0.055,
+          0.052,
+          0.043,
+          0.03,
+          0.015,
+          0.004
+        ],
+        "nasa_id": "PIA25281",
+        "credit": "NASA/JPL-Caltech/CNES/IPGP",
+        "source_id": "aud-insight",
+        "caption_key": "media.insight.audio.caption",
+        "transcript_key": "media.insight.audio.transcript",
+        "title_key": "media.insight.audio.title"
+      }
+    ]
+  },
+  {
+    "id": "pioneer10",
+    "name": "Pioneer 10",
+    "body": "deep",
+    "type": "probe",
+    "status": "drifting",
+    "location": {
+      "label": "Leaving the solar system"
+    },
+    "ephemeris": "pioneer10",
+    "dates": {
+      "launch": "1972-03-02",
+      "lastContact": "2003-01-23"
+    },
+    "chapters": {
+      "why": {
+        "fact_ids": [
+          "p10-f1",
+          "p10-f2"
+        ]
+      },
+      "how": {
+        "fact_ids": [
+          "p10-f3"
+        ]
+      },
+      "found": {
+        "fact_ids": [
+          "p10-f4",
+          "p10-f5",
+          "p10-f6"
+        ]
+      },
+      "lastDay": {
+        "fact_ids": [
+          "p10-f7",
+          "p10-f8"
+        ]
+      },
+      "carriesOn": {
+        "fact_ids": [
+          "p10-f9",
+          "p10-f10"
+        ]
+      }
+    },
+    "facts": [
+      {
+        "id": "p10-f1",
+        "text": "Launched March 2, 1972. Pioneer 10 was NASA's first mission to the outer planets and the first spacecraft to fly beyond Mars, through the main asteroid belt, and past Jupiter.",
+        "source_id": "nasa-pioneer10",
+        "verified": true
+      },
+      {
+        "id": "p10-f2",
+        "text": "Originally designed for a 21-month mission to fly by Jupiter, Pioneer 10 lasted more than 30 years.",
+        "source_id": "nasa-pioneer10",
+        "verified": true
+      },
+      {
+        "id": "p10-f3",
+        "text": "First spacecraft to use all-nuclear electrical power: two SNAP-19 radioisotope thermal generators (RTGs) delivering about 140 W at Jupiter. It carried 11 scientific instruments.",
+        "source_id": "nasa-pioneer10",
+        "verified": true
+      },
+      {
+        "id": "p10-f4",
+        "text": "The spacecraft entered the asteroid belt on July 15, 1972, emerging in February 1973.",
+        "source_id": "nasa-pioneer10",
+        "verified": true
+      },
+      {
+        "id": "p10-f5",
+        "text": "Closest approach to Jupiter was at 02:26 UT Dec. 4, 1973, at a range of 130,354 kilometers. It took about 500 pictures of Jupiter's atmosphere.",
+        "source_id": "nasa-pioneer10",
+        "verified": true
+      },
+      {
+        "id": "p10-f6",
+        "text": "Pioneer 10 crossed the orbit of Neptune on June 13, 1983, becoming the first human-made object to go beyond Neptune.",
+        "source_id": "nasa-pioneer10",
+        "verified": true
+      },
+      {
+        "id": "p10-f7",
+        "text": "On Jan. 23, 2003 it sent its last signal from 12.23 billion kilometers; the signal took 11 hours and 20 minutes to reach Earth. Its RTG power had decayed too far to power the radio transmitter.",
+        "source_id": "nasa-pioneer10",
+        "verified": true
+      },
+      {
+        "id": "p10-f8",
+        "text": "A final attempt to contact Pioneer 10 on March 4, 2006, failed.",
+        "source_id": "nasa-pioneer10",
+        "verified": true
+      },
+      {
+        "id": "p10-f9",
+        "text": "Pioneer 10 carries an aluminum plaque with diagrams of a man and a woman, identifying the spacecraft's time and place of origin.",
+        "source_id": "nasa-pioneer10",
+        "verified": true
+      },
+      {
+        "id": "p10-f10",
+        "text": "The spacecraft is generally heading in the direction of the red star Aldebaran and is expected to pass by it in about two million years.",
+        "source_id": "nasa-pioneer10",
+        "verified": true
+      }
+    ],
+    "since": {
+      "kind": "heard",
+      "date": "2003-01-23"
+    },
+    "media": [
+      {
+        "kind": "image",
+        "chapter": "carriesOn",
+        "src": "assets/img/pioneer10.jpg",
+        "width": 960,
+        "height": 640,
+        "nasa_id": "ARC-1972-AC72-2135",
+        "credit": "NASA Ames Research Center",
+        "source_id": "img-pioneer10",
+        "caption_key": "media.pioneer10.caption",
+        "alt_key": "media.pioneer10.alt"
+      }
+    ]
+  },
+  {
+    "id": "kepler",
+    "name": "Kepler",
+    "body": "deep",
+    "type": "telescope",
+    "status": "drifting",
+    "location": {
+      "label": "Orbiting the Sun"
+    },
+    "ephemeris": "kepler",
+    "dates": {
+      "launch": "2009-03-06",
+      "missionEnd": "2018-10-30",
+      "lastContact": "2018-11-15"
+    },
+    "chapters": {
+      "why": {
+        "fact_ids": [
+          "kep-f1"
+        ]
+      },
+      "how": {
+        "fact_ids": [
+          "kep-f2",
+          "kep-f3",
+          "kep-f4"
+        ]
+      },
+      "found": {
+        "fact_ids": [
+          "kep-f5",
+          "kep-f6",
+          "kep-f7"
+        ]
+      },
+      "lastDay": {
+        "fact_ids": [
+          "kep-f8",
+          "kep-f9"
+        ]
+      },
+      "carriesOn": {
+        "fact_ids": [
+          "kep-f10",
+          "kep-f6"
+        ]
+      }
+    },
+    "facts": [
+      {
+        "id": "kep-f1",
+        "text": "Launched on March 6, 2009, Kepler was NASA's first planet-hunting mission. Objective: search for exoplanets.",
+        "source_id": "nasa-kepler",
+        "verified": true
+      },
+      {
+        "id": "kep-f2",
+        "text": "Kepler detected planets by observing transits: tiny dips in the brightness of a star that occur when a planet crosses in front of the star.",
+        "source_id": "nasa-kepler",
+        "verified": true
+      },
+      {
+        "id": "kep-f3",
+        "text": "The original goal was to monitor about 100,000 stars for three and a half years. The telescope's mirror was 1.4 meters (4 feet, 7 inches) in diameter.",
+        "source_id": "nasa-kepler",
+        "verified": true
+      },
+      {
+        "id": "kep-f4",
+        "text": "The spacecraft required three functioning reaction wheels to position the telescope; in May 2013 it lost the second of its four wheels.",
+        "source_id": "nasa-kepler",
+        "verified": true
+      },
+      {
+        "id": "kep-f5",
+        "text": "Kepler left a legacy of more than 2,600 planet discoveries from outside our solar system.",
+        "source_id": "nasa-kepler",
+        "verified": true
+      },
+      {
+        "id": "kep-f6",
+        "text": "The mission revealed that our galaxy contains more planets than stars.",
+        "source_id": "nasa-kepler-goodnight",
+        "verified": true
+      },
+      {
+        "id": "kep-f7",
+        "text": "The K2 mission was expected to manage 10 observing campaigns with the remaining fuel; it reached 19 and raised the count of surveyed stars to more than 500,000.",
+        "source_id": "nasa-kepler",
+        "verified": true
+      },
+      {
+        "id": "kep-f8",
+        "text": "Kepler ran out of the fuel needed for further science operations and NASA retired the spacecraft on Oct. 30, 2018, within its current, safe orbit.",
+        "source_id": "nasa-kepler",
+        "verified": true
+      },
+      {
+        "id": "kep-f9",
+        "text": "The final 'goodnight' commands were received on Nov. 15, 2018. The spacecraft is drifting in a safe orbit around the Sun.",
+        "source_id": "nasa-kepler-goodnight",
+        "verified": true
+      },
+      {
+        "id": "kep-f10",
+        "text": "NASA's Transiting Exoplanet Survey Satellite (TESS), launched in April 2018, builds on Kepler's foundation, searching some 200,000 of the brightest and nearest stars.",
+        "source_id": "nasa-kepler",
+        "verified": true
+      }
+    ],
+    "since": {
+      "kind": "heard",
+      "date": "2018-11-15"
+    },
+    "media": [
+      {
+        "kind": "image",
+        "chapter": "how",
+        "src": "assets/img/kepler.jpg",
+        "width": 478,
+        "height": 720,
+        "nasa_id": "PIA11188",
+        "credit": "NASA/JPL-Caltech/Ball Aerospace",
+        "source_id": "img-kepler",
+        "caption_key": "media.kepler.caption",
+        "alt_key": "media.kepler.alt"
+      }
+    ]
+  }
+]

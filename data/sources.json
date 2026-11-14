@@ -1,0 +1,438 @@
+[
+  {
+    "id": "nssdca-a11",
+    "title": "Apollo 11 Lunar Module / EASEP",
+    "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C",
+    "publisher": "NASA NSSDCA",
+    "accessed": "2026-11-14",
+    "official_resource": true
+  },
+  {
+    "id": "nssdca-a15",
+    "title": "Apollo 15 Lunar Module / ALSEP",
+    "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1971-063C",
+    "publisher": "NASA NSSDCA",
+    "accessed": "2026-11-14",
+    "official_resource": true
+  },
+  {
+    "id": "nssdca-a12",
+    "title": "Apollo 12 Lunar Module / ALSEP",
+    "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-099C",
+    "publisher": "NASA NSSDCA",
+    "accessed": "2026-11-14",
+    "official_resource": true
+  },
+  {
+    "id": "nasa-surveyor3",
+    "title": "Surveyor 3",
+    "url": "https://science.nasa.gov/mission/surveyor-3/",
+    "publisher": "NASA Science",
+    "accessed": "2026-11-14",
+    "official_resource": true
+  },
+  {
+    "id": "nasa-pathfinder",
+    "title": "Mars Pathfinder",
+    "url": "https://science.nasa.gov/mission/mars-pathfinder/",
+    "publisher": "NASA Science",
+    "accessed": "2026-11-14",
+    "official_resource": true
+  },
+  {
+    "id": "nasa-mer",
+    "title": "Mars Exploration Rovers: Spirit and Opportunity",
+    "url": "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/",
+    "publisher": "NASA Science",
+    "accessed": "2026-11-14",
+    "official_resource": true
+  },
+  {
+    "id": "nasa-insight",
+    "title": "InSight Lander",
+    "url": "https://science.nasa.gov/mission/insight/",
+    "publisher": "NASA Science",
+    "accessed": "2026-11-14",
+    "official_resource": true
+  },
+  {
+    "id": "nasa-ingenuity",
+    "title": "Ingenuity Mars Helicopter",
+    "url": "https://science.nasa.gov/mission/mars-2020-perseverance/ingenuity-mars-helicopter/",
+    "publisher": "NASA Science",
+    "accessed": "2026-11-14",
+    "official_resource": true
+  },
+  {
+    "id": "nasa-pioneer10",
+    "title": "Pioneer 10",
+    "url": "https://science.nasa.gov/mission/pioneer-10/",
+    "publisher": "NASA Science",
+    "accessed": "2026-11-14",
+    "official_resource": true
+  },
+  {
+    "id": "nasa-kepler",
+    "title": "Kepler / K2",
+    "url": "https://science.nasa.gov/mission/kepler/",
+    "publisher": "NASA Science",
+    "accessed": "2026-11-14",
+    "official_resource": true
+  },
+  {
+    "id": "nssdca-a14",
+    "title": "Apollo 14 Lunar Module / ALSEP",
+    "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1971-008C",
+    "publisher": "NASA NSSDCA",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "nssdca-apollo-coords",
+    "title": "Apollo Landing Site Coordinates",
+    "url": "https://nssdc.gsfc.nasa.gov/planetary/lunar/lunar_sites.html",
+    "publisher": "NASA NSSDCA",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "nssdca-lrv",
+    "title": "The Apollo Lunar Roving Vehicle",
+    "url": "https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo_lrv.html",
+    "publisher": "NASA NSSDCA",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "jpl-llr",
+    "title": "The Apollo Experiment That Keeps on Giving (July 24, 2019)",
+    "url": "https://www.jpl.nasa.gov/news/the-apollo-experiment-that-keeps-on-giving/",
+    "publisher": "NASA JPL",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "nssdca-pathfinder",
+    "title": "Mars Pathfinder",
+    "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1996-068A",
+    "publisher": "NASA NSSDCA",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "nssdca-opp",
+    "title": "Mars Exploration Rover B (Opportunity)",
+    "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-032A",
+    "publisher": "NASA NSSDCA",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "nssdca-spirit",
+    "title": "Mars Exploration Rover A (Spirit)",
+    "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-027A",
+    "publisher": "NASA NSSDCA",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "jpl-opp-end",
+    "title": "NASA's Opportunity Rover Mission on Mars Comes to End (Feb. 13, 2019)",
+    "url": "https://www.jpl.nasa.gov/news/nasas-opportunity-rover-mission-on-mars-comes-to-end/",
+    "publisher": "NASA JPL",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "nasa-blueberries",
+    "title": "Big Spherules near 'Victoria' (Photojournal PIA09077)",
+    "url": "https://science.nasa.gov/photojournal/big-spherules-near-victoria",
+    "publisher": "NASA Science",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "jpl-ing-end",
+    "title": "After Three Years on Mars, NASA's Ingenuity Helicopter Mission Ends (Jan. 25, 2024)",
+    "url": "https://www.jpl.nasa.gov/news/after-three-years-on-mars-nasas-ingenuity-helicopter-mission-ends/",
+    "publisher": "NASA JPL",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "jpl-ing-presskit",
+    "title": "Ingenuity Landing Press Kit: Quick Facts",
+    "url": "https://www.jpl.nasa.gov/news/press_kits/ingenuity/landing/quick_facts/",
+    "publisher": "NASA JPL",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "jpl-wright",
+    "title": "Swatch of Wright Brothers Flyer 1 Attached to Mars Helicopter (PIA24291)",
+    "url": "https://www.jpl.nasa.gov/images/pia24291-swatch-of-wright-brothers-flyer-1-attached-to-mars-helicopter/",
+    "publisher": "NASA JPL",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "nssdca-m2020",
+    "title": "Mars 2020 (Perseverance) and the Ingenuity helicopter",
+    "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2020-052A",
+    "publisher": "NASA NSSDCA",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "giss-landers",
+    "title": "Mars24 Sunclock: Mars Landers",
+    "url": "https://www.giss.nasa.gov/tools/mars24/help/landers.html",
+    "publisher": "NASA GISS",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "jpl-insight-retire",
+    "title": "NASA Retires InSight Mars Lander Mission After Years of Science (Dec. 21, 2022)",
+    "url": "https://www.jpl.nasa.gov/news/nasa-retires-insight-mars-lander-mission-after-years-of-science/",
+    "publisher": "NASA JPL",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "jpl-insight-quake",
+    "title": "NASA's InSight Records Monster Quake on Mars (May 9, 2022)",
+    "url": "https://www.jpl.nasa.gov/news/nasas-insight-records-monster-quake-on-mars/",
+    "publisher": "NASA JPL",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "nasa-kepler-goodnight",
+    "title": "Goodnight Kepler: Final Commands for Space Telescope",
+    "url": "https://science.nasa.gov/universe/exoplanets/goodnight-kepler-final-commands-for-space-telescope",
+    "publisher": "NASA Science",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "nasa-artemis",
+    "title": "Artemis",
+    "url": "https://www.nasa.gov/humans-in-space/artemis/",
+    "publisher": "NASA",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "nasa-dragonfly",
+    "title": "Dragonfly",
+    "url": "https://science.nasa.gov/mission/dragonfly/",
+    "publisher": "NASA Science",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "giss-mars24",
+    "title": "Mars24 Sunclock: Algorithm and Worked Examples",
+    "url": "https://www.giss.nasa.gov/tools/mars24/help/algorithm.html",
+    "publisher": "NASA GISS",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "jpl-horizons",
+    "title": "JPL Horizons System (Pioneer 10 = -23, Kepler = -227)",
+    "url": "https://ssd.jpl.nasa.gov/horizons/",
+    "publisher": "NASA JPL",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "svs-moon",
+    "title": "CGI Moon Kit (LRO color map)",
+    "url": "https://svs.gsfc.nasa.gov/4720",
+    "publisher": "NASA Scientific Visualization Studio",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "usgs-mars",
+    "title": "Mars Viking Colorized Global Mosaic (MDIM 2.1)",
+    "url": "https://astrogeology.usgs.gov/search/map/mars_viking_colorized_global_mosaic_232m",
+    "publisher": "USGS Astrogeology / NASA",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "lroc-flags",
+    "title": "Question Answered! (Mark Robinson, July 27, 2012)",
+    "url": "https://www.lroc.asu.edu/images/537",
+    "publisher": "LROC, Arizona State University (camera team of NASA's Lunar Reconnaissance Orbiter)",
+    "accessed": "2026-11-14",
+    "official_resource": false,
+    "non_nasa": true
+  },
+  {
+    "id": "space-surveyor",
+    "title": "Moon Microbe Mystery Finally Solved (Leonard David, May 6, 2011)",
+    "url": "https://www.nbcnews.com/id/wbna42929708",
+    "publisher": "SPACE.com via NBC News",
+    "accessed": "2026-11-14",
+    "official_resource": false,
+    "non_nasa": true
+  },
+  {
+    "id": "snopes-opp",
+    "title": "Was a Mars Rover's Final Message to NASA 'My Battery Is Low and It's Getting Dark?' (Feb. 18, 2019)",
+    "url": "https://www.snopes.com/fact-check/opportunity-rovers-final-words/",
+    "publisher": "Snopes",
+    "accessed": "2026-11-14",
+    "official_resource": false,
+    "non_nasa": true
+  },
+  {
+    "id": "tps-opp",
+    "title": "The Mars Exploration Rovers Update Special Report: Opportunity's mission declared complete (Feb. 14, 2019)",
+    "url": "https://www.planetary.org/articles/02-mer-update-opportunity-complete",
+    "publisher": "The Planetary Society",
+    "accessed": "2026-11-14",
+    "official_resource": false,
+    "non_nasa": true
+  },
+  {
+    "id": "img-eagle",
+    "title": "NASA Image and Video Library: as11-40-5927",
+    "url": "https://images.nasa.gov/details/as11-40-5927",
+    "publisher": "NASA",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "img-lrv",
+    "title": "NASA Image and Video Library: as15-86-11603",
+    "url": "https://images.nasa.gov/details/as15-86-11603",
+    "publisher": "NASA",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "img-retro",
+    "title": "NASA Image and Video Library: as14-67-09386",
+    "url": "https://images.nasa.gov/details/as14-67-09386",
+    "publisher": "NASA",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "img-surveyor3",
+    "title": "NASA Image and Video Library: AS12-48-7133",
+    "url": "https://images.nasa.gov/details/AS12-48-7133",
+    "publisher": "NASA",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "img-sojourner",
+    "title": "NASA Image and Video Library: PIA00623",
+    "url": "https://images.nasa.gov/details/PIA00623",
+    "publisher": "NASA",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "img-opportunity",
+    "title": "NASA Image and Video Library: PIA22930",
+    "url": "https://images.nasa.gov/details/PIA22930",
+    "publisher": "NASA",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "img-ingenuity",
+    "title": "NASA Image and Video Library: PIA26243",
+    "url": "https://images.nasa.gov/details/PIA26243",
+    "publisher": "NASA",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "img-insight",
+    "title": "NASA Image and Video Library: PIA25287",
+    "url": "https://images.nasa.gov/details/PIA25287",
+    "publisher": "NASA",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "img-pioneer10",
+    "title": "NASA Image and Video Library: ARC-1972-AC72-2135",
+    "url": "https://images.nasa.gov/details/ARC-1972-AC72-2135",
+    "publisher": "NASA",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "img-kepler",
+    "title": "NASA Image and Video Library: PIA11188",
+    "url": "https://images.nasa.gov/details/PIA11188",
+    "publisher": "NASA",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "aud-ingenuity",
+    "title": "NASA's Perseverance Rover Hears Ingenuity Mars Helicopter in Flight (May 7, 2021)",
+    "url": "https://images.nasa.gov/details/JPL-20210506-Listen%20to%20NASA%E2%80%99s%20Ingenuity%20Helicopter%20as%20it%20Flies%20on%20Mars-1080",
+    "publisher": "NASA JPL",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "aud-insight",
+    "title": "Seismogram and Sonification of InSight's Big Martian Quake (PIA25281)",
+    "url": "https://science.nasa.gov/photojournal/seismogram-and-sonification-of-insights-big-martian-quake/",
+    "publisher": "NASA JPL Photojournal",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "jpl-opp-hunker",
+    "title": "Opportunity Hunkers Down During Dust Storm (status report, July 26, 2018)",
+    "url": "https://www.jpl.nasa.gov/news/opportunity-hunkers-down-during-dust-storm/",
+    "publisher": "NASA JPL",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "jpl-opp-six",
+    "title": "Six Things About Opportunity's Recovery Efforts (Aug. 16, 2018)",
+    "url": "https://www.jpl.nasa.gov/news/six-things-about-opportunitys-recovery-efforts/",
+    "publisher": "NASA JPL",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "jpl-opp-update",
+    "title": "Update on Opportunity Rover Recovery Efforts (updated Sept. 11, Oct. 11 and Oct. 29, 2018)",
+    "url": "https://www.jpl.nasa.gov/news/update-on-opportunity-rover-recovery-efforts/",
+    "publisher": "NASA JPL",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "jpl-opp-emerges",
+    "title": "Opportunity Emerges in a Dusty Picture (Sept. 25, 2018)",
+    "url": "https://www.jpl.nasa.gov/news/opportunity-emerges-in-a-dusty-picture/",
+    "publisher": "NASA JPL",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "jpl-opp-beaming",
+    "title": "Rover Team Beaming New Commands to Opportunity on Mars (Jan. 2019)",
+    "url": "https://www.jpl.nasa.gov/news/rover-team-beaming-new-commands-to-opportunity-on-mars/",
+    "publisher": "NASA JPL",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  }
+]

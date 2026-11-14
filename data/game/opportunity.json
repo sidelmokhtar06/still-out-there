@@ -1,0 +1,244 @@
+{
+  "id": "save-opportunity",
+  "artifact": "opportunity",
+  "lastContact": "2018-06-10",
+  "tauNormal": 0.5,
+  "tauRecharge": 2.0,
+  "turns": [
+    {
+      "date": "2018-06-10",
+      "tau": 10.8,
+      "situation": "Dust storm alert! A storm first spotted on May 30 has grown to cover all of Mars. Above Oppy, the sky is thick with dust. Scientists measure this with a number called tau. Normal here is about 0.5. Today it is 10.8. Oppy's solar panels are getting almost no sunlight.",
+      "choices": [
+        {
+          "label": "Drive Oppy somewhere sunnier",
+          "reply": "There is nowhere sunny to go. This storm covers the whole planet. And without sunlight, Oppy has no power to drive. Oppy does manage one more call home today, June 10. Nobody knows yet that it will be the last message."
+        },
+        {
+          "label": "Ask Oppy to call home",
+          "reply": "Oppy does call home, today, June 10. Nobody knows yet that it will be the last message. Engineers think that soon after, its batteries ran so low that it switched almost everything off to wait for the Sun. This is called a low-power fault."
+        }
+      ],
+      "facts": [
+        {
+          "text": "The storm was first detected May 30, 2018. Opportunity last communicated on June 10.",
+          "source_id": "jpl-opp-update"
+        },
+        {
+          "text": "The last tau measured by Opportunity was 10.8 on June 10. An average tau for its location is usually 0.5.",
+          "source_id": "jpl-opp-six"
+        },
+        {
+          "text": "Engineers assume the rover went into low-power fault shortly after it stopped communicating on June 10. This mode causes the rover to hibernate.",
+          "source_id": "jpl-opp-six"
+        }
+      ],
+      "outcome": "Signal received. It will be the last one."
+    },
+    {
+      "date": "2018-07-26",
+      "tau": null,
+      "situation": "Good news from the orbiters circling Mars. Since July 23, more dust is falling out of the sky than is being blown up into it. The storm has started to end. But it could still be weeks, or even months, before the sky is clear enough for Oppy to recharge.",
+      "choices": [
+        {
+          "label": "Send a wake-up call",
+          "reply": "The team already does, several times a week. NASA's Deep Space Network, a set of giant dish antennas on Earth, pings Oppy at the times it is supposed to wake up."
+        },
+        {
+          "label": "Listen even harder",
+          "reply": "Good idea! JPL's radio science group puts special equipment on the giant antennas. It can hear a wider range of radio frequencies, in case Oppy calls in an unexpected way."
+        }
+      ],
+      "facts": [
+        {
+          "text": "As of July 23, 2018, more dust was falling out than being raised: the storm had reached its decay phase. It could still be weeks or months before skies are clear enough.",
+          "source_id": "jpl-opp-hunker"
+        },
+        {
+          "text": "Several times a week, engineers use NASA's Deep Space Network to ping the rover during scheduled wake-up times. JPL's radio science group uses equipment that can detect a wider range of frequencies.",
+          "source_id": "jpl-opp-six"
+        }
+      ]
+    },
+    {
+      "date": "2018-08-16",
+      "tau": null,
+      "situation": "Engineers do the math. Oppy needs the tau to drop below 2.0 before its panels can recharge its batteries. There is one more worry: Oppy's clock. If the clock lost track of time, Oppy won't know when it should try to call home.",
+      "choices": [
+        {
+          "label": "Wait for clearer skies",
+          "reply": "That is the plan. Before the storm, Oppy's batteries were in fairly good health. The team thinks the rover stayed warm enough to survive."
+        },
+        {
+          "label": "Fix the clock from Earth",
+          "reply": "Smart. The team will try exactly that later, with commands that reset the clock. But first, the sky has to clear."
+        }
+      ],
+      "facts": [
+        {
+          "text": "Opportunity will need a tau of less than 2.0 to recharge. If the rover doesn't know what time it is, it doesn't know when it should be attempting to communicate.",
+          "source_id": "jpl-opp-six"
+        },
+        {
+          "text": "The batteries were in relatively good health before the storm, and the rover should have stayed warm enough to survive.",
+          "source_id": "jpl-opp-six"
+        }
+      ]
+    },
+    {
+      "date": "2018-09-11",
+      "tau": 1.5,
+      "tauBelow": true,
+      "situation": "The sky is finally clearing! Tau has been below 1.5 two measurements in a row. NASA starts a 45-day push to reach Oppy. Time to go all out.",
+      "choices": [
+        {
+          "label": "Call many times a day",
+          "reply": "Done. The team goes from calling three times a week to calling several times a day."
+        },
+        {
+          "label": "Try 'sweep and beep'",
+          "reply": "Done. Instead of only listening, the team sends commands that tell Oppy to answer back with a beep."
+        }
+      ],
+      "facts": [
+        {
+          "text": "Tau was below 1.5 for two consecutive measurements. Commands increased from three times a week to multiple times per day. If there is no reply after 45 days, the team will conclude the rover will more than likely not recover.",
+          "source_id": "jpl-opp-update"
+        },
+        {
+          "text": "With 'sweep and beep', the project sends commands to the rover to respond back with a beep. These commands have been sent since September.",
+          "source_id": "jpl-opp-beaming"
+        }
+      ]
+    },
+    {
+      "date": "2018-09-20",
+      "tau": 1.3,
+      "situation": "A powerful camera on the Mars Reconnaissance Orbiter, high above Mars, takes a picture of Perseverance Valley. There is Oppy: a tiny blip on the ground. It is still there! Tau is about 1.3.",
+      "choices": [
+        {
+          "label": "Zoom in closer",
+          "reply": "The orbiter can see Oppy, but a picture cannot tell us if Oppy is awake. Only a radio signal can do that."
+        },
+        {
+          "label": "Keep calling",
+          "reply": "The calls go out, several times a day, every day."
+        }
+      ],
+      "facts": [
+        {
+          "text": "An image taken on Sept. 20, 2018 by NASA's Mars Reconnaissance Orbiter shows Opportunity as a blip. That day, tau was estimated to be about 1.3.",
+          "source_id": "jpl-opp-emerges"
+        }
+      ]
+    },
+    {
+      "date": "2018-10-11",
+      "tau": null,
+      "situation": "One month of calling, several times a day. Nothing. But there is still hope. Between November and January, Mars has a windy period that the team calls 'dust-clearing season'. Wind could blow the dust off Oppy's solar panels.",
+      "choices": [
+        {
+          "label": "Wait for the wind",
+          "reply": "NASA agrees. The team keeps trying, and plans to look at the situation again in January 2019."
+        },
+        {
+          "label": "Give up",
+          "reply": "Not yet! NASA decides to keep going, and to look at the situation again in January 2019."
+        }
+      ],
+      "facts": [
+        {
+          "text": "One month since increasing their commanding frequency, engineers have yet to hear from Opportunity. 'Dust-clearing season' occurs in the November-to-January time frame.",
+          "source_id": "jpl-opp-update"
+        },
+        {
+          "text": "On Oct. 29, 2018, NASA said it would continue its strategy and reassess the situation in the January 2019 time frame.",
+          "source_id": "jpl-opp-update"
+        }
+      ]
+    },
+    {
+      "date": "2019-01-25",
+      "tau": null,
+      "situation": "Dust-clearing season is almost over. Southern winter is coming, and extreme cold could harm a rover with no power: its batteries, its wiring, its computers. The team has tried to reach Oppy more than 600 times. Time for new tricks.",
+      "choices": [
+        {
+          "label": "Switch to the backup radio",
+          "reply": "Sent. In case Oppy's main radio broke, a command tells it to switch to its backup radio."
+        },
+        {
+          "label": "Reset the clock",
+          "reply": "Sent. Commands reset Oppy's clock and ask it to answer on a different radio, called UHF."
+        }
+      ],
+      "facts": [
+        {
+          "text": "'Over the past seven months we have attempted to contact Opportunity over 600 times,' said John Callas, project manager.",
+          "source_id": "jpl-opp-beaming"
+        },
+        {
+          "text": "New commands included switching to the backup X-band radio, and resetting the clock to respond via UHF. Southern winter brings extremely low temperatures likely to cause irreparable harm to an unpowered rover.",
+          "source_id": "jpl-opp-beaming"
+        }
+      ]
+    },
+    {
+      "date": "2019-02-12",
+      "tau": null,
+      "final": true,
+      "situation": "Eight months after Oppy went quiet, and after more than a thousand commands, this is the last try. A giant 70-meter dish antenna on Earth gets ready to send it.",
+      "choices": [
+        {
+          "label": "Send the last command",
+          "reply": "The command flies across space to Perseverance Valley, on Mars."
+        }
+      ],
+      "facts": [
+        {
+          "text": "After more than a thousand commands to restore contact, engineers made a last attempt on Feb. 12, 2019, through the 70-meter Mars Station antenna.",
+          "source_id": "jpl-opp-end"
+        }
+      ]
+    }
+  ],
+  "ending": {
+    "title": "No reply.",
+    "lead": "You did everything the real team did. They tried for eight months, with every trick they had. None of it worked. Sometimes space wins.",
+    "song": "As the last commands went out, the team in the control room played a song: 'I'll Be Seeing You', sung by Billie Holiday.",
+    "song_source_id": "tps-opp",
+    "closing": "On February 13, 2019, NASA announced that Opportunity's mission was over. It was built to last 90 Martian days. It explored for more than 14 years and found signs that Mars once had water.",
+    "closing_fact_ids": [
+      "opp-f2",
+      "opp-f5",
+      "opp-f8"
+    ],
+    "replay": "Play again",
+    "story": "Back to Oppy's story"
+  },
+  "ui": {
+    "title": "Can you save Opportunity?",
+    "intro": "Summer 2018. You are on Opportunity's team at mission control. A dust storm is coming. Every turn is a real day, and every choice is something the real team could do. Can you get Oppy to call home?",
+    "start": "Start the mission",
+    "turn": "Turn {n} of {total}",
+    "silent": "Days without a signal",
+    "tau": "Dust in the sky (tau)",
+    "tauNormal": "normal sky here",
+    "tauRecharge": "Oppy needs less than this to recharge",
+    "listening": "Listening for Oppy",
+    "noSignal": "No signal.",
+    "next": "Next day",
+    "end": "See what happened",
+    "real": "What really happened",
+    "simplified": "The dust meter shows the tau values NASA published. On days without a published value, it is left empty.",
+    "later": "{n} days later",
+    "lastReading": "No reading was published for this day. The last published value was {tau} on {date}.",
+    "logTitle": "Your mission log",
+    "logNote": "The real team tried every one of these, and more.",
+    "logEmpty": "You skipped straight to the end, so your log is empty. Play from the start to fill it.",
+    "lastPhoto": "The last thing Oppy saw",
+    "signalFrom": "Earth",
+    "signalTo": "Oppy",
+    "signalTime": "On this date, your command needs {time} to reach Mars. Any reply would need the same time to come back.",
+    "signalNote": "Sped up. Calculated from where Earth and Mars were on this day, with Astronomy Engine."
+  }
+}

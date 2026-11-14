@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Still Out There</title>
+  <meta name="description" content="A live map of the machines humanity left on the Moon, on Mars and in deep space. They stopped talking. They never left.">
+  <meta name="theme-color" content="#060606">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23060606'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23ece7dc' stroke-width='2.5'/%3E%3Cpath d='M16 7a9 9 0 0 1 0 18z' fill='%23ece7dc'/%3E%3C/svg%3E">
+  <link rel="preload" href="vendor/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#app" data-i18n="app.skip">Skip to content</a>
+  <div id="shell" data-mode="brief">
+    <header class="bar">
+      <a class="brand" href="#/moon" data-i18n="app.title">Still Out There</a>
+      <nav aria-label="Worlds" class="worlds">
+        <a href="#/moon" data-nav="moon" data-i18n="nav.moon">Moon</a>
+        <a href="#/mars" data-nav="mars" data-i18n="nav.mars">Mars</a>
+        <a href="#/deep" data-nav="deep" data-i18n="nav.deep">Deep space</a>
+      </nav>
+      <nav aria-label="More" class="more">
+        <a href="#/rollcall" data-nav="rollcall" data-i18n="nav.rollcall">Roll call</a>
+        <a href="#/myths" data-nav="myths" data-i18n="nav.myths">Myths</a>
+        <a href="#/sources" data-nav="sources" data-i18n="nav.sources" class="hide-narrow">Sources</a>
+      </nav>
+    </header>
+    <div id="stage" class="stage"></div>
+    <main id="app" class="sheet" tabindex="-1">
+      <p class="loading">Calling the machines…</p>
+      <noscript><p class="loading">This site needs JavaScript to work out what time it is on Mars.</p></noscript>
+    </main>
+  </div>
+  <script src="vendor/astronomy.browser.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
