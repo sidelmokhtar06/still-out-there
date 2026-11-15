@@ -255,16 +255,16 @@
   "body.mercury": "Mercury",
   "body.venus": "Venus",
   "body.uranus": "Uranus",
-  "system.label": "The solar system in 3D. The planets and the Moon are where they really are on the date shown below. Drag to turn it, scroll to zoom. The Moon and Mars open their pages.",
+  "system.label": "The Earth, the Moon and Mars in 3D, with probes travelling from the Earth to each. Drag to turn, scroll to zoom. The Moon and Mars open their pages.",
   "system.zoomIn": "Zoom in",
   "system.zoomOut": "Zoom out",
   "system.reset": "Back to the whole view",
-  "system.notToScale": "Real positions · sizes and distances not to scale",
+  "system.notToScale": "Sizes and distances not to scale",
   "home.title": "The map",
   "nav.map": "Map",
-  "home.mapLead": "The Moon and Mars, where they really are today.",
+  "home.mapLead": "Leave the Earth for the Moon or Mars, where the machines rest.",
   "home.featured": "Where they rest",
   "home.collapse": "Hide or show the panel",
   "home.machines": "{n} machines",
-  "home.hint": "Drag the solar system to turn it, scroll to zoom. Click the Moon or Mars to fly there."
+  "home.hint": "Drag to turn, scroll to zoom. Click the Moon or Mars to travel there from the Earth."
 }
