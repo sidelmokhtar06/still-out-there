@@ -130,7 +130,7 @@ h1 { font-size: clamp(2.3rem, 7vw, 3.2rem); line-height: 1; letter-spacing: -.02
 .fine a, .plain a { text-decoration: underline; }
 
 /* intro */
-.wordmark { font-size: clamp(3rem, 12vw, 4.6rem); line-height: .88; text-transform: uppercase; letter-spacing: -.035em; margin-block: 10px 14px; }
+.wordmark { font-size: clamp(2.1rem, 8vw, 3rem); line-height: 1; text-transform: uppercase; letter-spacing: -.025em; margin-block: 10px 16px; text-wrap: balance; }
 .tagline { font-size: 1.35rem; margin-bottom: 18px; }
 .pane-intro .lead { color: var(--dim); font-size: 1.0625rem; }
 .now { margin-block: 30px; padding-block: 18px; border-block: 1px solid var(--rule); min-height: 9.5em; }
@@ -438,7 +438,7 @@ h1 { font-size: clamp(2.3rem, 7vw, 3.2rem); line-height: 1; letter-spacing: -.02
 
 /* ======================= phone fixes ======================= */
 .marker-num, .row-num { display: none; }
-.intro-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.intro-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
 .stage-subtitle { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 2; width: min(92%, 640px); margin: 0; padding: 10px 16px; text-align: center;
   font-size: clamp(1.05rem, 3.6vw, 1.5rem); line-height: 1.3; color: var(--ink); background: rgba(6, 6, 6, .82); border-left: 3px solid var(--signal); }
 .progress a { height: 44px; }
@@ -560,3 +560,58 @@ h1 { font-size: clamp(2.3rem, 7vw, 3.2rem); line-height: 1; letter-spacing: -.02
 @media (max-width: 859px) { .delay { padding-inline-start: 10px; } }
 @media (max-width: 374px) { .delay-label { display: none; } }   /* narrow phones: the number alone */
 @media (prefers-reduced-motion: reduce) { .delay-dot { animation: none; } .bar .stop { transition: none; } }
+
+/* ---------- seen from orbit (js/ui/orbit.js): a telescope view that zooms and locks on ---------- */
+.orbit { margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--rule); }
+.orbit-intro { font-size: 1.15rem; margin-block: 8px 16px; max-width: 34em; }
+.orbit-view { position: relative; overflow: hidden; background: #000; cursor: zoom-in; direction: ltr; touch-action: manipulation;
+  outline: 1px solid var(--rule); outline-offset: -1px; }
+.orbit-find .orbit-view { cursor: crosshair; }
+.orbit-view.zoomed { cursor: zoom-out; }
+.orbit-view img { display: block; width: 100%; height: 100%; object-fit: cover; transform-origin: 0 0; user-select: none;
+  transition: transform 1.6s cubic-bezier(.65, 0, .2, 1); }
+/* viewfinder corner ticks */
+.orbit-view::before { content: ""; position: absolute; inset: 10px; pointer-events: none; z-index: 1; --t: 14px; --c3: rgba(236, 231, 220, .7);
+  background:
+    linear-gradient(var(--c3), var(--c3)) top left / var(--t) 1px, linear-gradient(var(--c3), var(--c3)) top left / 1px var(--t),
+    linear-gradient(var(--c3), var(--c3)) top right / var(--t) 1px, linear-gradient(var(--c3), var(--c3)) top right / 1px var(--t),
+    linear-gradient(var(--c3), var(--c3)) bottom left / var(--t) 1px, linear-gradient(var(--c3), var(--c3)) bottom left / 1px var(--t),
+    linear-gradient(var(--c3), var(--c3)) bottom right / var(--t) 1px, linear-gradient(var(--c3), var(--c3)) bottom right / 1px var(--t);
+  background-repeat: no-repeat; }
+.orbit-hud { position: absolute; left: 10px; bottom: 10px; z-index: 2; display: flex; gap: 10px; padding: 2px 8px; pointer-events: none;
+  font-family: var(--mono); font-size: .8125rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); background: rgba(6, 6, 6, .75); }
+.orbit-zoom { color: var(--signal); font-variant-numeric: tabular-nums; }
+/* lock-on brackets, the same as on the globe */
+.orbit-lock { position: absolute; z-index: 2; width: 0; height: 0; pointer-events: none; opacity: 0; transition: opacity .3s; }
+.orbit-lock::before { content: ""; position: absolute; left: -24px; top: -24px; width: 48px; height: 48px; --b: 2px; --l: 12px; --c2: var(--signal);
+  background:
+    linear-gradient(var(--c2), var(--c2)) top left / var(--l) var(--b), linear-gradient(var(--c2), var(--c2)) top left / var(--b) var(--l),
+    linear-gradient(var(--c2), var(--c2)) top right / var(--l) var(--b), linear-gradient(var(--c2), var(--c2)) top right / var(--b) var(--l),
+    linear-gradient(var(--c2), var(--c2)) bottom left / var(--l) var(--b), linear-gradient(var(--c2), var(--c2)) bottom left / var(--b) var(--l),
+    linear-gradient(var(--c2), var(--c2)) bottom right / var(--l) var(--b), linear-gradient(var(--c2), var(--c2)) bottom right / var(--b) var(--l);
+  background-repeat: no-repeat; }
+.orbit-lock-label { position: absolute; left: 32px; top: 0; transform: translateY(-50%); white-space: nowrap; padding: 0 6px;
+  font-family: var(--mono); font-weight: 500; font-size: .9375rem; text-transform: uppercase; letter-spacing: .06em; background: var(--signal); color: #000; }
+.zoomed .orbit-lock { opacity: 1; transition-delay: 1.4s; }
+.zoomed .orbit-lock::before { animation: lock-on .45s cubic-bezier(.2, .9, .3, 1.2) both 1.4s; }
+.orbit-lock.flip .orbit-lock-label { left: auto; right: 32px; }
+/* the search: a ring where the reader looked, and a warm glow after three misses */
+.orbit-miss { position: absolute; z-index: 2; width: 0; height: 0; pointer-events: none; }
+.orbit-miss::after { content: ""; position: absolute; left: -16px; top: -16px; width: 32px; height: 32px; border: 1.5px solid var(--ink); border-radius: 50%; opacity: 0; }
+.orbit-miss.ping::after { animation: miss 1s ease-out both; }
+@keyframes miss { from { transform: scale(.4); opacity: 1; } to { transform: scale(1.4); opacity: 0; } }
+.orbit-view.warm:not(.zoomed) .orbit-lock { opacity: 1; }
+.orbit-view.warm:not(.zoomed) .orbit-lock::before, .orbit-view.warm:not(.zoomed) .orbit-lock-label { display: none; }
+.orbit-view.warm:not(.zoomed) .orbit-lock::after { content: ""; position: absolute; left: -70px; top: -70px; width: 140px; height: 140px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 98, 51, .28), transparent 70%); animation: blink 2.4s ease-in-out infinite; }
+.orbit-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 12px; }
+.orbit-status { font-family: var(--mono); font-size: .9375rem; color: var(--dim); }
+.orbit-status:empty { display: none; }
+.orbit-caption { margin-top: 18px; padding-inline-start: 18px; border-inline-start: 2px solid var(--signal); animation: fade-in-up .5s ease-out both 1.5s; }
+.orbit-caption p:not(.orbit-still) { font-size: 1.15rem; max-width: 34em; }
+.orbit-still { font-weight: 700; font-size: 1.6rem; line-height: 1.15; margin-bottom: 8px; }
+.orbit .fine { margin-top: 14px; }
+@media (prefers-reduced-motion: reduce) {
+  .orbit-view img { transition: none; }
+  .zoomed .orbit-lock, .orbit-caption { transition-delay: 0s; animation-delay: 0s; }
+}

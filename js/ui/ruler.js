@@ -39,10 +39,12 @@ export function createRuler(crafts) {
       if (now - last < 60e3) return;
       last = +now;
       // Bodies sit on one side of the line; nudge labels apart when two are close together.
-      const placed = bodies.map((b) => ({ b, p: place(bodyDistance(b.name, now)) })).sort((x, y) => x.p - y.p);
-      let prev = -1;
+      // Work from the far end and push labels toward Earth, so a label never drifts up beside a
+      // spacecraft that is farther out (Mars's label once sat level with Kepler).
+      const placed = bodies.map((b) => ({ b, p: place(bodyDistance(b.name, now)) })).sort((x, y) => y.p - x.p);
+      let prev = 2;
       for (const item of placed) {
-        const labelAt = Math.max(item.p, prev + 0.05);
+        const labelAt = Math.min(item.p, prev - 0.05);
         prev = labelAt;
         item.b.el.style.setProperty('--p', item.p);
         item.b.el.style.setProperty('--shift', labelAt - item.p);

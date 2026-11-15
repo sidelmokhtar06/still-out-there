@@ -450,5 +450,37 @@
     "publisher": "NASA JPL",
     "accessed": "2026-11-14",
     "official_resource": false
+  },
+  {
+    "id": "orbit-eagle",
+    "title": "Apollo 11: Second Look (PIA12909)",
+    "url": "https://images.nasa.gov/details/PIA12909",
+    "publisher": "NASA",
+    "accessed": "2026-11-15",
+    "official_resource": false
+  },
+  {
+    "id": "orbit-retro",
+    "title": "LROC First Look at the Apollo Landing Sites (PIA12889)",
+    "url": "https://images.nasa.gov/details/PIA12889",
+    "publisher": "NASA",
+    "accessed": "2026-11-15",
+    "official_resource": false
+  },
+  {
+    "id": "orbit-opportunity",
+    "title": "Opportunity After the Dust Storm (PIA22549)",
+    "url": "https://science.nasa.gov/photojournal/opportunity-after-the-dust-storm",
+    "publisher": "NASA",
+    "accessed": "2026-11-15",
+    "official_resource": false
+  },
+  {
+    "id": "orbit-insight",
+    "title": "HiRISE Studies the Dust on InSight (PIA26515)",
+    "url": "https://images.nasa.gov/details/PIA26515",
+    "publisher": "NASA",
+    "accessed": "2026-11-15",
+    "official_resource": false
   }
 ]

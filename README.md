@@ -18,6 +18,7 @@ It is a live, story-driven map for ages 9–14 (and curious adults). Ten machine
 | **Roll call** | All ten answer in turn, in the order they went quiet. The last one: "Still working." | Recorded AI voices, sourced dates |
 | **Can you save Opportunity?** | An 8-turn game through the real 2018–2019 recovery effort. Every choice is something the team really tried. None of them work. | JPL status reports, published dust opacity (tau) values, Earth–Mars light time |
 | **Fire the laser** | A laser pulse to the Apollo mirrors that takes the true round-trip time (~2.5 s) | Earth–Moon distance computed live |
+| **Seen from orbit, today** | Real photos of Eagle, the Apollo 14 site, Opportunity and InSight taken from orbit years after they went quiet. Zoom in and the view locks on. Opportunity is a search: one faint dot, can you find it? InSight has turned from blue to Mars-red under the dust | LRO Camera, HiRISE (NASA Image Library, Photojournal) |
 | **Real photos and sounds** | Opportunity's last images, Ingenuity's broken-blade shadow, the largest marsquake ever recorded, Ingenuity flying | NASA Image Library, JPL Photojournal |
 | **Myth or fact?** | Opportunity's "last words", Surveyor 3's bacteria, the Apollo flags | Sourced fact checks |
 

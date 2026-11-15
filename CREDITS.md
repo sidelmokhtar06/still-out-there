@@ -34,6 +34,16 @@ No NASA logos or mission patches are used. This project is not endorsed by NASA.
 
 Each links to https://images.nasa.gov/details/&lt;NASA ID&gt;. Photos are resized and compressed.
 
+## "Seen from orbit" photos (the machines today, photographed by orbiting spacecraft)
+| Machine | NASA ID | Camera, year | Credit |
+|---|---|---|---|
+| Eagle | PIA12909 | LRO Camera, 2009 | NASA/GSFC/Arizona State University |
+| Laser Retroreflector (Apollo 14 site) | PIA12889 | LRO Camera, 2009 | NASA/GSFC/Arizona State University |
+| Opportunity | PIA22549 | HiRISE (Mars Reconnaissance Orbiter), 2018 | NASA/JPL-Caltech/University of Arizona |
+| InSight | PIA26515 (Figure A) | HiRISE (Mars Reconnaissance Orbiter), 2024 | NASA/JPL-Caltech/University of Arizona |
+
+Labels and arrows in the LRO images are NASA's own. Opportunity's position comes from NASA's annotated version (PIA22549, Figure 1). Images are recompressed, not edited.
+
 ## Sounds (trimmed, converted to mono MP3, volume normalised)
 | Machine | What | Credit / source |
 |---|---|---|

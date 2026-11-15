@@ -7,6 +7,7 @@ import { db, artifact, factsOf, placeOf } from '../data.js';
 import { sourceLink } from '../ui/mythFact.js';
 import { formatDate } from '../live.js';
 import { signalTrack } from '../ui/beam.js';
+import { orbitView } from '../ui/orbit.js';
 
 const TAU_MAX = 12;
 const LOG_KEY = 'still-out-there:opportunity-log';
@@ -172,6 +173,7 @@ function endPanel(game) {
       h('p', { class: 'lead' }, e.song),
       song ? h('p', { class: 'fine' }, sourceLink(song)) : null,
       h('p', { class: 'lead' }, e.closing),
+      orbitView(a)?.el,                 // the game ends with a search: find Oppy from orbit
       h('details', { class: 'real-data' }, h('summary', {}, game.ui.real), factList(closingFacts)),
       h('p', { class: 'story-nav' },
         h('a', { class: 'action small ghost', href: '#/play/opportunity/1', onclick: () => log.clear() }, e.replay),

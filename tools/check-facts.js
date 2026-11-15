@@ -53,6 +53,15 @@ for (const a of artifacts) {
     if (!sources.has(a.location?.source_id)) bad(`${a.id}: coordinates have no source`);
   } else if (!a.ephemeris) bad(`${a.id}: deep-space machine has no ephemeris table`);
   if (!['silent', 'still-working', 'drifting'].includes(a.status)) bad(`${a.id}: unknown status`);
+  if (a.orbit) {
+    const o = a.orbit;
+    if (!sources.has(o.source_id)) bad(`${a.id}: orbit photo has no source`);
+    if (!o.credit || !o.nasa_id || !/^\d{4}$/.test(o.taken)) bad(`${a.id}: orbit photo needs credit, nasa_id and year taken`);
+    if (!existsSync(new URL('../' + o.src, import.meta.url))) bad(`${a.id}: orbit photo file missing: ${o.src}`);
+    if (!o.focus?.every((v) => v >= 0 && v <= 1) || !(o.zoom >= 1)) bad(`${a.id}: orbit photo focus/zoom out of range`);
+    for (const k of ['hint', 'lock', 'caption', 'alt', ...(o.find ? ['clue'] : [])]) if (!text[`orbit.${a.id}.${k}`]) bad(`${a.id}: orbit text missing: ${k}`);
+    if (!text[`orbit.cam.${o.camera.toLowerCase()}`]) bad(`${a.id}: unknown orbit camera ${o.camera}`);
+  }
   for (const m of a.media || []) {
     if (!sources.has(m.source_id)) bad(`${a.id}: photo ${m.src} has no source`);
     if (!m.credit) bad(`${a.id}: photo ${m.src} has no credit`);

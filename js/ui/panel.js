@@ -5,6 +5,7 @@ import { db, byBody, placeOf, noteOf } from '../data.js';
 import { liveData, liveSummary, tickerLine, countdown, formatKm, formatAU, formatDate, daysSince, formatHours, formatLightTime } from '../live.js';
 import { machineArt } from './art.js';
 import { laserPanel } from './beam.js';
+import { orbitView } from './orbit.js';
 
 
 /** List of machines as plain rows; this is also the keyboard and screen-reader way in. */
@@ -24,8 +25,8 @@ export function introPanel(world) {
   const line = h('p', { class: 'now-line' });
   const rows = machineRows(byBody(world));
   const el = h('div', { class: 'pane pane-intro' },
-    h('p', { class: 'eyebrow' }, t('world.' + world)),
-    h('h1', { tabindex: '-1', class: 'wordmark' }, t('app.title')),
+    h('p', { class: 'eyebrow' }, t('app.title'), ' · ', t('world.' + world)),
+    h('h1', { tabindex: '-1', class: 'wordmark' }, t('intro.headline.' + world)),
     h('p', { class: 'tagline' }, t('app.tagline')),
     h('p', { class: 'lead' }, t('intro.' + world)),
     h('div', { class: 'intro-actions' },
@@ -38,17 +39,18 @@ export function introPanel(world) {
     world !== 'deep' ? h('p', { class: 'fine' }, t('globe.hint'), ' ', t(`globe.credit.${world}`)) : h('p', { class: 'fine' }, t('deep.planets')),
     h('p', { class: 'fine' }, h('a', { href: '#/myths' }, t('myth.title')), ' · ', h('a', { href: '#/sources' }, t('about.title')), ' · ', t('app.notNasa')));
 
-  // The "right now" line walks through every machine, on every world.
-  let index = Math.floor(Math.random() * db.artifacts.length), shownAt = 0;
+  // The "right now" line walks through the machines on this world, so it always matches the picture.
+  const here = byBody(world);
+  let index = Math.floor(Math.random() * here.length), shownAt = 0;
   return {
     el, title: t('world.' + world),
     tick(now) {
       rows.update(now);
       if (now - shownAt < 8000) return;
       shownAt = +now;
-      for (let tries = 0; tries < db.artifacts.length; tries++) {
-        index = (index + 1) % db.artifacts.length;
-        const text = tickerLine(db.artifacts[index], now);
+      for (let tries = 0; tries < here.length; tries++) {
+        index = (index + 1) % here.length;
+        const text = tickerLine(here[index], now);
         if (text) { line.textContent = text; break; }
       }
     },
@@ -85,6 +87,7 @@ export function briefPanel(a) {
   }
   const status = field('status');
   const laser = a.status === 'still-working' ? laserPanel() : null;
+  const orbit = orbitView(a);
 
   const el = h('div', { class: `pane pane-brief status-${a.status}` },
     h('nav', { class: 'pager', 'aria-label': t('machine.all') },
@@ -99,6 +102,7 @@ export function briefPanel(a) {
     h('dl', { class: 'readout' }, ...fields),
     h('a', { class: 'action', href: `#/story/${a.id}/1` }, t('machine.story'), ' ', h('span', { class: 'arrow', 'aria-hidden': 'true' }, '→')),
     a.id === 'opportunity' && db.game ? h('a', { class: 'action ghost game-link', href: '#/play/opportunity' }, db.game.ui.title) : null,
+    orbit?.el,
     laser?.el,
     a.body === 'deep' ? h('p', { class: 'fine' }, t('deep.note')) : null,
     noteOf(a) ? h('p', { class: 'fine' }, noteOf(a)) : null);

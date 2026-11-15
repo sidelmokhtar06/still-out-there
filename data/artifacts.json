@@ -126,7 +126,23 @@
         "caption_key": "media.eagle.caption",
         "alt_key": "media.eagle.alt"
       }
-    ]
+    ],
+    "orbit": {
+      "kind": "orbit",
+      "src": "assets/img/orbit-eagle.jpg",
+      "width": 800,
+      "height": 800,
+      "nasa_id": "PIA12909",
+      "taken": "2009",
+      "camera": "LRO",
+      "credit": "NASA/GSFC/Arizona State University",
+      "source_id": "orbit-eagle",
+      "focus": [
+        0.28,
+        0.497
+      ],
+      "zoom": 3
+    }
   },
   {
     "id": "lrv",
@@ -379,7 +395,23 @@
         "caption_key": "media.retro.caption",
         "alt_key": "media.retro.alt"
       }
-    ]
+    ],
+    "orbit": {
+      "kind": "orbit",
+      "src": "assets/img/orbit-retro.jpg",
+      "width": 936,
+      "height": 592,
+      "nasa_id": "PIA12889",
+      "taken": "2009",
+      "camera": "LRO",
+      "credit": "NASA/GSFC/Arizona State University",
+      "source_id": "orbit-retro",
+      "focus": [
+        0.796,
+        0.642
+      ],
+      "zoom": 3
+    }
   },
   {
     "id": "surveyor3",
@@ -816,7 +848,24 @@
         "caption_key": "media.opportunity.caption",
         "alt_key": "media.opportunity.alt"
       }
-    ]
+    ],
+    "orbit": {
+      "kind": "orbit",
+      "src": "assets/img/orbit-opportunity.jpg",
+      "width": 2170,
+      "height": 1390,
+      "nasa_id": "PIA22549",
+      "taken": "2018",
+      "camera": "HiRISE",
+      "credit": "NASA/JPL-Caltech/University of Arizona",
+      "source_id": "orbit-opportunity",
+      "focus": [
+        0.3286,
+        0.536
+      ],
+      "zoom": 6,
+      "find": true
+    }
   },
   {
     "id": "ingenuity",
@@ -1302,7 +1351,23 @@
         "transcript_key": "media.insight.audio.transcript",
         "title_key": "media.insight.audio.title"
       }
-    ]
+    ],
+    "orbit": {
+      "kind": "orbit",
+      "src": "assets/img/orbit-insight.jpg",
+      "width": 1106,
+      "height": 977,
+      "nasa_id": "PIA26515",
+      "taken": "2024",
+      "camera": "HiRISE",
+      "credit": "NASA/JPL-Caltech/University of Arizona",
+      "source_id": "orbit-insight",
+      "focus": [
+        0.416,
+        0.496
+      ],
+      "zoom": 4
+    }
   },
   {
     "id": "pioneer10",
