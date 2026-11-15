@@ -15,11 +15,16 @@ const ROMAN = ['I', 'II', 'III', 'IV', 'V'];
 // ---- Read aloud -------------------------------------------------------------------------
 // Reads one sentence at a time (Chrome cuts long utterances off after ~15 s) and lights up
 // the sentence being read, so young readers can follow along.
-const sentences = (text) => text.match(/[^.!?…؟]+[.!?…؟]+["'’”»)]*\s*|[^.!?…؟]+$/g)?.map((x) => x.trim()).filter(Boolean) ?? [text];
 
 /** Narration text split into sentence spans that the reader can highlight. */
 function readable(tag, attrs, text) {
-  return h(tag, attrs, ...sentences(text).flatMap((x, i) => [i ? ' ' : '', h('span', { class: 'sentence' }, x)]));
+  // Same split as tools/narrate.mjs (sentence i is clip timing i), keeping the text's own spacing: "21.55 kg" is split after "21."
+  // (to stay in step with the recorded timings) and must not gain a space in the middle.
+  const parts = text.match(/[^.!?…؟]+[.!?…؟]+["'’”»)]*\s*|[^.!?…؟]+$/g) ?? [text];
+  return h(tag, attrs, ...parts.flatMap((x) => {
+    const body = x.trimEnd();
+    return body.trim() ? [h('span', { class: 'sentence' }, body), x.slice(body.length)] : [x];
+  }));
 }
 
 /** Resolves with the browser's voices, waiting briefly because some browsers load them late. */
@@ -136,6 +141,25 @@ function listenButton(container) {
       if (on && btn.getAttribute('aria-pressed') === 'true') startMusic(world);
     } }, h('span', { 'aria-hidden': 'true' }, '♪ '), t('story.music'));
   return h('span', { class: 'listen' }, btn, voiceName ? h('span', { class: 'listen-voice' }, t('story.aiVoice', { name: voiceName })) : null, music, note);
+}
+
+/** One small line icon per chapter, so a reader can see where they are in the story at a glance. */
+const ICONS = {
+  why: ['M12 3c3 2.5 4.5 6 4 10l-4 3-4-3c-.5-4 1-7.5 4-10z', 'M8 13l-3 3 1 4 3-2', 'M16 13l3 3-1 4-3-2', 'M12 9.5v.01'],     // rocket
+  how: ['M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z'],                  // wrench
+  found: ['M10.5 4a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13z', 'M15.5 15.5L21 21'],                                      // magnifier
+  lastDay: ['M3 17h18', 'M6.5 17a5.5 5.5 0 0 1 11 0', 'M12 6v2M5 9.5l1.4 1.4M19 9.5l-1.4 1.4', 'M8 21h8'],          // sunset
+  carriesOn: ['M3 12h11', 'M10 7l5 5-5 5', 'M18 7l5 5-5 5'],                                                        // onward
+};
+const chapterIcon = (c) => s('svg', { class: `chapter-icon ico-${c}`, viewBox: '0 0 24 24', 'aria-hidden': 'true' }, ...ICONS[c].map((d) => s('path', { d })));
+
+/** The picture at the top of a chapter when it has no photo of its own: the machine itself in chapter I,
+ *  otherwise its line drawing, sketching itself in. */
+function plate(a, chapter) {
+  if (chapter === 'why' && a.card) {
+    return h('figure', { class: 'plate plate-photo' }, h('img', { src: a.card.src, alt: '', width: 480, height: 320, decoding: 'async' }));
+  }
+  return h('figure', { class: `plate plate-art status-${a.status}`, 'aria-hidden': 'true' }, machineArt(a.id), h('span', { class: 'plate-icon' }, chapterIcon(chapter)));
 }
 
 /** A real, credited NASA photo, shown in the chapter where it matters most. */
@@ -257,16 +281,20 @@ export function storyPanel(id, step) {
   const sisterText = hasSister ? t(`story.${a.id}.sister`) : '';
   const facts = factsOf(a, [...a.chapters[chapter].fact_ids, ...(hasSister ? a.sister.fact_ids : [])]);
 
+  const media = (a.media || []).filter((m) => m.chapter === chapter && db.sources.has(m.source_id));
+  const images = media.filter((m) => m.kind !== 'audio'), sounds = media.filter((m) => m.kind === 'audio');
+
   const el = h('div', { class: 'pane pane-read pane-story', 'data-machine': a.id },
     hd.el,
-    h('ol', { class: 'progress', 'aria-label': t('story.chapter', { n, total }) },
+    h('ol', { class: 'chapters', 'aria-label': t('story.chapter', { n, total }) },
       ...CHAPTERS.map((c, i) => h('li', {}, h('a', { href: `#/story/${a.id}/${i + 1}`, class: i + 1 === n ? 'here' : i + 1 < n ? 'done' : null,
-        'aria-current': i + 1 === n ? 'step' : null, 'aria-label': `${i + 1}. ${t('story.' + c)}` })))),
-    h('p', { class: 'eyebrow chapter-no' }, ROMAN[n - 1], h('span', { class: 'sr' }, ' ', t('story.chapter', { n, total }))),
+        'aria-current': i + 1 === n ? 'step' : null, 'aria-label': `${i + 1}. ${t('story.' + c)}` }, chapterIcon(c))))),
+    // The chapter's own photo leads; a chapter without one opens on the machine itself.
+    images.length ? images.map((m) => photo(a, m)) : plate(a, chapter),
+    h('p', { class: 'eyebrow chapter-no' }, ROMAN[n - 1], ' · ', t('story.' + chapter), h('span', { class: 'sr' }, ' ', t('story.chapter', { n, total }))),
     h('h1', { tabindex: '-1' }, t(titleKey)),
     readable('p', { class: 'narration', 'data-clip': `${a.id}.${chapter}` }, text),
-    ...(a.media || []).filter((m) => m.chapter === chapter && db.sources.has(m.source_id))
-      .map((m) => (m.kind === 'audio' ? sound(m) : photo(a, m))),
+    ...sounds.map((m) => sound(m)),
     a.id === 'opportunity' && chapter === 'lastDay' && db.game
       ? h('a', { class: 'game-invite', href: '#/play/opportunity' }, h('span', { class: 'eyebrow' }, t('game.invite')), h('strong', {}, db.game.ui.title), ' ', h('span', { class: 'arrow', 'aria-hidden': 'true' }, '→')) : null,
     laser?.el,
