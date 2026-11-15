@@ -2,13 +2,12 @@
 // laserPanel: fire at the Apollo mirrors and wait the REAL round-trip time.
 // signalTrack: a sped-up command from Earth to Mars, labelled with the real one-way time.
 import { h } from './dom.js';
-import { t } from '../i18n.js';
-import { formatLightTime } from '../time/deepSpace.js';
+import { t, fmtNumber } from '../i18n.js';
+import { formatLightTime } from '../live.js';
 
 const C_KM_S = 299792.458;
 const EARTH_R = 6371, MOON_R = 1737.4;
 const AU_KM = 149597870.7;
-const number = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
 
 /** Earth surface to Moon surface right now, in km (approximate: centre distance minus both radii). */
 export function moonSurfaceKm(date = new Date()) {
@@ -54,7 +53,7 @@ export function laserPanel() {
       const s = Math.min(rt, (now - start) / 1000);
       clock.textContent = `${s.toFixed(3)} s`;
       if (s < rt) { raf = requestAnimationFrame(step); return; }
-      result.textContent = t('laser.result', { s: rt.toFixed(2), km: number.format(km) });
+      result.textContent = t('laser.result', { s: fmtNumber(rt, 2), km: fmtNumber(km) });
       button.disabled = false;
       button.firstChild.textContent = t('laser.again');
     };

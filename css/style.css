@@ -12,6 +12,13 @@
 @font-face { font-family: "IBM Plex Mono"; font-weight: 500; font-display: swap;
   src: url("../vendor/fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2"); }
 
+@font-face { font-family: "IBM Plex Sans Arabic"; font-weight: 400; font-display: swap;
+  src: url("../vendor/fonts/ibm-plex-sans-arabic-arabic-400-normal.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-08FF, U+FB50-FDFF, U+FE70-FEFF, U+200C-200E; }
+@font-face { font-family: "IBM Plex Sans Arabic"; font-weight: 700; font-display: swap;
+  src: url("../vendor/fonts/ibm-plex-sans-arabic-arabic-700-normal.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-08FF, U+FB50-FDFF, U+FE70-FEFF, U+200C-200E; }
+
 :root {
   color-scheme: dark;
   --bg: #060606;
@@ -22,8 +29,8 @@
   --silent: #a9c9e8;
   --working: #f2c14e;
   --drifting: #c3a6f5;
-  --sans: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --sans: "Atkinson Hyperlegible", "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "IBM Plex Mono", "IBM Plex Sans Arabic", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --gutter: clamp(18px, 4vw, 36px);
   --bar: 56px;
 }
@@ -38,8 +45,8 @@ h1:focus, main:focus { outline: none; }
 h1, h2, p, ul, ol, dl, dd { margin: 0; padding: 0; }
 ul, ol { list-style: none; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-.skip { position: absolute; left: -999px; top: 8px; z-index: 30; background: var(--ink); color: var(--bg); padding: 10px 16px; font-family: var(--mono); }
-.skip:focus { left: 8px; }
+.skip { position: absolute; left: 8px; top: -200px; z-index: 30; background: var(--ink); color: var(--bg); padding: 10px 16px; font-family: var(--mono); }
+.skip:focus { top: 8px; }
 
 /* ---------- shell ---------- */
 #shell { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto; min-height: 100svh; }
@@ -323,6 +330,11 @@ h1 { font-size: clamp(2.3rem, 7vw, 3.2rem); line-height: 1; letter-spacing: -.02
 .sentence { transition: background-color .2s, color .2s; border-radius: 2px; }
 .sentence.reading { background: rgba(255, 98, 51, .22); box-shadow: 0 0 0 3px rgba(255, 98, 51, .22); }
 .listen-voice { font-family: var(--mono); font-size: .875rem; color: var(--dim); }
+/* Music switch: off is shown by a line through the label, not only by colour. */
+.music-toggle { font: inherit; font-family: var(--mono); font-size: .875rem; color: var(--dim); background: none;
+  border: 1px solid currentColor; border-radius: 999px; padding: 4px 12px; min-height: 32px; cursor: pointer; }
+.music-toggle[aria-pressed="true"] { color: var(--ink); border-color: var(--signal); }
+.music-toggle[aria-pressed="false"] { text-decoration: line-through; }
 .listen { flex-direction: column; align-items: flex-start; gap: 6px; }
 .story-nav { align-items: flex-start; }
 
@@ -462,3 +474,89 @@ h1 { font-size: clamp(2.3rem, 7vw, 3.2rem); line-height: 1; letter-spacing: -.02
 @media (max-width: 859px) {
   .marker.label-left .marker-num { left: auto; right: 10px; }
 }
+
+/* Arabic: letter-spacing breaks joined Arabic letters, and uppercase does not exist */
+:root[lang="ar"] * { letter-spacing: 0 !important; }
+:root[lang="ar"] .eyebrow, :root[lang="ar"] .bar, :root[lang="ar"] .action { text-transform: none; }
+
+/* ---------- languages ---------- */
+.langs { display: inline-flex; margin-inline-start: 6px; border-inline-start: 1px solid var(--rule); padding-inline-start: 6px; }
+.langs button { all: unset; cursor: pointer; min-height: 44px; min-width: 36px; padding-inline: 7px; display: inline-grid; place-items: center; color: var(--dim); font: inherit; letter-spacing: .04em; }
+.langs button:hover { color: var(--ink); }
+.langs button[aria-pressed="true"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--signal); }
+.langs button:focus-visible { outline: 2px solid var(--signal); outline-offset: -4px; }
+.langs button[lang="ar"] { font-family: "IBM Plex Sans Arabic", var(--sans); letter-spacing: 0; }
+.arrow { display: inline-block; }
+:root[dir="rtl"] .arrow { transform: scaleX(-1); }
+@media (max-width: 859px) { .langs button { min-width: 32px; padding-inline: 5px; } }
+
+/* the back link keeps its arrow on the same line */
+.pager-all { display: inline-flex !important; gap: .45em; align-items: center; }
+/* maps and the distance line are physical pictures: they never mirror; only their text reads right to left */
+.stage { direction: ltr; }
+:root[dir="rtl"] .stage-subtitle, :root[dir="rtl"] .boot, :root[dir="rtl"] .ruler-caption { direction: rtl; }
+:root[dir="rtl"] .stage-subtitle { border-left: 0; border-right: 3px solid var(--signal); }
+
+/* each live value picks its own direction from its content, so "1.95° S, 354.47° E" never scrambles in Arabic */
+.readout dd, .readout .sub, .row-live, .story-live, .rc-days, .rc-year, .beam-clock, .sound-time, .marker-label, .craft-label { unicode-bidi: plaintext; }
+@media (max-width: 520px) {
+  .more > a { display: none; }                 /* roll call and myths stay one tap away in the intro panel */
+  .langs { border-inline-start: 0; margin-inline-start: 0; padding-inline-start: 0; }
+  .worlds a { letter-spacing: .02em; font-size: .8125rem; }
+}
+
+/* ---------- phone header: the worlds on a line from Earth (js/ui/nav.js) ---------- */
+.delay, .menu-btn, .line, .menu-sheet { display: none; }
+@media (max-width: 859px) {
+  /* z-index: the menu sheet must cover the globe below (the skip link at 30 stays on top) */
+  .bar { position: relative; z-index: 25; grid-template-columns: auto 1fr auto; grid-template-areas: "brand delay menu" "line line line"; }
+  .bar .worlds, .bar .more { display: none; }
+  .delay { grid-area: delay; display: flex; justify-content: flex-end; align-items: center; gap: 7px; min-width: 0; overflow: hidden;
+    font-size: .75rem; color: var(--dim); white-space: nowrap; font-variant-numeric: tabular-nums; unicode-bidi: plaintext; }
+  .delay[hidden] { display: none; }
+  .delay b { color: var(--ink); font-weight: 500; }
+  .delay-dot { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--signal); animation: delay-blink 2s steps(1) infinite; }
+  @keyframes delay-blink { 50% { opacity: .25; } }
+
+  .menu-btn { all: unset; grid-area: menu; display: grid; place-items: center; width: 48px; height: 48px; cursor: pointer; margin-inline-end: calc(var(--gutter) - 14px); }
+  .menu-btn:focus-visible { outline: 2px solid var(--signal); outline-offset: -6px; }
+  .menu-btn span, .menu-btn span::before, .menu-btn span::after { content: ""; display: block; position: relative; width: 18px; height: 1.5px; background: var(--ink); transition: transform .25s, background .25s; }
+  .menu-btn span::before { position: absolute; top: -6px; }
+  .menu-btn span::after { position: absolute; top: 6px; }
+  .menu-btn[aria-expanded="true"] span { background: transparent; }
+  .menu-btn[aria-expanded="true"] span::before { transform: translateY(6px) rotate(45deg); }
+  .menu-btn[aria-expanded="true"] span::after { transform: translateY(-6px) rotate(-45deg); }
+
+  /* the line is a picture of distance: Earth stays on the left in every language */
+  .line { grid-area: line; display: block; position: relative; direction: ltr; height: 52px; margin-inline: calc(var(--gutter) + 6px) calc(var(--gutter) + 10px); }
+  .line-track { position: absolute; left: 0; right: 0; top: 17px; height: 1px; background: var(--dim); }
+  .line-track::after { content: ""; position: absolute; right: -8px; top: -4px; border: 4.5px solid transparent; border-left: 7px solid var(--dim); }
+  .line-earth { position: absolute; left: -7px; top: 10px; width: 15px; height: 15px; border: 1px solid var(--ink); border-radius: 50%; background: var(--bg);
+    background-image: linear-gradient(var(--ink), var(--ink)), linear-gradient(var(--ink), var(--ink));
+    background-size: 1px 100%, 100% 1px; background-position: center; background-repeat: no-repeat; }
+  .line-pulse { position: absolute; top: 15px; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 8px var(--signal); opacity: 0; pointer-events: none; }
+  .bar .stop { position: absolute; top: 0; left: calc(var(--p, .5) * 100%); transform: translateX(-50%); min-height: 52px; padding: 0 6px;
+    display: grid; justify-items: center; align-content: start; gap: 5px; transition: left .6s; }
+  .bar .stop:last-child { transform: translateX(-70%); }         /* deep space sits near the end: keep its label on screen */
+  .bar .stop i { margin-top: 12px; width: 11px; height: 11px; border-radius: 50%; border: 1px solid var(--dim); background: var(--bg); transition: background .3s, border-color .3s, transform .3s; }
+  .bar .stop span { font-size: .75rem; white-space: nowrap; }
+  .bar .stop[aria-current="page"] { box-shadow: none; }
+  .bar .stop[aria-current="page"] i { background: var(--signal); border-color: var(--signal); transform: scale(1.25); }
+  .bar .stop:focus-visible { outline: 2px solid var(--signal); outline-offset: -2px; }
+
+  .menu-sheet { position: absolute; top: 100%; left: 0; right: 0; z-index: 20; display: block; background: var(--bg); border-block: 1px solid var(--rule);
+    padding: 4px var(--gutter) 24px; text-transform: none; letter-spacing: 0; font-family: var(--sans); }
+  .menu-sheet[hidden] { display: none; }
+  .bar .menu-sheet a { display: flex; justify-content: space-between; min-height: 56px; padding: 0; border-bottom: 1px solid var(--rule); color: var(--ink); font-size: 1.125rem; }
+  .bar .menu-sheet a[aria-current="page"] { box-shadow: inset 3px 0 0 var(--signal); padding-inline-start: 12px; }
+  .menu-sheet .eyebrow { font-size: .75rem; margin: 22px 0 8px; }
+  .menu-langs { display: flex; width: max-content; border: 1px solid var(--rule); }
+  .menu-langs button { all: unset; cursor: pointer; min-width: 56px; min-height: 44px; display: grid; place-items: center; font-family: var(--mono); font-size: .875rem; color: var(--dim); border-inline-end: 1px solid var(--rule); }
+  .menu-langs button:last-child { border: 0; }
+  .menu-langs button[lang="ar"] { font-family: "IBM Plex Sans Arabic", var(--sans); }
+  .menu-langs button[aria-pressed="true"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--signal); }
+  .menu-langs button:focus-visible { outline: 2px solid var(--signal); outline-offset: -3px; }
+}
+@media (max-width: 859px) { .delay { padding-inline-start: 10px; } }
+@media (max-width: 374px) { .delay-label { display: none; } }   /* narrow phones: the number alone */
+@media (prefers-reduced-motion: reduce) { .delay-dot { animation: none; } .bar .stop { transition: none; } }

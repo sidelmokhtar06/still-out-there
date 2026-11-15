@@ -290,12 +290,13 @@
       "lastDay": {
         "fact_ids": [
           "retro-f8",
-          "retro-f5"
+          "retro-f10"
         ]
       },
       "carriesOn": {
         "fact_ids": [
-          "retro-f9"
+          "retro-f9",
+          "retro-f10"
         ]
       }
     },
@@ -352,6 +353,12 @@
         "id": "retro-f9",
         "text": "The laser ranging experiment 'continues to return fresh data to this day' (NASA JPL, 2019). The Apollo 11 array was set up in July 1969.",
         "source_id": "jpl-llr",
+        "verified": true
+      },
+      {
+        "id": "retro-f10",
+        "text": "Since 2021 the Apache Point station in New Mexico has been part of NASA's Space Geodesy Network. It routinely ranges several times a month to the three retroreflector arrays put on the Moon by the Apollo astronauts. In 2024 NASA published its full dataset, April 2006 to January 2024.",
+        "source_id": "gsfc-apache",
         "verified": true
       }
     ],
@@ -643,7 +650,8 @@
       "lat": -1.946,
       "lon_east": 354.473,
       "label": "Meridiani Planum",
-      "source_id": "nssdca-opp"
+      "source_id": "nssdca-opp",
+      "note": "The pin and local time are for Opportunity's landing site. It drove 45 km and rests in Perseverance Valley, on the rim of Endeavour Crater; NASA has not published exact coordinates for that spot."
     },
     "dates": {
       "arrival": "2004-01-24",
@@ -820,7 +828,7 @@
       "lat": 18.44,
       "lon_east": 77.45,
       "label": "Jezero Crater",
-      "note": "Pin shows the Perseverance landing site in Jezero Crater; Ingenuity's final airfield is nearby at this map scale.",
+      "note": "The pin shows the Perseverance landing site in Jezero Crater. Ingenuity rests at its final airfield, nicknamed 'Valinor Hills', in the same crater; NASA has not published exact coordinates for that spot.",
       "source_id": "giss-landers"
     },
     "dates": {
@@ -853,7 +861,8 @@
       "lastDay": {
         "fact_ids": [
           "ing-f8",
-          "ing-f9"
+          "ing-f9",
+          "ing-f11"
         ]
       },
       "carriesOn": {
@@ -922,6 +931,12 @@
         "id": "ing-f10",
         "text": "Dragonfly, a rotorcraft, will fly to various locations on Saturn's moon Titan. As of November 2026 NASA lists launch as no earlier than July 2028 and arrival in late 2034.",
         "source_id": "nasa-dragonfly",
+        "verified": true
+      },
+      {
+        "id": "ing-f11",
+        "text": "The Ingenuity team nicknamed the spot where the helicopter completed its final flight 'Valinor Hills'. Perseverance photographed it there on Feb. 4, 2024, from about 450 meters away.",
+        "source_id": "jpl-valinor",
         "verified": true
       }
     ],

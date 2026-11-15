@@ -2,6 +2,7 @@
 // The surface map is projected per pixel (orthographic view), so the day/night line is exact.
 import { h, statusMark } from './dom.js';
 import { t } from '../i18n.js';
+import { placeOf } from '../data.js';
 import { marsState } from '../time/marsTime.js';
 import { moonSubsolar } from '../time/moonTime.js';
 
@@ -25,7 +26,7 @@ export function createGlobe(body, sites) {
   const markers = sites.map((a, i) => ({
     a, v: unit(a.location.lat, a.location.lon_east),
     el: h('a', { class: `marker status-${a.status}`, href: `#/m/${a.id}`,
-      'aria-label': `${a.name}, ${a.location.label}. ${t('status.' + a.status)}.` },
+      'aria-label': `${a.name}, ${placeOf(a)}. ${t('status.' + a.status)}.` },
       statusMark(a.status), h('span', { class: 'marker-num', 'aria-hidden': 'true' }, String(i + 1)),
       h('span', { class: 'marker-label', 'aria-hidden': 'true' }, a.name)),
   }));

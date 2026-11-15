@@ -2,11 +2,10 @@
 // flies to it. The retroreflector answers last: "Still working." Lines are in data/i18n
 // (rollcall.<id>); their facts are the sourced dates in each machine's story.
 import { h, statusMark } from './dom.js';
-import { t } from '../i18n.js';
+import { t, fmtNumber } from '../i18n.js';
 import { db, artifact } from '../data.js';
 import { formatDate, daysSince } from '../live.js';
 
-const number = new Intl.NumberFormat('en-US');
 const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -85,7 +84,7 @@ export function rollCallPanel(focusOn) {
       h('p', { class: 'fine' }, t('rollcall.pick'), ' ', t('rollcall.note'))),
     tick(now) {
       for (const r of rows) {
-        const n = number.format(daysSince(r.a.since.date, now));
+        const n = fmtNumber(daysSince(r.a.since.date, now));
         r.days.textContent = r.a.status === 'still-working' ? `${t('status.still-working')}` : `${n} d`;
         r.days.title = formatDate(r.a.since.date);
       }

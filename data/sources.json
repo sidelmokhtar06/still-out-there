@@ -434,5 +434,21 @@
     "publisher": "NASA JPL",
     "accessed": "2026-11-14",
     "official_resource": false
+  },
+  {
+    "id": "gsfc-apache",
+    "title": "Apache Point (APOLLO) lunar laser ranging station",
+    "url": "https://earth.gsfc.nasa.gov/geo/networks/sgp/sites/apache-point",
+    "publisher": "NASA Goddard Space Flight Center",
+    "accessed": "2026-11-14",
+    "official_resource": false
+  },
+  {
+    "id": "jpl-valinor",
+    "title": "Perseverance Spots Ingenuity at Its Final Airfield (PIA26236)",
+    "url": "https://www.jpl.nasa.gov/images/pia26236-perseverance-spots-ingenuity-at-its-final-airfield/",
+    "publisher": "NASA JPL",
+    "accessed": "2026-11-14",
+    "official_resource": false
   }
 ]

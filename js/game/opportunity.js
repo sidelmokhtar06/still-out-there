@@ -3,7 +3,7 @@
 // from data/game/opportunity.json, where every fact names its source.
 import { h, statusMark } from '../ui/dom.js';
 import { t } from '../i18n.js';
-import { db, artifact, factsOf } from '../data.js';
+import { db, artifact, factsOf, placeOf } from '../data.js';
 import { sourceLink } from '../ui/mythFact.js';
 import { formatDate } from '../live.js';
 import { signalTrack } from '../ui/beam.js';
@@ -77,11 +77,11 @@ function introPanel(game) {
   return {
     title: game.ui.title, dust: 0,
     el: h('div', { class: 'pane pane-read pane-game' },
-      h('p', { class: 'eyebrow' }, statusMark(a.status), ' ', a.name, ' · ', a.location.label),
+      h('p', { class: 'eyebrow' }, statusMark(a.status), ' ', a.name, ' · ', placeOf(a)),
       h('h1', { tabindex: '-1' }, game.ui.title),
       h('p', { class: 'narration' }, game.ui.intro),
       h('p', { class: 'story-nav' }, h('a', { class: 'action', href: '#/play/opportunity/1', onclick: () => log.clear() },
-        game.ui.start, h('span', { 'aria-hidden': 'true' }, ' →')))),
+        game.ui.start, ' ', h('span', { class: 'arrow', 'aria-hidden': 'true' }, '→')))),
   };
 }
 
@@ -108,7 +108,7 @@ function turnPanel(game, n) {
       listening.replaceWith(h('p', { class: turn.outcome ? 'no-signal got-signal' : 'no-signal' }, outcome));
       result.append(
         h('details', { class: 'real-data' }, h('summary', {}, ui.real, h('span', { class: 'count' }, ` ${turn.facts.length}`)), factList(turn.facts)),
-        h('p', { class: 'story-nav' }, h('a', { class: 'action', href: nextHref }, n < total ? ui.next : ui.end, h('span', { 'aria-hidden': 'true' }, ' →'))));
+        h('p', { class: 'story-nav' }, h('a', { class: 'action', href: nextHref }, n < total ? ui.next : ui.end, ' ', h('span', { class: 'arrow', 'aria-hidden': 'true' }, '→'))));
       result.querySelector('.action').focus({ preventScroll: true });
     };
     if (reducedMotion()) finish(); else timer = setTimeout(finish, 3000);
@@ -175,7 +175,7 @@ function endPanel(game) {
       h('details', { class: 'real-data' }, h('summary', {}, game.ui.real), factList(closingFacts)),
       h('p', { class: 'story-nav' },
         h('a', { class: 'action small ghost', href: '#/play/opportunity/1', onclick: () => log.clear() }, e.replay),
-        h('a', { class: 'action small', href: `#/story/${a.id}/5` }, e.story, h('span', { 'aria-hidden': 'true' }, ' →')))),
+        h('a', { class: 'action small', href: `#/story/${a.id}/5` }, e.story, ' ', h('span', { class: 'arrow', 'aria-hidden': 'true' }, '→')))),
   };
 }
 

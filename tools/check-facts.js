@@ -74,19 +74,51 @@ try {
   for (const id of game.ending.closing_fact_ids) if (!opp?.facts.some((f) => f.id === id)) bad(`game ending: missing fact ${id}`);
 } catch (e) { bad('game data unreadable: ' + e.message); }
 
-// Recorded narration (optional): every clip must exist and line up sentence-for-sentence with its text.
-try {
-  const narration = read('data/narration/en.json');
-  const SENTENCE = /[^.!?…]+[.!?…]+["'’”)]*\s*|[^.!?…]+$/g;
-  for (const [key, clip] of Object.entries(narration.clips)) {
-    const [mid, part] = key.split('.');
-    const story = text[part === 'rollcall' ? `rollcall.${mid}` : `story.${key}`];
-    if (!story) { bad(`narration ${key}: no matching story text`); continue; }
-    if (!existsSync(new URL('../' + clip.src, import.meta.url))) bad(`narration ${key}: missing ${clip.src}`);
-    const n = [...story.matchAll(SENTENCE)].filter((m) => m[0].trim()).length;
-    if (n !== clip.sentences.length) bad(`narration ${key}: ${clip.sentences.length} timings for ${n} sentences (text changed? re-run tools/narrate.mjs)`);
+// Recorded narration (optional, per language): every clip must exist and line up sentence-for-sentence with its text.
+const SENTENCE = /[^.!?…؟]+[.!?…؟]+["'’”»)]*\s*|[^.!?…؟]+$/g;
+for (const code of ['en', 'fr', 'ar']) {
+  try {
+    const narration = read(`data/narration/${code}.json`);
+    const words = code === 'en' ? text : read(`data/i18n/${code}.json`);
+    for (const [key, clip] of Object.entries(narration.clips)) {
+      const [mid, part] = key.split('.');
+      const story = words[part === 'rollcall' ? `rollcall.${mid}` : `story.${key}`];
+      if (!story) { bad(`${code} narration ${key}: no matching story text`); continue; }
+      if (!existsSync(new URL('../' + clip.src, import.meta.url))) bad(`${code} narration ${key}: missing ${clip.src}`);
+      const n = [...story.matchAll(SENTENCE)].filter((m) => m[0].trim()).length;
+      if (n !== clip.sentences.length) bad(`${code} narration ${key}: ${clip.sentences.length} timings for ${n} sentences (text changed? LANG_CODE=${code} node tools/narrate.mjs)`);
+    }
+  } catch (e) { if (e.code !== 'ENOENT') bad(`${code} narration data unreadable: ` + e.message); }
+}
+
+// Translations: same keys, same placeholders, and exactly the same numbers as English.
+// Numbers are compared after removing thousands separators, so "8,000", "8000" and "8 000" all match.
+const numbersIn = (str) => (str.match(/\d+(?:[.,   ]\d+)*/g) || [])
+  .map((n) => n.replace(/(?<=\d)[   ](?=\d{3}\b)/g, '').replace(/,(?=\d{3}(?!\d))/g, '').replace(',', '.'))
+  .sort();
+const placeholders = (str) => (str.match(/\{\w+\}/g) || []).sort().join();
+for (const code of ['fr', 'ar']) {
+  let tr;
+  try { tr = read(`data/i18n/${code}.json`); } catch (e) { if (e.code === 'ENOENT') continue; bad(`${code}.json unreadable: ${e.message}`); continue; }
+  for (const [key, english] of Object.entries(text)) {
+    if (!(key in tr)) { bad(`${code}: missing "${key}"`); continue; }
+    if (placeholders(tr[key]) !== placeholders(english)) bad(`${code}/${key}: placeholders differ`);
+    const a = numbersIn(english).join(' '), b = numbersIn(tr[key]).join(' ');
+    if (a !== b) bad(`${code}/${key}: numbers differ (en: ${a || '-'} | ${code}: ${b || '-'})`);
   }
-} catch (e) { if (e.code !== 'ENOENT') bad('narration data unreadable: ' + e.message); }
+  try {
+    const g = read('data/game/opportunity.json'), gt = read(`data/game/opportunity.${code}.json`);
+    const pairs = [[g.ui, gt.ui], [g.ending, gt.ending], ...g.turns.flatMap((turn, i) => [
+      [{ situation: turn.situation, outcome: turn.outcome }, gt.turns?.[i] ?? {}],
+      ...turn.choices.map((c, k) => [c, gt.turns?.[i]?.choices?.[k] ?? {}])])];
+    for (const [en, tr2] of pairs) for (const [k, v] of Object.entries(en)) {
+      if (typeof v !== 'string' || k.endsWith('_id') || k.endsWith('_ids')) continue;
+      if (!(k in tr2)) { bad(`${code} game: missing "${k}" (${v.slice(0, 30)}…)`); continue; }
+      if (numbersIn(v).join() !== numbersIn(tr2[k]).join()) bad(`${code} game "${k}": numbers differ`);
+      if (placeholders(v) !== placeholders(tr2[k])) bad(`${code} game "${k}": placeholders differ`);
+    }
+  } catch (e) { if (e.code !== 'ENOENT') bad(`${code} game translation unreadable: ${e.message}`); }
+}
 
 if (problems.length) {
   console.error(`check-facts: ${problems.length} problem(s)\n - ` + problems.join('\n - '));

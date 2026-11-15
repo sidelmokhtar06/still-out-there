@@ -1,19 +1,20 @@
 // A machine tells its story: five chapters, one per screen, each with its "Real data" drawer.
 import { h, s, statusMark } from './dom.js';
 import { t, lang } from '../i18n.js';
-import { db, artifact, factsOf, CHAPTERS } from '../data.js';
+import { db, artifact, factsOf, CHAPTERS, placeOf, noteOf } from '../data.js';
 import { liveSummary } from '../live.js';
 import { mythCard, sourceLink } from './mythFact.js';
 import { machineRows } from './panel.js';
 import { machineArt } from './art.js';
 import { laserPanel } from './beam.js';
+import { musicOn, setMusicOn, startMusic, stopMusic } from './ambience.js';
 
 const ROMAN = ['I', 'II', 'III', 'IV', 'V'];
 
 // ---- Read aloud -------------------------------------------------------------------------
 // Reads one sentence at a time (Chrome cuts long utterances off after ~15 s) and lights up
 // the sentence being read, so young readers can follow along.
-const sentences = (text) => text.match(/[^.!?…]+[.!?…]+["'’”)]*\s*|[^.!?…]+$/g)?.map((x) => x.trim()).filter(Boolean) ?? [text];
+const sentences = (text) => text.match(/[^.!?…؟]+[.!?…؟]+["'’”»)]*\s*|[^.!?…؟]+$/g)?.map((x) => x.trim()).filter(Boolean) ?? [text];
 
 /** Narration text split into sentence spans that the reader can highlight. */
 function readable(tag, attrs, text) {
@@ -91,7 +92,8 @@ function listenButton(container) {
   let run = 0, audio = null;                    // bumping run cancels a reading in progress
   const set = (on) => { btn.setAttribute('aria-pressed', String(on)); label.textContent = t(on ? 'story.stop' : 'story.listen'); };
   const clear = () => container.querySelectorAll('.sentence.reading').forEach((x) => x.classList.remove('reading'));
-  const stop = () => { run++; audio?.pause(); if (canSpeak) speechSynthesis.cancel(); clear(); set(false); };
+  const world = artifact(container.dataset.machine)?.body;
+  const stop = () => { run++; audio?.pause(); if (canSpeak) speechSynthesis.cancel(); stopMusic(); clear(); set(false); };
 
   const btn = h('button', { class: 'action small', type: 'button', 'aria-pressed': 'false',
     async onclick() {
@@ -99,6 +101,7 @@ function listenButton(container) {
       const id = ++run, isCurrent = () => id === run;
       set(true);
       for (const clip of document.querySelectorAll('audio')) clip.pause();   // don't talk over a Mars recording
+      startMusic(world);
       try {
         let voice = null;
         if (!recorded) {
@@ -117,12 +120,21 @@ function listenButton(container) {
         console.warn('read-aloud failed', err);
         note.textContent = t('story.voiceError');
       } finally {
-        if (isCurrent()) { clear(); set(false); }   // never leave the button stuck on "Stop"
+        if (isCurrent()) { stopMusic(); clear(); set(false); }   // never leave the button stuck on "Stop"
       }
     } }, label);
   btn.stop = stop;
   const voiceName = recorded ? db.narration?.voices?.[container.dataset.machine] : null;
-  return h('span', { class: 'listen' }, btn, voiceName ? h('span', { class: 'listen-voice' }, t('story.aiVoice', { name: voiceName })) : null, note);
+  // Soft music under the voice, which the reader can switch off.
+  const music = h('button', { class: 'music-toggle', type: 'button', 'aria-pressed': String(musicOn()),
+    title: t('story.music.title'),
+    onclick() {
+      const on = music.getAttribute('aria-pressed') !== 'true';
+      music.setAttribute('aria-pressed', String(on));
+      setMusicOn(on);
+      if (on && btn.getAttribute('aria-pressed') === 'true') startMusic(world);
+    } }, h('span', { 'aria-hidden': 'true' }, '♪ '), t('story.music'));
+  return h('span', { class: 'listen' }, btn, voiceName ? h('span', { class: 'listen-voice' }, t('story.aiVoice', { name: voiceName })) : null, music, note);
 }
 
 /** A real, credited NASA photo, shown in the chapter where it matters most. */
@@ -166,7 +178,7 @@ function sound(m) {
     glyph.textContent = on ? '❚❚' : '▶';
   };
   audio.addEventListener('timeupdate', paint);
-  audio.addEventListener('play', () => { if ('speechSynthesis' in window) speechSynthesis.cancel(); playing(true); });
+  audio.addEventListener('play', () => { if ('speechSynthesis' in window) speechSynthesis.cancel(); stopMusic(); playing(true); });   // never mix music into a real recording
   audio.addEventListener('pause', () => playing(false));
   audio.addEventListener('ended', () => { playing(false); audio.currentTime = 0; paint(); });
   // Click on the waveform to jump.
@@ -195,7 +207,7 @@ function head(a) {
       machineArt(a.id),
       h('div', {},
         h('p', { class: 'story-name' }, a.name),
-        h('p', { class: 'eyebrow' }, statusMark(a.status), ' ', a.location.label), live),
+        h('p', { class: 'eyebrow' }, statusMark(a.status), ' ', placeOf(a)), live),
       h('a', { class: 'close', href: `#/m/${a.id}`, 'aria-label': t('story.close') }, '×')),
   };
 }
@@ -246,16 +258,16 @@ export function storyPanel(id, step) {
     ...(a.media || []).filter((m) => m.chapter === chapter && db.sources.has(m.source_id))
       .map((m) => (m.kind === 'audio' ? sound(m) : photo(a, m))),
     a.id === 'opportunity' && chapter === 'lastDay' && db.game
-      ? h('a', { class: 'game-invite', href: '#/play/opportunity' }, h('span', { class: 'eyebrow' }, 'Mission control'), h('strong', {}, db.game.ui.title), h('span', { 'aria-hidden': 'true' }, ' →')) : null,
+      ? h('a', { class: 'game-invite', href: '#/play/opportunity' }, h('span', { class: 'eyebrow' }, t('game.invite')), h('strong', {}, db.game.ui.title), ' ', h('span', { class: 'arrow', 'aria-hidden': 'true' }, '→')) : null,
     laser?.el,
     hasSister ? h('aside', { class: 'sister' }, h('h2', { class: 'eyebrow' }, t('story.sister')), readable('p', { 'data-clip': `${a.id}.sister` }, sisterText)) : null,
     h('nav', { class: 'story-nav', 'aria-label': t('story.chapter', { n, total }) },
-      h('a', { class: 'action small ghost', href: prev }, h('span', { 'aria-hidden': 'true' }, '← '), t('story.back')),
+      h('a', { class: 'action small ghost', href: prev }, h('span', { class: 'arrow', 'aria-hidden': 'true' }, '←'), ' ', t('story.back')),
       h('span', { class: 'listen-slot' }),
-      h('a', { class: 'action small', href: next }, t(n < total ? 'story.next' : 'story.finish'), h('span', { 'aria-hidden': 'true' }, ' →'))),
+      h('a', { class: 'action small', href: next }, t(n < total ? 'story.next' : 'story.finish'), ' ', h('span', { class: 'arrow', 'aria-hidden': 'true' }, '→'))),
     h('details', { class: 'real-data' },
       h('summary', {}, t('story.realData'), h('span', { class: 'count' }, ` ${facts.length}`)),
-      h('p', { class: 'fine' }, t('story.realData.lead')),
+      h('p', { class: 'fine' }, t('story.realData.lead'), lang === 'en' ? '' : ' ' + t('real.english')),
       h('ul', { class: 'plain' }, ...facts.map((f) => h('li', {}, f.text, ' ', sourceLink(db.sources.get(f.source_id)))))));
 
   // Read-aloud reads every sentence span in this chapter, in order.

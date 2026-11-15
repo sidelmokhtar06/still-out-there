@@ -1,21 +1,19 @@
 // Turns the time engines into "right now" readings for one machine.
 import { marsLocal, marsSeason, formatHours } from './time/marsTime.js';
 import { moonLocal, moonSunElevation } from './time/moonTime.js';
-import { distanceAt, formatLightTime } from './time/deepSpace.js';
+import { distanceAt } from './time/deepSpace.js';
 import { db } from './data.js';
-import { t } from './i18n.js';
+import { t, fmtNumber, fmtDate } from './i18n.js';
 
 const nextEventCache = new Map(); // the Moon sunrise/sunset search is slow, so keep the answer
-const number = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
-const dateFormat = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
 
 /** "3 d 4 h" / "22 h 47 min" / "12 min" */
 export function countdown(ms) {
   const min = Math.max(0, Math.round(ms / 60e3));
   const d = Math.floor(min / 1440), hrs = Math.floor((min % 1440) / 60), m = min % 60;
-  if (d > 0) return `${d} d ${hrs} h`;
-  if (hrs > 0) return `${hrs} h ${String(m).padStart(2, '0')} min`;
-  return `${m} min`;
+  if (d > 0) return `${d} ${t('unit.d')} ${hrs} ${t('unit.h')}`;
+  if (hrs > 0) return `${hrs} ${t('unit.h')} ${String(m).padStart(2, '0')} ${t('unit.min')}`;
+  return `${m} ${t('unit.min')}`;
 }
 
 /** Raw live readings, or null when nothing can be calculated (then the UI shows nothing). */
@@ -45,11 +43,18 @@ export function liveData(a, now = new Date()) {
   return null;
 }
 
-export const formatKm = (km) => number.format(km);
-export const formatAU = (au) => au.toFixed(au >= 10 ? 2 : 3);
-export const formatDate = (iso) => dateFormat.format(new Date(iso + 'T00:00:00Z'));
+export const formatKm = (km) => fmtNumber(km);
+export const formatAU = (au) => fmtNumber(au, au >= 10 ? 2 : 3);
+export const formatDate = (iso) => fmtDate(new Date(iso + 'T00:00:00Z'));
 export const daysSince = (iso, now = new Date()) => Math.floor((now - new Date(iso + 'T00:00:00Z')) / 86400e3);
-export { formatHours, formatLightTime };
+export { formatHours };
+
+/** Light travel time in the reader's language ("19 h 35 min", "4 min 12 s"). */
+export function formatLightTime(seconds) {
+  const h = Math.floor(seconds / 3600), m = Math.floor((seconds % 3600) / 60);
+  if (h === 0) return `${m} ${t('unit.min')} ${Math.floor(seconds % 60)} ${t('unit.s')}`;
+  return `${h} ${t('unit.h')} ${String(m).padStart(2, '0')} ${t('unit.min')}`;
+}
 
 /** One short line for lists. */
 export function liveSummary(a, now = new Date()) {

@@ -1,12 +1,11 @@
 // The readout beside the globe: an intro for the world, or live telemetry for one machine.
 import { h, statusMark, scrambleIn } from './dom.js';
-import { t } from '../i18n.js';
-import { db, byBody } from '../data.js';
+import { t, fmtNumber } from '../i18n.js';
+import { db, byBody, placeOf, noteOf } from '../data.js';
 import { liveData, liveSummary, tickerLine, countdown, formatKm, formatAU, formatDate, daysSince, formatHours, formatLightTime } from '../live.js';
 import { machineArt } from './art.js';
 import { laserPanel } from './beam.js';
 
-const number = new Intl.NumberFormat('en-US');
 
 /** List of machines as plain rows; this is also the keyboard and screen-reader way in. */
 export function machineRows(list) {
@@ -30,14 +29,14 @@ export function introPanel(world) {
     h('p', { class: 'tagline' }, t('app.tagline')),
     h('p', { class: 'lead' }, t('intro.' + world)),
     h('div', { class: 'intro-actions' },
-      h('a', { class: 'action rollcall-link', href: '#/rollcall' }, t('rollcall.start'), h('span', { 'aria-hidden': 'true' }, ' →')),
+      h('a', { class: 'action rollcall-link', href: '#/rollcall' }, t('rollcall.start'), ' ', h('span', { class: 'arrow', 'aria-hidden': 'true' }, '→')),
       world === 'mars' && db.game ? h('a', { class: 'action ghost', href: '#/play/opportunity' }, db.game.ui.title) : null),
     h('div', { class: 'now', role: 'status', 'aria-live': 'polite' },
       h('p', { class: 'eyebrow live-dot' }, t('intro.rightNow')), line),
     h('h2', { class: 'eyebrow' }, t('intro.choose')),
     rows.el,
     world !== 'deep' ? h('p', { class: 'fine' }, t('globe.hint'), ' ', t(`globe.credit.${world}`)) : h('p', { class: 'fine' }, t('deep.planets')),
-    h('p', { class: 'fine' }, h('a', { href: '#/sources' }, t('about.title')), ' · ', t('app.notNasa')));
+    h('p', { class: 'fine' }, h('a', { href: '#/myths' }, t('myth.title')), ' · ', h('a', { href: '#/sources' }, t('about.title')), ' · ', t('app.notNasa')));
 
   // The "right now" line walks through every machine, on every world.
   let index = Math.floor(Math.random() * db.artifacts.length), shownAt = 0;
@@ -73,7 +72,7 @@ export function briefPanel(a) {
     return dd;
   };
 
-  field('site', a.location.label);
+  field('site', placeOf(a));
   let time, sun, nextEvent, season, distance, inAU, light;
   if (a.body !== 'deep') {
     field('position', position(a));
@@ -89,7 +88,7 @@ export function briefPanel(a) {
 
   const el = h('div', { class: `pane pane-brief status-${a.status}` },
     h('nav', { class: 'pager', 'aria-label': t('machine.all') },
-      h('a', { href: `#/${a.body}`, class: 'pager-all' }, '← ', t('world.' + a.body)),
+      h('a', { href: `#/${a.body}`, class: 'pager-all' }, h('span', { class: 'arrow', 'aria-hidden': 'true' }, '←'), ' ', t('world.' + a.body)),
       h('span', { class: 'pager-step' },
         h('a', { href: `#/m/${prev.id}`, 'aria-label': t('machine.prev') }, '‹'),
         h('span', {}, `${i + 1} / ${list.length}`),
@@ -98,11 +97,11 @@ export function briefPanel(a) {
     h('p', { class: 'eyebrow' }, statusMark(a.status), ' ', t('kind.' + a.type)),
     h('h1', { tabindex: '-1' }, a.name),
     h('dl', { class: 'readout' }, ...fields),
-    h('a', { class: 'action', href: `#/story/${a.id}/1` }, t('machine.story'), h('span', { 'aria-hidden': 'true' }, ' →')),
+    h('a', { class: 'action', href: `#/story/${a.id}/1` }, t('machine.story'), ' ', h('span', { class: 'arrow', 'aria-hidden': 'true' }, '→')),
     a.id === 'opportunity' && db.game ? h('a', { class: 'action ghost game-link', href: '#/play/opportunity' }, db.game.ui.title) : null,
     laser?.el,
     a.body === 'deep' ? h('p', { class: 'fine' }, t('deep.note')) : null,
-    a.location.note ? h('p', { class: 'fine' }, a.location.note) : null);
+    noteOf(a) ? h('p', { class: 'fine' }, noteOf(a)) : null);
 
   return {
     el, title: a.name,
@@ -110,7 +109,7 @@ export function briefPanel(a) {
     tick(now) {
       const first = !this.started; this.started = true;
       const d = liveData(a, now);
-      const days = number.format(daysSince(a.since.date, now));
+      const days = fmtNumber(daysSince(a.since.date, now));
       status.textContent = `${t('status.' + a.status)}. ${t('since.' + a.since.kind, { date: formatDate(a.since.date) })}, `
         + t(a.since.kind === 'working' ? 'since.counting' : 'since.ago', { n: days }) + '.';
       for (const dd of [time, sun, nextEvent, season, distance, light]) if (dd) dd.parentNode.hidden = !d;

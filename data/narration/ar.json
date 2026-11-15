@@ -1,0 +1,1789 @@
+{
+ "voices": {
+  "eagle": "Brian",
+  "lrv": "Charlie",
+  "retro": "Alice",
+  "surveyor3": "Daniel",
+  "sojourner": "Laura",
+  "opportunity": "Matilda",
+  "ingenuity": "Jessica",
+  "insight": "Eric",
+  "pioneer10": "George",
+  "kepler": "Lily"
+ },
+ "clips": {
+  "eagle.why": {
+   "src": "assets/audio/narration/ar/eagle-why.mp3",
+   "sentences": [
+    [
+     0,
+     0.8
+    ],
+    [
+     1.06,
+     1.81
+    ],
+    [
+     2.03,
+     3.89
+    ],
+    [
+     4.23,
+     12.14
+    ],
+    [
+     12.61,
+     15.99
+    ],
+    [
+     16.52,
+     23.15
+    ],
+    [
+     23.56,
+     25.54
+    ]
+   ]
+  },
+  "eagle.how": {
+   "src": "assets/audio/narration/ar/eagle-how.mp3",
+   "sentences": [
+    [
+     0,
+     3.71
+    ],
+    [
+     4.35,
+     11.01
+    ],
+    [
+     11.54,
+     15.92
+    ],
+    [
+     16.38,
+     17.67
+    ],
+    [
+     17.89,
+     22.26
+    ],
+    [
+     22.72,
+     24.98
+    ]
+   ]
+  },
+  "eagle.found": {
+   "src": "assets/audio/narration/ar/eagle-found.mp3",
+   "sentences": [
+    [
+     0,
+     2.91
+    ],
+    [
+     3.32,
+     6.91
+    ],
+    [
+     7.44,
+     10.82
+    ],
+    [
+     10.91,
+     18.48
+    ],
+    [
+     18.77,
+     24.09
+    ],
+    [
+     24.55,
+     26.26
+    ],
+    [
+     26.6,
+     28.61
+    ]
+   ]
+  },
+  "eagle.lastDay": {
+   "src": "assets/audio/narration/ar/eagle-lastDay.mp3",
+   "sentences": [
+    [
+     0,
+     6.28
+    ],
+    [
+     6.69,
+     8.57
+    ],
+    [
+     8.82,
+     11.34
+    ],
+    [
+     11.88,
+     16.74
+    ],
+    [
+     17.21,
+     18.34
+    ],
+    [
+     18.57,
+     21.07
+    ],
+    [
+     21.48,
+     24.52
+    ]
+   ]
+  },
+  "eagle.carriesOn": {
+   "src": "assets/audio/narration/ar/eagle-carriesOn.mp3",
+   "sentences": [
+    [
+     0,
+     2.22
+    ],
+    [
+     2.25,
+     7.23
+    ],
+    [
+     7.64,
+     10.94
+    ],
+    [
+     11.34,
+     17.53
+    ],
+    [
+     18,
+     25.17
+    ]
+   ]
+  },
+  "eagle.rollcall": {
+   "src": "assets/audio/narration/ar/eagle-rollcall.mp3",
+   "sentences": [
+    [
+     0,
+     0.51
+    ],
+    [
+     0.73,
+     1.64
+    ],
+    [
+     1.71,
+     4.5
+    ]
+   ]
+  },
+  "lrv.why": {
+   "src": "assets/audio/narration/ar/lrv-why.mp3",
+   "sentences": [
+    [
+     0,
+     0.88
+    ],
+    [
+     1.61,
+     4.3
+    ],
+    [
+     4.63,
+     10.65
+    ],
+    [
+     11.18,
+     22.93
+    ],
+    [
+     23.39,
+     27.05
+    ],
+    [
+     27.39,
+     31.52
+    ],
+    [
+     31.93,
+     33.42
+    ],
+    [
+     33.89,
+     35.48
+    ]
+   ]
+  },
+  "lrv.how": {
+   "src": "assets/audio/narration/ar/lrv-how.mp3",
+   "sentences": [
+    [
+     0,
+     6
+    ],
+    [
+     6.47,
+     8.46
+    ],
+    [
+     8.93,
+     17.64
+    ],
+    [
+     18.04,
+     26.25
+    ],
+    [
+     26.54,
+     30.15
+    ],
+    [
+     30.56,
+     32.46
+    ]
+   ]
+  },
+  "lrv.found": {
+   "src": "assets/audio/narration/ar/lrv-found.mp3",
+   "sentences": [
+    [
+     0,
+     4.43
+    ],
+    [
+     4.56,
+     9.58
+    ],
+    [
+     9.64,
+     16.7
+    ],
+    [
+     17.16,
+     24.53
+    ],
+    [
+     25.07,
+     29.25
+    ],
+    [
+     29.71,
+     35.47
+    ],
+    [
+     35.54,
+     39.49
+    ],
+    [
+     40.34,
+     46.07
+    ]
+   ]
+  },
+  "lrv.lastDay": {
+   "src": "assets/audio/narration/ar/lrv-lastDay.mp3",
+   "sentences": [
+    [
+     0,
+     3.23
+    ],
+    [
+     3.69,
+     6.38
+    ],
+    [
+     6.79,
+     15.8
+    ],
+    [
+     16.44,
+     20.93
+    ],
+    [
+     21.47,
+     26.77
+    ],
+    [
+     27.31,
+     30.51
+    ]
+   ]
+  },
+  "lrv.carriesOn": {
+   "src": "assets/audio/narration/ar/lrv-carriesOn.mp3",
+   "sentences": [
+    [
+     0,
+     11.19
+    ],
+    [
+     11.92,
+     17.18
+    ],
+    [
+     17.72,
+     23.38
+    ],
+    [
+     23.92,
+     29.77
+    ]
+   ]
+  },
+  "lrv.rollcall": {
+   "src": "assets/audio/narration/ar/lrv-rollcall.mp3",
+   "sentences": [
+    [
+     0,
+     2.33
+    ],
+    [
+     3.06,
+     4.34
+    ],
+    [
+     4.88,
+     8.45
+    ]
+   ]
+  },
+  "retro.why": {
+   "src": "assets/audio/narration/ar/retro-why.mp3",
+   "sentences": [
+    [
+     0,
+     0.89
+    ],
+    [
+     1.23,
+     3
+    ],
+    [
+     3.12,
+     9.11
+    ],
+    [
+     9.58,
+     18.7
+    ],
+    [
+     19.04,
+     22.18
+    ],
+    [
+     22.36,
+     30.24
+    ],
+    [
+     30.65,
+     32.98
+    ],
+    [
+     33.2,
+     33.94
+    ],
+    [
+     34.19,
+     35.9
+    ]
+   ]
+  },
+  "retro.how": {
+   "src": "assets/audio/narration/ar/retro-how.mp3",
+   "sentences": [
+    [
+     0,
+     6.07
+    ],
+    [
+     6.48,
+     10.97
+    ],
+    [
+     11.38,
+     16.01
+    ],
+    [
+     16.35,
+     21.08
+    ],
+    [
+     21.42,
+     29.84
+    ],
+    [
+     30.3,
+     32.65
+    ]
+   ]
+  },
+  "retro.found": {
+   "src": "assets/audio/narration/ar/retro-found.mp3",
+   "sentences": [
+    [
+     0,
+     8.51
+    ],
+    [
+     8.59,
+     13.46
+    ],
+    [
+     13.55,
+     17.66
+    ],
+    [
+     17.91,
+     20.87
+    ],
+    [
+     21.21,
+     25.52
+    ],
+    [
+     26.05,
+     28.7
+    ]
+   ]
+  },
+  "retro.lastDay": {
+   "src": "assets/audio/narration/ar/retro-lastDay.mp3",
+   "sentences": [
+    [
+     0,
+     1.35
+    ],
+    [
+     1.68,
+     3.31
+    ],
+    [
+     3.71,
+     13.56
+    ],
+    [
+     13.9,
+     17.01
+    ],
+    [
+     17.47,
+     27.56
+    ],
+    [
+     28.03,
+     31.35
+    ]
+   ]
+  },
+  "retro.carriesOn": {
+   "src": "assets/audio/narration/ar/retro-carriesOn.mp3",
+   "sentences": [
+    [
+     0,
+     5.1
+    ],
+    [
+     5.43,
+     9.17
+    ],
+    [
+     9.71,
+     16.96
+    ],
+    [
+     17.09,
+     19.62
+    ],
+    [
+     19.67,
+     25.36
+    ]
+   ]
+  },
+  "retro.rollcall": {
+   "src": "assets/audio/narration/ar/retro-rollcall.mp3",
+   "sentences": [
+    [
+     0,
+     3.44
+    ],
+    [
+     3.52,
+     4.88
+    ],
+    [
+     5,
+     6.41
+    ]
+   ]
+  },
+  "surveyor3.why": {
+   "src": "assets/audio/narration/ar/surveyor3-why.mp3",
+   "sentences": [
+    [
+     0,
+     5.62
+    ],
+    [
+     6.08,
+     7.23
+    ],
+    [
+     7.64,
+     11.12
+    ],
+    [
+     11.66,
+     14.9
+    ],
+    [
+     15.53,
+     28.66
+    ],
+    [
+     29.2,
+     32.89
+    ],
+    [
+     33.42,
+     35.22
+    ],
+    [
+     35.27,
+     37.34
+    ]
+   ]
+  },
+  "surveyor3.how": {
+   "src": "assets/audio/narration/ar/surveyor3-how.mp3",
+   "sentences": [
+    [
+     0,
+     2.09
+    ],
+    [
+     2.43,
+     4.72
+    ],
+    [
+     5.06,
+     12.14
+    ],
+    [
+     12.37,
+     15.86
+    ],
+    [
+     16.5,
+     22.27
+    ],
+    [
+     22.8,
+     32.83
+    ]
+   ]
+  },
+  "surveyor3.found": {
+   "src": "assets/audio/narration/ar/surveyor3-found.mp3",
+   "sentences": [
+    [
+     0,
+     10.73
+    ],
+    [
+     11.26,
+     22.2
+    ],
+    [
+     22.73,
+     24.97
+    ],
+    [
+     25.61,
+     33.85
+    ],
+    [
+     34.39,
+     38.51
+    ],
+    [
+     39.24,
+     40.91
+    ]
+   ]
+  },
+  "surveyor3.lastDay": {
+   "src": "assets/audio/narration/ar/surveyor3-lastDay.mp3",
+   "sentences": [
+    [
+     0,
+     3.69
+    ],
+    [
+     4.33,
+     16.22
+    ],
+    [
+     16.86,
+     18.88
+    ],
+    [
+     19.52,
+     23.6
+    ],
+    [
+     24.07,
+     35.35
+    ],
+    [
+     35.99,
+     38.03
+    ]
+   ]
+  },
+  "surveyor3.carriesOn": {
+   "src": "assets/audio/narration/ar/surveyor3-carriesOn.mp3",
+   "sentences": [
+    [
+     0,
+     2.65
+    ],
+    [
+     3.29,
+     6.86
+    ],
+    [
+     7.4,
+     18.27
+    ],
+    [
+     18.91,
+     24.48
+    ],
+    [
+     24.95,
+     35.43
+    ]
+   ]
+  },
+  "surveyor3.rollcall": {
+   "src": "assets/audio/narration/ar/surveyor3-rollcall.mp3",
+   "sentences": [
+    [
+     0,
+     2.11
+    ],
+    [
+     2.45,
+     4.93
+    ],
+    [
+     5.4,
+     10.22
+    ]
+   ]
+  },
+  "sojourner.why": {
+   "src": "assets/audio/narration/ar/sojourner-why.mp3",
+   "sentences": [
+    [
+     0,
+     0.73
+    ],
+    [
+     0.79,
+     1.89
+    ],
+    [
+     2.11,
+     5.84
+    ],
+    [
+     6.18,
+     8.67
+    ],
+    [
+     9.01,
+     9.88
+    ],
+    [
+     10.14,
+     14.09
+    ],
+    [
+     14.56,
+     17.93
+    ],
+    [
+     18.26,
+     28.27
+    ],
+    [
+     28.61,
+     31.63
+    ]
+   ]
+  },
+  "sojourner.how": {
+   "src": "assets/audio/narration/ar/sojourner-how.mp3",
+   "sentences": [
+    [
+     0,
+     1.11
+    ],
+    [
+     1.2,
+     2.32
+    ],
+    [
+     2.61,
+     6.27
+    ],
+    [
+     6.61,
+     14.04
+    ],
+    [
+     14.68,
+     17.77
+    ],
+    [
+     17.96,
+     22.71
+    ]
+   ]
+  },
+  "sojourner.found": {
+   "src": "assets/audio/narration/ar/sojourner-found.mp3",
+   "sentences": [
+    [
+     0,
+     3.73
+    ],
+    [
+     4.06,
+     10.26
+    ],
+    [
+     10.67,
+     17.44
+    ],
+    [
+     17.77,
+     21.59
+    ],
+    [
+     21.82,
+     26.98
+    ]
+   ]
+  },
+  "sojourner.lastDay": {
+   "src": "assets/audio/narration/ar/sojourner-lastDay.mp3",
+   "sentences": [
+    [
+     0,
+     7.65
+    ],
+    [
+     7.99,
+     11.4
+    ],
+    [
+     11.74,
+     14.18
+    ],
+    [
+     14.47,
+     21.37
+    ],
+    [
+     22.37,
+     25.03
+    ]
+   ]
+  },
+  "sojourner.carriesOn": {
+   "src": "assets/audio/narration/ar/sojourner-carriesOn.mp3",
+   "sentences": [
+    [
+     0,
+     2.76
+    ],
+    [
+     3.1,
+     6.43
+    ],
+    [
+     6.62,
+     12.47
+    ],
+    [
+     12.72,
+     16.56
+    ],
+    [
+     16.89,
+     20.26
+    ],
+    [
+     20.67,
+     24.47
+    ]
+   ]
+  },
+  "sojourner.rollcall": {
+   "src": "assets/audio/narration/ar/sojourner-rollcall.mp3",
+   "sentences": [
+    [
+     0,
+     0.86
+    ],
+    [
+     1.04,
+     2.58
+    ],
+    [
+     2.72,
+     5.8
+    ]
+   ]
+  },
+  "opportunity.why": {
+   "src": "assets/audio/narration/ar/opportunity-why.mp3",
+   "sentences": [
+    [
+     0,
+     1.76
+    ],
+    [
+     2.4,
+     4.66
+    ],
+    [
+     5.29,
+     14.52
+    ],
+    [
+     14.99,
+     21.11
+    ],
+    [
+     21.64,
+     27.78
+    ],
+    [
+     28.51,
+     30.92
+    ],
+    [
+     31.78,
+     34.51
+    ]
+   ]
+  },
+  "opportunity.how": {
+   "src": "assets/audio/narration/ar/opportunity-how.mp3",
+   "sentences": [
+    [
+     0,
+     2.13
+    ],
+    [
+     2.86,
+     10.37
+    ],
+    [
+     11.1,
+     15.09
+    ],
+    [
+     15.95,
+     19.39
+    ],
+    [
+     19.92,
+     22.71
+    ],
+    [
+     23.35,
+     27.5
+    ],
+    [
+     28.14,
+     30.58
+    ],
+    [
+     31.31,
+     33.72
+    ]
+   ]
+  },
+  "opportunity.found": {
+   "src": "assets/audio/narration/ar/opportunity-found.mp3",
+   "sentences": [
+    [
+     0,
+     5.57
+    ],
+    [
+     6.04,
+     11.19
+    ],
+    [
+     11.92,
+     17.76
+    ],
+    [
+     18.17,
+     23.32
+    ],
+    [
+     23.96,
+     27.26
+    ],
+    [
+     27.9,
+     29.35
+    ],
+    [
+     29.82,
+     33.72
+    ],
+    [
+     34.18,
+     36.59
+    ]
+   ]
+  },
+  "opportunity.lastDay": {
+   "src": "assets/audio/narration/ar/opportunity-lastDay.mp3",
+   "sentences": [
+    [
+     0,
+     6.55
+    ],
+    [
+     7.01,
+     12.68
+    ],
+    [
+     13.41,
+     20.28
+    ],
+    [
+     20.82,
+     24.16
+    ],
+    [
+     24.62,
+     30.08
+    ],
+    [
+     30.81,
+     34.69
+    ]
+   ]
+  },
+  "opportunity.carriesOn": {
+   "src": "assets/audio/narration/ar/opportunity-carriesOn.mp3",
+   "sentences": [
+    [
+     0,
+     2.17
+    ],
+    [
+     2.81,
+     5.91
+    ],
+    [
+     6.64,
+     10.62
+    ],
+    [
+     11.26,
+     18.62
+    ],
+    [
+     19.35,
+     23.38
+    ],
+    [
+     24.02,
+     26.62
+    ],
+    [
+     27.35,
+     32.28
+    ]
+   ]
+  },
+  "opportunity.sister": {
+   "src": "assets/audio/narration/ar/opportunity-sister.mp3",
+   "sentences": [
+    [
+     0,
+     9.58
+    ],
+    [
+     10.22,
+     11.21
+    ],
+    [
+     11.34,
+     13.8
+    ],
+    [
+     14.27,
+     24.96
+    ],
+    [
+     25.43,
+     31.72
+    ]
+   ]
+  },
+  "opportunity.rollcall": {
+   "src": "assets/audio/narration/ar/opportunity-rollcall.mp3",
+   "sentences": [
+    [
+     0,
+     1.22
+    ],
+    [
+     1.24,
+     2.86
+    ],
+    [
+     3.32,
+     6.22
+    ]
+   ]
+  },
+  "ingenuity.why": {
+   "src": "assets/audio/narration/ar/ingenuity-why.mp3",
+   "sentences": [
+    [
+     0,
+     1.14
+    ],
+    [
+     1.6,
+     4.63
+    ],
+    [
+     5.17,
+     11.49
+    ],
+    [
+     11.83,
+     18.84
+    ],
+    [
+     19.38,
+     24.6
+    ],
+    [
+     25.46,
+     27.56
+    ],
+    [
+     28.1,
+     32.86
+    ],
+    [
+     33.59,
+     34.62
+    ],
+    [
+     34.91,
+     35.53
+    ]
+   ]
+  },
+  "ingenuity.how": {
+   "src": "assets/audio/narration/ar/ingenuity-how.mp3",
+   "sentences": [
+    [
+     0,
+     2.22
+    ],
+    [
+     2.68,
+     13.4
+    ],
+    [
+     14.04,
+     17.53
+    ],
+    [
+     18.39,
+     21.66
+    ],
+    [
+     22,
+     30.8
+    ],
+    [
+     31.34,
+     33.26
+    ],
+    [
+     33.32,
+     36.43
+    ],
+    [
+     36.84,
+     38.55
+    ]
+   ]
+  },
+  "ingenuity.found": {
+   "src": "assets/audio/narration/ar/ingenuity-found.mp3",
+   "sentences": [
+    [
+     0,
+     11.01
+    ],
+    [
+     11.64,
+     12.7
+    ],
+    [
+     13.04,
+     16.85
+    ],
+    [
+     17.58,
+     24.13
+    ],
+    [
+     24.76,
+     32.26
+    ],
+    [
+     33.12,
+     42.4
+    ]
+   ]
+  },
+  "ingenuity.lastDay": {
+   "src": "assets/audio/narration/ar/ingenuity-lastDay.mp3",
+   "sentences": [
+    [
+     0,
+     6.64
+    ],
+    [
+     7.11,
+     10.88
+    ],
+    [
+     11.29,
+     18.62
+    ],
+    [
+     19.16,
+     23.49
+    ],
+    [
+     24.13,
+     28.04
+    ],
+    [
+     28.44,
+     30.23
+    ]
+   ]
+  },
+  "ingenuity.carriesOn": {
+   "src": "assets/audio/narration/ar/ingenuity-carriesOn.mp3",
+   "sentences": [
+    [
+     0,
+     4.49
+    ],
+    [
+     4.83,
+     7.87
+    ],
+    [
+     8.21,
+     10.26
+    ],
+    [
+     10.9,
+     15.91
+    ],
+    [
+     16.31,
+     26.62
+    ],
+    [
+     27.03,
+     29.35
+    ]
+   ]
+  },
+  "ingenuity.rollcall": {
+   "src": "assets/audio/narration/ar/ingenuity-rollcall.mp3",
+   "sentences": [
+    [
+     0,
+     1.09
+    ],
+    [
+     1.43,
+     3.02
+    ],
+    [
+     3.42,
+     6.36
+    ]
+   ]
+  },
+  "insight.why": {
+   "src": "assets/audio/narration/ar/insight-why.mp3",
+   "sentences": [
+    [
+     0,
+     1.07
+    ],
+    [
+     1.6,
+     4.63
+    ],
+    [
+     5.04,
+     7.11
+    ],
+    [
+     8.1,
+     21.54
+    ],
+    [
+     21.87,
+     23.73
+    ],
+    [
+     24.37,
+     26.14
+    ],
+    [
+     26.78,
+     27.47
+    ],
+    [
+     28,
+     29.59
+    ],
+    [
+     30.23,
+     30.86
+    ],
+    [
+     31.2,
+     32.55
+    ]
+   ]
+  },
+  "insight.how": {
+   "src": "assets/audio/narration/ar/insight-how.mp3",
+   "sentences": [
+    [
+     0,
+     1.81
+    ],
+    [
+     1.87,
+     8.12
+    ],
+    [
+     8.75,
+     13.05
+    ],
+    [
+     13.69,
+     17.58
+    ],
+    [
+     18.04,
+     24.1
+    ],
+    [
+     24.64,
+     27.59
+    ]
+   ]
+  },
+  "insight.found": {
+   "src": "assets/audio/narration/ar/insight-found.mp3",
+   "sentences": [
+    [
+     0,
+     3.94
+    ],
+    [
+     4.4,
+     8.65
+    ],
+    [
+     9.18,
+     14.92
+    ],
+    [
+     15.56,
+     17.22
+    ],
+    [
+     17.86,
+     23.71
+    ],
+    [
+     24.17,
+     31.02
+    ],
+    [
+     31.66,
+     33.72
+    ]
+   ]
+  },
+  "insight.lastDay": {
+   "src": "assets/audio/narration/ar/insight-lastDay.mp3",
+   "sentences": [
+    [
+     0,
+     1.52
+    ],
+    [
+     1.93,
+     7.81
+    ],
+    [
+     8.35,
+     17.44
+    ],
+    [
+     18.08,
+     19.28
+    ],
+    [
+     19.82,
+     25.45
+    ]
+   ]
+  },
+  "insight.carriesOn": {
+   "src": "assets/audio/narration/ar/insight-carriesOn.mp3",
+   "sentences": [
+    [
+     0,
+     4.99
+    ],
+    [
+     5.33,
+     10.52
+    ],
+    [
+     11.16,
+     12.54
+    ],
+    [
+     13.18,
+     17.64
+    ],
+    [
+     18.17,
+     18.9
+    ],
+    [
+     19.43,
+     20.63
+    ],
+    [
+     20.89,
+     23.31
+    ]
+   ]
+  },
+  "insight.rollcall": {
+   "src": "assets/audio/narration/ar/insight-rollcall.mp3",
+   "sentences": [
+    [
+     0,
+     0.96
+    ],
+    [
+     1.5,
+     3.62
+    ],
+    [
+     4.48,
+     7.2
+    ]
+   ]
+  },
+  "pioneer10.why": {
+   "src": "assets/audio/narration/ar/pioneer10-why.mp3",
+   "sentences": [
+    [
+     0,
+     3.27
+    ],
+    [
+     3.81,
+     8.64
+    ],
+    [
+     8.89,
+     18.33
+    ],
+    [
+     18.74,
+     23.05
+    ],
+    [
+     23.45,
+     28.86
+    ],
+    [
+     28.99,
+     33.25
+    ]
+   ]
+  },
+  "pioneer10.how": {
+   "src": "assets/audio/narration/ar/pioneer10-how.mp3",
+   "sentences": [
+    [
+     0,
+     2.5
+    ],
+    [
+     2.83,
+     7.5
+    ],
+    [
+     7.72,
+     12.2
+    ],
+    [
+     12.61,
+     20.27
+    ],
+    [
+     20.8,
+     24.9
+    ],
+    [
+     25.24,
+     27.35
+    ]
+   ]
+  },
+  "pioneer10.found": {
+   "src": "assets/audio/narration/ar/pioneer10-found.mp3",
+   "sentences": [
+    [
+     0,
+     12.63
+    ],
+    [
+     12.76,
+     13.76
+    ],
+    [
+     14.16,
+     31.02
+    ],
+    [
+     31.15,
+     32.73
+    ],
+    [
+     32.86,
+     38.23
+    ],
+    [
+     38.36,
+     40.31
+    ]
+   ]
+  },
+  "pioneer10.lastDay": {
+   "src": "assets/audio/narration/ar/pioneer10-lastDay.mp3",
+   "sentences": [
+    [
+     0,
+     2.33
+    ],
+    [
+     2.62,
+     8.52
+    ],
+    [
+     8.86,
+     9.68
+    ],
+    [
+     9.73,
+     20.24
+    ],
+    [
+     20.77,
+     25.65
+    ],
+    [
+     26.05,
+     27.25
+    ],
+    [
+     27.5,
+     28.62
+    ],
+    [
+     28.95,
+     31.72
+    ]
+   ]
+  },
+  "pioneer10.carriesOn": {
+   "src": "assets/audio/narration/ar/pioneer10-carriesOn.mp3",
+   "sentences": [
+    [
+     0,
+     2.73
+    ],
+    [
+     2.87,
+     6.63
+    ],
+    [
+     6.77,
+     11.59
+    ],
+    [
+     11.99,
+     15.6
+    ],
+    [
+     15.86,
+     18.91
+    ],
+    [
+     19.2,
+     22.67
+    ],
+    [
+     23.21,
+     26.05
+    ]
+   ]
+  },
+  "pioneer10.rollcall": {
+   "src": "assets/audio/narration/ar/pioneer10-rollcall.mp3",
+   "sentences": [
+    [
+     0,
+     1.43
+    ],
+    [
+     1.76,
+     3.47
+    ],
+    [
+     3.73,
+     6.08
+    ]
+   ]
+  },
+  "kepler.why": {
+   "src": "assets/audio/narration/ar/kepler-why.mp3",
+   "sentences": [
+    [
+     0,
+     2.93
+    ],
+    [
+     3.46,
+     11.88
+    ],
+    [
+     12.34,
+     17.38
+    ],
+    [
+     17.67,
+     23.67
+    ],
+    [
+     23.93,
+     26.42
+    ],
+    [
+     26.71,
+     29.44
+    ]
+   ]
+  },
+  "kepler.how": {
+   "src": "assets/audio/narration/ar/kepler-how.mp3",
+   "sentences": [
+    [
+     0,
+     1.97
+    ],
+    [
+     2.61,
+     4.06
+    ],
+    [
+     4.47,
+     9.25
+    ],
+    [
+     9.54,
+     14.88
+    ],
+    [
+     15.22,
+     17.25
+    ],
+    [
+     17.54,
+     23.52
+    ],
+    [
+     23.78,
+     25.8
+    ],
+    [
+     26.05,
+     27.66
+    ],
+    [
+     27.91,
+     30.28
+    ]
+   ]
+  },
+  "kepler.found": {
+   "src": "assets/audio/narration/ar/kepler-found.mp3",
+   "sentences": [
+    [
+     0,
+     5.33
+    ],
+    [
+     5.51,
+     10.28
+    ],
+    [
+     10.53,
+     17.72
+    ],
+    [
+     17.94,
+     19.47
+    ],
+    [
+     19.55,
+     22.75
+    ],
+    [
+     22.94,
+     25.76
+    ],
+    [
+     26.49,
+     28.28
+    ]
+   ]
+  },
+  "kepler.lastDay": {
+   "src": "assets/audio/narration/ar/kepler-lastDay.mp3",
+   "sentences": [
+    [
+     0,
+     2.74
+    ],
+    [
+     3.38,
+     7
+    ],
+    [
+     7.26,
+     13.1
+    ],
+    [
+     13.73,
+     19.85
+    ],
+    [
+     20.71,
+     23.3
+    ],
+    [
+     23.84,
+     27.49
+    ],
+    [
+     27.75,
+     30.6
+    ]
+   ]
+  },
+  "kepler.carriesOn": {
+   "src": "assets/audio/narration/ar/kepler-carriesOn.mp3",
+   "sentences": [
+    [
+     0,
+     3.47
+    ],
+    [
+     4.2,
+     9.31
+    ],
+    [
+     9.78,
+     14.43
+    ],
+    [
+     14.69,
+     21.65
+    ],
+    [
+     21.91,
+     23.86
+    ],
+    [
+     24.2,
+     27.17
+    ]
+   ]
+  },
+  "kepler.rollcall": {
+   "src": "assets/audio/narration/ar/kepler-rollcall.mp3",
+   "sentences": [
+    [
+     0,
+     0.6
+    ],
+    [
+     0.82,
+     2.16
+    ],
+    [
+     2.35,
+     5.57
+    ]
+   ]
+  }
+ }
+}

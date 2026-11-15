@@ -7,7 +7,7 @@
 //   #/rollcall                    every machine answers in turn; the stage follows
 //   #/myths  #/sources            reading sheets
 import { loadData, artifact, byBody } from './data.js';
-import { loadLanguage, t } from './i18n.js';
+import { loadLanguage, t, preferredLanguage, chooseLanguage, LANGUAGES, lang } from './i18n.js';
 import { h } from './ui/dom.js';
 import { createGlobe } from './ui/globe.js';
 import { createRuler } from './ui/ruler.js';
@@ -17,6 +17,7 @@ import { mythsPanel } from './ui/mythFact.js';
 import { aboutPanel } from './ui/about.js';
 import { gamePanel } from './game/opportunity.js';
 import { rollCallPanel } from './ui/rollcall.js';
+import { createNav } from './ui/nav.js';
 
 const shell = document.getElementById('shell');
 const stageEl = document.getElementById('stage');
@@ -136,21 +137,32 @@ function boot() {
   stage.reveal(1500, 600).then(finish);
 }
 
+function languageSwitcher() {
+  const nav = document.querySelector('.langs');
+  if (!nav) return;
+  nav.replaceChildren(...LANGUAGES.map(([code, label]) => h('button', { type: 'button', lang: code, 'aria-pressed': String(code === lang),
+    onclick: () => { if (code !== lang) chooseLanguage(code); } }, label)));
+}
+
 async function start() {
   try {
-    await Promise.all([loadLanguage('en'), loadData()]);
+    await loadLanguage(preferredLanguage());
+    await loadData();
+    languageSwitcher();
   } catch (err) {
     console.error(err);
     paneEl.replaceChildren(h('p', { class: 'loading', role: 'alert' },
       'The data could not be loaded. If you opened this file directly, run a small web server instead (see README).'));
     return;
   }
+  const nav = createNav(shell);
   window.addEventListener('hashchange', render);
   render();
   boot();
   setInterval(() => {
     if (document.hidden) return;
     const now = new Date();
+    nav.update(now);
     stage?.update(now);
     pane?.tick?.(now);
   }, 1000);
