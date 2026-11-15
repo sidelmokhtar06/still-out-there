@@ -6,6 +6,7 @@ import { liveData, liveSummary, tickerLine, countdown, formatKm, formatAU, forma
 import { machineArt } from './art.js';
 import { laserPanel } from './beam.js';
 import { orbitView } from './orbit.js';
+import { missionButton, missionStrip } from '../mission.js';
 
 
 /** List of machines as plain rows; this is also the keyboard and screen-reader way in. */
@@ -55,8 +56,10 @@ export function introPanel(world) {
     h('p', { class: 'tagline' }, t('app.tagline')),
     h('p', { class: 'lead' }, t('intro.' + world)),
     h('div', { class: 'intro-actions' },
-      h('a', { class: 'action rollcall-link', href: '#/rollcall' }, t('rollcall.start'), ' ', h('span', { class: 'arrow', 'aria-hidden': 'true' }, '→')),
+      missionButton(),
+      h('a', { class: 'action ghost rollcall-link', href: '#/rollcall' }, t('rollcall.start')),
       world === 'mars' && db.game ? h('a', { class: 'action ghost', href: '#/play/opportunity' }, db.game.ui.title) : null),
+    missionStrip(),
     h('div', { class: 'now', role: 'status', 'aria-live': 'polite' },
       h('p', { class: 'eyebrow live-dot' }, t('intro.rightNow')), line),
     h('h2', { class: 'eyebrow' }, t('intro.choose')),

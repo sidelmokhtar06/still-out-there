@@ -307,5 +307,17 @@
   "intro.headline.deep": "Deux machines à la dérive.",
   "card.days.silent": "jours de silence",
   "card.days.still-working": "jours au travail",
-  "card.days.drifting": "jours à la dérive"
+  "card.days.drifting": "jours à la dérive",
+  "mission.start": "Commencer la mission",
+  "mission.continue": "Continuer : {name}",
+  "mission.next": "Machine suivante : {name}",
+  "mission.nextStop": "Prochaine étape : {world} · {name}",
+  "mission.count": "{n} machines trouvées sur {total}",
+  "mission.found": "Trouvée !",
+  "mission.foundLine": "{name} est dans ton journal de mission.",
+  "mission.done.title": "Gardien des machines",
+  "mission.done.text": "Tu as trouvé les dix. Elles se sont tues, mais maintenant tu sais où elles sont et ce qu’elles ont fait.",
+  "mission.others": "Ou choisis une autre machine",
+  "mission.badge.found": "{name} : trouvée",
+  "mission.badge.todo": "{name} : pas encore trouvée"
 }

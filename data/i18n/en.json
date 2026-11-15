@@ -307,5 +307,17 @@
   "intro.headline.deep": "Two machines, adrift.",
   "card.days.silent": "days silent",
   "card.days.still-working": "days on the job",
-  "card.days.drifting": "days adrift"
+  "card.days.drifting": "days adrift",
+  "mission.start": "Start the mission",
+  "mission.continue": "Continue: {name}",
+  "mission.next": "Next machine: {name}",
+  "mission.nextStop": "Next stop: {world} · {name}",
+  "mission.count": "{n} of {total} machines found",
+  "mission.found": "Found!",
+  "mission.foundLine": "{name} is in your mission log.",
+  "mission.done.title": "Keeper of the machines",
+  "mission.done.text": "You found all ten. They stopped talking, but now you know where they are and what they did.",
+  "mission.others": "Or choose another machine",
+  "mission.badge.found": "{name}: found",
+  "mission.badge.todo": "{name}: not found yet"
 }

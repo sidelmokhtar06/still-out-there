@@ -5,6 +5,7 @@ import { db, artifact, factsOf, CHAPTERS, placeOf, noteOf } from '../data.js';
 import { liveSummary } from '../live.js';
 import { mythCard, sourceLink } from './mythFact.js';
 import { machineRows } from './panel.js';
+import { markFound, missionStrip, nextButton } from '../mission.js';
 import { machineArt } from './art.js';
 import { laserPanel } from './beam.js';
 import { musicOn, setMusicOn, startMusic, stopMusic } from './ambience.js';
@@ -216,12 +217,21 @@ function endPanel(a) {
   const hd = head(a);
   const myth = mythCard(a);
   const others = machineRows(db.artifacts.filter((b) => b.id !== a.id));
+  const fresh = markFound(a.id) ? a.id : null;     // the stamp animates only the first time
+  const next = nextButton(a);
   return {
     title: `${a.name}: ${t('story.end.title')}`,
     el: h('div', { class: 'pane pane-read pane-story' }, hd.el,
       h('h1', { tabindex: '-1' }, t('story.end.title')),
+      h('div', { class: `found-card status-${a.status}${fresh ? ' fresh' : ''}` },
+        h('span', { class: 'found-stamp', 'aria-hidden': 'true' }, statusMark(a.status), t('mission.found')),
+        h('p', {}, t('mission.foundLine', { name: a.name }))),
+      missionStrip(fresh),
+      next ? h('p', { class: 'story-nav' }, next)
+        : h('div', { class: 'mission-done' }, h('h2', {}, t('mission.done.title')), h('p', {}, t('mission.done.text')),
+          h('p', { class: 'story-nav' }, h('a', { class: 'action', href: '#/rollcall' }, t('rollcall.start'), ' ', h('span', { class: 'arrow', 'aria-hidden': 'true' }, '→')))),
       myth ? [h('h2', { class: 'eyebrow' }, t('myth.title')), myth] : null,
-      h('h2', { class: 'eyebrow' }, t('story.end.next')),
+      h('h2', { class: 'eyebrow' }, t('mission.others')),
       others.el),
     tick(now) { hd.live.textContent = liveSummary(a, now); others.update(now); },
   };

@@ -307,5 +307,17 @@
   "intro.headline.deep": "آلتان تائهتان في الفضاء.",
   "card.days.silent": "يومًا من الصمت",
   "card.days.still-working": "يومًا في العمل",
-  "card.days.drifting": "يومًا من التيه في الفضاء"
+  "card.days.drifting": "يومًا من التيه في الفضاء",
+  "mission.start": "ابدأ المهمة",
+  "mission.continue": "تابع: {name}",
+  "mission.next": "الآلة التالية: {name}",
+  "mission.nextStop": "المحطة التالية: {world} · {name}",
+  "mission.count": "وجدت {n} من {total} آلات",
+  "mission.found": "وجدتها!",
+  "mission.foundLine": "{name} الآن في سجل مهمتك.",
+  "mission.done.title": "حارس الآلات",
+  "mission.done.text": "وجدت الآلات العشر كلها. توقفت عن الكلام، لكنك الآن تعرف أين هي وماذا فعلت.",
+  "mission.others": "أو اختر آلة أخرى",
+  "mission.badge.found": "{name}: وُجدت",
+  "mission.badge.todo": "{name}: لم توجد بعد"
 }
