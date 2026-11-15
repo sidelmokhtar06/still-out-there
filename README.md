@@ -22,7 +22,7 @@ Opening `index.html` directly from disk won't work because browsers block `fetch
 | Where | What | How |
 |---|---|---|
 | Mars | Local solar time, Sun elevation, season | NASA GISS **Mars24** algorithm, tested against NASA's published worked examples (`tools/test-time.js`) |
-| Earth, Moon and Mars (home) | The trip from the Earth to the Moon and to Mars, in 3D: the Moon circles the Earth, probes fly along both routes, and a click on the Moon or Mars flies the camera there | Drawn with three.js from the real Earth, Moon and Mars maps. Sizes and distances are not to scale, and the page says so |
+| Solar system (home) | Where every planet and the Moon are on the date in the time bar, in 3D; time can run at 1 hour, 1 day or 1 week per second | Astronomy Engine heliocentric positions, drawn with three.js. Directions are real; sizes and distances are squashed to fit, and the page says so |
 | Moon | Day/night at each site, next sunrise/sunset | Astronomy Engine: Sun direction rotated into the Moon-fixed frame. Checked against lunar phases and the Apollo 11 landing Sun angle (about 10°) |
 | Deep space (hidden for now) | Distance from Earth and light time for Pioneer 10 and Kepler. The site focuses on the Moon and Mars; the data and code stay, and adding `'deep'` to `SHOWN_WORLDS` in `js/data.js` brings them back | Daily tables from **JPL Horizons** (`tools/fetch-ephemeris.sh`), interpolated. If a table is missing, the reading is hidden; the site never shows an invented number |
 
@@ -44,7 +44,7 @@ Atkinson Hyperlegible type, text sized in rem, WCAG AA contrast, visible focus, 
 index.html  css/style.css
 js/main.js            router: the stage stays put, the pane beside it changes
 js/time/              marsTime.js (Mars24), moonTime.js, deepSpace.js
-js/ui/                system.js (3D Earth, Moon and Mars, home), home.js,
+js/ui/                system.js (3D solar system map, home), home.js,
                       moonTexture.js (clearer Moon map), space.js (starfield, orrery),
                       globe.js, ruler.js, panel.js, story.js, mythFact.js, art.js, about.js
 data/                 artifacts.json, sources.json, *_ephemeris.json, i18n/en.json
