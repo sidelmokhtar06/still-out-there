@@ -304,5 +304,8 @@
   "orbit.cam.hirise": "la caméra HiRISE du Mars Reconnaissance Orbiter de la NASA",
   "intro.headline.moon": "Quatre machines. L’une a encore un travail.",
   "intro.headline.mars": "Quatre machines endormies dans la poussière.",
-  "intro.headline.deep": "Deux machines à la dérive."
+  "intro.headline.deep": "Deux machines à la dérive.",
+  "card.days.silent": "jours de silence",
+  "card.days.still-working": "jours au travail",
+  "card.days.drifting": "jours à la dérive"
 }

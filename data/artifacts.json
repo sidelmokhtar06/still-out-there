@@ -142,6 +142,12 @@
         0.497
       ],
       "zoom": 3
+    },
+    "card": {
+      "src": "assets/img/card-eagle.jpg",
+      "nasa_id": "as11-40-5927",
+      "credit": "NASA / Neil Armstrong",
+      "source_id": "img-eagle"
     }
   },
   {
@@ -266,7 +272,13 @@
         "caption_key": "media.lrv.caption",
         "alt_key": "media.lrv.alt"
       }
-    ]
+    ],
+    "card": {
+      "src": "assets/img/card-lrv.jpg",
+      "nasa_id": "as15-86-11603",
+      "credit": "NASA / David R. Scott",
+      "source_id": "img-lrv"
+    }
   },
   {
     "id": "retro",
@@ -411,6 +423,12 @@
         0.642
       ],
       "zoom": 3
+    },
+    "card": {
+      "src": "assets/img/card-retro.jpg",
+      "nasa_id": "as14-67-09386",
+      "credit": "NASA",
+      "source_id": "img-retro"
     }
   },
   {
@@ -547,7 +565,13 @@
         "caption_key": "media.surveyor3.caption",
         "alt_key": "media.surveyor3.alt"
       }
-    ]
+    ],
+    "card": {
+      "src": "assets/img/card-surveyor3.jpg",
+      "nasa_id": "AS12-48-7133",
+      "credit": "NASA",
+      "source_id": "img-surveyor3"
+    }
   },
   {
     "id": "sojourner",
@@ -670,7 +694,13 @@
         "caption_key": "media.sojourner.caption",
         "alt_key": "media.sojourner.alt"
       }
-    ]
+    ],
+    "card": {
+      "src": "assets/img/card-sojourner.jpg",
+      "nasa_id": "PIA00623",
+      "credit": "NASA/JPL",
+      "source_id": "img-sojourner"
+    }
   },
   {
     "id": "opportunity",
@@ -865,6 +895,12 @@
       ],
       "zoom": 6,
       "find": true
+    },
+    "card": {
+      "src": "assets/img/card-opportunity.jpg",
+      "nasa_id": "PIA05840",
+      "credit": "NASA/JPL",
+      "source_id": "card-opportunity"
     }
   },
   {
@@ -1116,7 +1152,13 @@
         "transcript_key": "media.ingenuity.audio.transcript",
         "title_key": "media.ingenuity.audio.title"
       }
-    ]
+    ],
+    "card": {
+      "src": "assets/img/card-ingenuity.jpg",
+      "nasa_id": "PIA26243",
+      "credit": "NASA/JPL-Caltech",
+      "source_id": "img-ingenuity"
+    }
   },
   {
     "id": "insight",
@@ -1367,6 +1409,12 @@
         0.496
       ],
       "zoom": 4
+    },
+    "card": {
+      "src": "assets/img/card-insight.jpg",
+      "nasa_id": "PIA25287",
+      "credit": "NASA/JPL-Caltech",
+      "source_id": "img-insight"
     }
   },
   {
@@ -1494,7 +1542,13 @@
         "caption_key": "media.pioneer10.caption",
         "alt_key": "media.pioneer10.alt"
       }
-    ]
+    ],
+    "card": {
+      "src": "assets/img/card-pioneer10.jpg",
+      "nasa_id": "ARC-1972-AC72-2135",
+      "credit": "NASA Ames Research Center",
+      "source_id": "img-pioneer10"
+    }
   },
   {
     "id": "kepler",
@@ -1623,6 +1677,12 @@
         "caption_key": "media.kepler.caption",
         "alt_key": "media.kepler.alt"
       }
-    ]
+    ],
+    "card": {
+      "src": "assets/img/card-kepler.jpg",
+      "nasa_id": "PIA11188",
+      "credit": "NASA/JPL-Caltech/Ball Aerospace",
+      "source_id": "img-kepler"
+    }
   }
 ]

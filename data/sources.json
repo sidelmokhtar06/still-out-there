@@ -482,5 +482,13 @@
     "publisher": "NASA",
     "accessed": "2026-11-15",
     "official_resource": false
+  },
+  {
+    "id": "card-opportunity",
+    "title": "One Year Before Mission Success (PIA05840)",
+    "url": "https://images.nasa.gov/details/PIA05840",
+    "publisher": "NASA",
+    "accessed": "2026-11-15",
+    "official_resource": false
   }
 ]

@@ -21,9 +21,34 @@ export function machineRows(list) {
   };
 }
 
+/** The machines as photo cards: what it looks like, how long it has been quiet, and what is happening there now. */
+export function machineCards(list) {
+  const cards = list.map((a, i) => {
+    const live = h('span', { class: 'card-live' });
+    const days = h('b', {});
+    return { a, live, days, el: h('li', {}, h('a', { class: `card status-${a.status}`, href: `#/m/${a.id}`, 'data-machine': a.id },
+      h('span', { class: 'card-photo' },
+        h('img', { src: a.card.src, alt: '', width: 480, height: 320, loading: 'lazy', decoding: 'async' }),
+        h('span', { class: 'card-num', 'aria-hidden': 'true' }, String(i + 1)),
+        h('span', { class: 'card-status' }, statusMark(a.status), t('status.' + a.status))),
+      h('span', { class: 'card-name' }, a.name),
+      h('span', { class: 'card-days' }, days, ' ', t('card.days.' + a.status)),
+      live)) };
+  });
+  return {
+    el: h('ul', { class: `cards cards-${list.length}` }, ...cards.map((c) => c.el)),
+    update(now) {
+      for (const c of cards) {
+        c.live.textContent = liveSummary(c.a, now);
+        c.days.textContent = fmtNumber(daysSince(c.a.since.date, now));
+      }
+    },
+  };
+}
+
 export function introPanel(world) {
   const line = h('p', { class: 'now-line' });
-  const rows = machineRows(byBody(world));
+  const rows = machineCards(byBody(world));
   const el = h('div', { class: 'pane pane-intro' },
     h('p', { class: 'eyebrow' }, t('app.title'), ' · ', t('world.' + world)),
     h('h1', { tabindex: '-1', class: 'wordmark' }, t('intro.headline.' + world)),

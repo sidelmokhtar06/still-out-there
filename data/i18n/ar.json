@@ -304,5 +304,8 @@
   "orbit.cam.hirise": "كاميرا HiRISE على المسبار المداري للمريخ التابع لناسا",
   "intro.headline.moon": "أربع آلات. واحدة منها ما زال لديها عمل.",
   "intro.headline.mars": "أربع آلات نائمة في الغبار.",
-  "intro.headline.deep": "آلتان تائهتان في الفضاء."
+  "intro.headline.deep": "آلتان تائهتان في الفضاء.",
+  "card.days.silent": "يومًا من الصمت",
+  "card.days.still-working": "يومًا في العمل",
+  "card.days.drifting": "يومًا من التيه في الفضاء"
 }

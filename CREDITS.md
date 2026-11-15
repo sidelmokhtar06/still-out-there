@@ -32,7 +32,7 @@ No NASA logos or mission patches are used. This project is not endorsed by NASA.
 | Pioneer 10 | ARC-1972-AC72-2135 | NASA Ames Research Center |
 | Kepler | PIA11188 | NASA/JPL-Caltech/Ball Aerospace |
 
-Each links to https://images.nasa.gov/details/&lt;NASA ID&gt;. Photos are resized and compressed.
+Each links to https://images.nasa.gov/details/&lt;NASA ID&gt;. Photos are resized and compressed. The machine cards use crops of these photos, except Opportunity's card, which shows the rover being prepared at Kennedy Space Center in April 2003: PIA05840, NASA/JPL.
 
 ## "Seen from orbit" photos (the machines today, photographed by orbiting spacecraft)
 | Machine | NASA ID | Camera, year | Credit |

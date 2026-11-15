@@ -53,6 +53,8 @@ for (const a of artifacts) {
     if (!sources.has(a.location?.source_id)) bad(`${a.id}: coordinates have no source`);
   } else if (!a.ephemeris) bad(`${a.id}: deep-space machine has no ephemeris table`);
   if (!['silent', 'still-working', 'drifting'].includes(a.status)) bad(`${a.id}: unknown status`);
+  if (!a.card || !sources.has(a.card.source_id) || !a.card.credit || !existsSync(new URL('../' + a.card.src, import.meta.url))) bad(`${a.id}: card photo missing, or without source and credit`);
+  if (!text['card.days.' + a.status]) bad(`${a.id}: no card label for status ${a.status}`);
   if (a.orbit) {
     const o = a.orbit;
     if (!sources.has(o.source_id)) bad(`${a.id}: orbit photo has no source`);
